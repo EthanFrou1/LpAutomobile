@@ -1,0 +1,479 @@
+﻿@page
+@model LpAutomobile.Pages.IndexModel
+@{
+    ViewData["Title"] = "Accueil - LP Automobiles";
+}
+
+<!-- Hero Section Révolutionné -->
+<section class="hero-section position-relative overflow-hidden">
+    <!-- Image de fond -->
+    <div class="hero-background">
+        <img src="./img/img1.webp" alt="LP Automobile - Garage et véhicules" class="hero-image w-100 h-100 object-fit-cover">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <!-- Contenu Hero -->
+    <div class="hero-content text-center text-white">
+        <div class="container bloc-hero">
+            <!-- Logo et titre principal déjà sur l'image, on ajoute du contenu complémentaire -->
+            <h1 class="hero-subtitle mb-4 fs-2 fw-light" data-aos="fade-up" data-aos-delay="300">
+                Votre concessionnaire de confiance à Saint-Estève
+            </h1>
+
+            <!-- Badges de confiance -->
+            <div class="hero-badges d-flex justify-content-center gap-3 mb-5" data-aos="fade-up" data-aos-delay="500">
+                <span class="badge-item">
+                    <i class="bi bi-shield-check"></i>
+                    Véhicules Contrôlés
+                </span>
+                <span class="badge-item">
+                    <i class="bi bi-award"></i>
+                    Garantie Incluse
+                </span>
+                <span class="badge-item">
+                    <i class="bi bi-credit-card"></i>
+                    Financement Facilité
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Flèche scroll down -->
+    <div class="scroll-indicator position-absolute bottom-0 start-50 translate-middle-x mb-4">
+        <i class="bi bi-chevron-down text-white fs-3 animate-bounce"></i>
+    </div>
+</section>
+
+<!-- Section Chiffres de Confiance -->
+<section class="stats-section py-5 bg-light">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-6 col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-item">
+                    <div class="stat-number display-4 fw-bold text-primary mb-2" data-counter="5">0</div>
+                    <div class="stat-label text-muted">Années d'expérience</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-item">
+                    <div class="stat-number display-4 fw-bold text-primary mb-2" data-counter="200">0</div>
+                    <div class="stat-label text-muted">Véhicules vendus</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-item">
+                    <div class="stat-number display-4 fw-bold text-primary mb-2" data-counter="98">0</div>
+                    <div class="stat-label text-muted">% Clients satisfaits</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-item">
+                    <div class="stat-number display-4 fw-bold text-primary mb-2">4.8<span class="fs-6">/5</span></div>
+                    <div class="stat-label text-muted">Note Google</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Pourquoi LP Automobile -->
+<section class="why-us-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="section-title display-5 fw-bold mb-3" data-aos="fade-up">
+                    Pourquoi choisir LP Automobile ?
+                </h2>
+                <p class="section-subtitle text-muted fs-5" data-aos="fade-up" data-aos-delay="100">
+                    Notre engagement : vous accompagner dans votre projet automobile avec transparence et professionnalisme
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-card h-100 text-center p-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-shield-check text-primary fs-1"></i>
+                    </div>
+                    <h4 class="feature-title mb-3">Transparence totale</h4>
+                    <p class="feature-description text-muted">Prix justes et clairs, sans frais cachés. Historique complet de chaque véhicule.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-card h-100 text-center p-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-gear text-primary fs-1"></i>
+                    </div>
+                    <h4 class="feature-title mb-3">Expertise reconnue</h4>
+                    <p class="feature-description text-muted">Véhicules rigoureusement sélectionnés et contrôlés par nos experts.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-card h-100 text-center p-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-person-heart text-primary fs-1"></i>
+                    </div>
+                    <h4 class="feature-title mb-3">Service personnalisé</h4>
+                    <p class="feature-description text-muted">Accompagnement sur-mesure de la recherche à l'achat de votre véhicule.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-card h-100 text-center p-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-award text-primary fs-1"></i>
+                    </div>
+                    <h4 class="feature-title mb-3">Garantie incluse</h4>
+                    <p class="feature-description text-muted">Tous nos véhicules sont garantis pour votre tranquillité d'esprit.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                <div class="feature-card h-100 text-center p-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-geo-alt text-primary fs-1"></i>
+                    </div>
+                    <h4 class="feature-title mb-3">Proximité</h4>
+                    <p class="feature-description text-muted">Situés à Saint-Estève, nous sommes proches de vous et de vos besoins.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                <div class="feature-card h-100 text-center p-4">
+                    <div class="feature-icon mb-3">
+                        <i class="bi bi-headset text-primary fs-1"></i>
+                    </div>
+                    <h4 class="feature-title mb-3">Suivi après-vente</h4>
+                    <p class="feature-description text-muted">Notre relation ne s'arrête pas à la vente. Nous restons à vos côtés.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Comment ça marche -->
+<section class="process-section py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="section-title display-5 fw-bold mb-3" data-aos="fade-up">
+                    Comment ça marche ?
+                </h2>
+                <p class="section-subtitle text-muted fs-5" data-aos="fade-up" data-aos-delay="100">
+                    Un processus simple et transparent en 3 étapes
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="process-timeline">
+                    <div class="row">
+                        <div class="col-md-4 text-center mb-4" data-aos="fade-up" data-aos-delay="100">
+                            <div class="process-step">
+                                <div class="step-number">1</div>
+                                <div class="step-icon mb-3">
+                                    <i class="bi bi-search fs-1 text-primary"></i>
+                                </div>
+                                <h4 class="step-title mb-3">Recherchez</h4>
+                                <p class="step-description text-muted">Parcourez notre catalogue et trouvez le véhicule qui vous correspond grâce à nos filtres avancés.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 text-center mb-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="process-step">
+                                <div class="step-number">2</div>
+                                <div class="step-icon mb-3">
+                                    <i class="bi bi-calendar-check fs-1 text-primary"></i>
+                                </div>
+                                <h4 class="step-title mb-3">Essayez</h4>
+                                <p class="step-description text-muted">Prenez rendez-vous pour un essai gratuit et découvrez votre futur véhicule en conditions réelles.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 text-center mb-4" data-aos="fade-up" data-aos-delay="300">
+                            <div class="process-step">
+                                <div class="step-number">3</div>
+                                <div class="step-icon mb-3">
+                                    <i class="bi bi-hand-thumbs-up fs-1 text-primary"></i>
+                                </div>
+                                <h4 class="step-title mb-3">Achetez</h4>
+                                <p class="step-description text-muted">Finalisez votre achat en toute sérénité avec notre accompagnement personnalisé et nos solutions de financement.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Galerie photos du garage - AMÉLIORÉE -->
+<section class="garage-section py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                <div class="garage-images">
+                    <!-- Tu peux ajouter plus d'images du garage ici -->
+                    <img src="./img/img1.webp" class="img-fluid rounded shadow-lg" alt="Garage LP Automobiles">
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="garage-content ps-lg-4">
+                    <h2 class="section-title display-5 fw-bold mb-4">Notre garage à Saint-Estève</h2>
+                    <p class="fs-5 text-muted mb-4">
+                        Découvrez nos installations modernes et notre équipe passionnée, Fouzia et Ludovic,
+                        qui mettent leur expertise à votre service depuis plus de 5 ans.
+                    </p>
+
+                    <div class="garage-features">
+                        <div class="feature-item d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+                            <span>Équipements de diagnostic dernière génération</span>
+                        </div>
+                        <div class="feature-item d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+                            <span>Pont élévateur professionnel</span>
+                        </div>
+                        <div class="feature-item d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+                            <span>Zone d'exposition couverte</span>
+                        </div>
+                        <div class="feature-item d-flex align-items-center mb-3">
+                            <i class="bi bi-check-circle-fill text-success me-3 fs-5"></i>
+                            <span>Espace client confortable</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Horaires améliorés -->
+        <div class="row mt-5">
+            <div class="">
+                <div class="horaires-card p-4 rounded shadow" data-aos="fade-up">
+                    <h2 class="text-center mb-4">
+                        <i class="bi bi-clock me-2 text-primary"></i>
+                        Nos horaires d'ouverture
+                    </h2>
+                    <table class="table table-borderless table-horaires">
+                        <tbody class="tbody-horaires">
+                            <tr class="tr-horaires"><td class="td-horaires"><strong>Lundi</strong></td><td>09:30–12:00 - 14:00–18:30</td></tr>
+                            <tr class="tr-horaires"><td class="td-horaires"><strong>Mardi</strong></td><td>09:30–12:00 - 14:00–18:30</td></tr>
+                            <tr class="tr-horaires"><td class="td-horaires"><strong>Mercredi</strong></td><td>09:30–12:00 - 14:00–18:30</td></tr>
+                            <tr class="tr-horaires"><td class="td-horaires"><strong>Jeudi</strong></td><td>08:30–12:00 - 14:00–18:30</td></tr>
+                            <tr class="tr-horaires"><td class="td-horaires"><strong>Vendredi</strong></td><td>08:30–12:00 - 14:00–18:30</td></tr>
+                            <tr class="tr-horaires"><td class="td-horaires"><strong>Samedi</strong></td><td>Fermé</td></tr>
+                            <tr class="tr-horaires"><td class="td-horaires"><strong>Dimanche</strong></td><td>Fermé</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="text-center mt-4">
+                        <a href="tel:+33633169477" class="btn btn-light btn-lg">
+                            <i class="bi bi-telephone-fill me-2"></i>
+                            Nous appeler maintenant
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact rapide -->
+<section class="quick-contact-section py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title display-5 fw-bold mb-4" data-aos="fade-up">
+                    Prêt à trouver votre véhicule idéal ?
+                </h2>
+                <p class="fs-5 text-muted mb-5" data-aos="fade-up" data-aos-delay="100">
+                    Contactez-nous dès maintenant pour bénéficier de nos conseils d'experts
+                </p>
+
+                <div class="contact-buttons d-flex flex-wrap justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <a href="tel:+33633169477" class="btn btn-primary btn-lg">
+                        <i class="bi bi-telephone-fill me-2"></i>
+                        Appelez-nous
+                    </a>
+                    <a href="https://wa.me/33633169477" target="_blank" class="btn btn-lg">
+                        <i class="bi bi-whatsapp me-2"></i>
+                        WhatsApp
+                    </a>
+                    <a href="#contact" class="btn btn-outline-primary btn-lg">
+                        <i class="bi bi-envelope me-2"></i>
+                        Email
+                    </a>
+                    <a href="../Vehicules/Catalogue" class="btn btn-dark btn-lg">
+                        <i class="bi bi-car-front me-2"></i>
+                        Voir le catalogue
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formulaire de contact simplifié -->
+<section class="py-5 form-contact" id="contact" data-aos="fade-up" data-aos-duration="2000">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title text-center display-5 fw-bold mb-5" data-aos="fade-down">
+                    Une question ? Contactez-nous !
+                </h2>
+
+                <form method="post" asp-page-handler="Contact" class="contact-form" id="contactForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nom" class="form-label" >Nom complet *</label>
+                            <input type="text" class="form-control form-control-lg" placeholder="Veuillez saisir votre nom complet." id="nom" name="Nom" required>
+                            <div class="invalid-feedback">
+                                Veuillez saisir votre nom complet.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" class="form-control form-control-lg" placeholder="Veuillez saisir une adresse email valide." id="email" name="Email" required>
+                            <div class="invalid-feedback">
+                                Veuillez saisir une adresse email valide.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <h3 for="message" class="form-label">Votre message *</h3>
+                        <textarea class="form-control" id="message" name="Message" rows="4"
+                                  placeholder="Veuillez saisir votre message (minimum 10 caractères)." required></textarea>
+                        <div class="invalid-feedback">
+                            Veuillez saisir votre message (minimum 10 caractères).
+                        </div>
+                    </div>
+
+                    <!-- Informations sur les champs requis -->
+                    <div class="mb-4">
+                        <small class="">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Les champs marqués d'un * sont obligatoires
+                        </small>
+                    </div>
+
+                    <div class="text-center btn-sumbit-contact-from">
+                        <button type="submit" id="submitBtn" class="btn btn-secondary btn-lg px-5" disabled>
+                            <i class="bi bi-send me-2"></i>
+                            <span class="btn-text">Envoyer le message</span>
+                            <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Réseaux sociaux & contacts -->
+<section class="bg-light py-4 text-white text-primary">
+    <div class="container">
+        <div class="row text-center align-items-center">
+            <div class="col-6 col-md">
+                <a href="https://www.facebook.com/Lpautomobile66/?locale=fr_FR" target="_blank" class="text-white text-decoration-none link-contact">
+                    <i class="bi bi-facebook fs-2 mb-2 d-block text-primary"></i>
+                    <span class="small text-primary">Facebook</span>
+                </a>
+            </div>
+            <div class="col-6 col-md">
+                <a href="https://occasion.largus.fr/auto/lp-automobile_152969/" target="_blank" class="text-white text-decoration-none link-contact">
+                    <img src="/img/logo-argus.png" alt="L'Argus" class="img-argus mb-2"/>
+                    <span class="small d-block"></span>
+                </a>
+            </div>
+            <div class="col-6 col-md">
+                <a href="https://wa.me/33633169477" target="_blank" class="text-white text-decoration-none link-contact">
+                    <i class="bi bi-whatsapp fs-2 mb-2 d-block text-primary"></i>
+                    <span class="small text-primary">WhatsApp</span>
+                </a>
+            </div>
+            <div class="col-6 col-md">
+                <a href="tel:+33633169477" class="text-white text-decoration-none link-contact">
+                    <i class="bi bi-telephone-fill fs-2 mb-2 d-block text-primary"></i>
+                    <span class="small text-primary">06 33 16 94 77</span>
+                </a>
+            </div>
+            <div class="col-6 col-md">
+                <a href="mailto:ethanfrou1@gmail.com" class="text-white text-decoration-none link-contact">
+                    <i class="bi bi-envelope-fill fs-2 mb-2 d-block text-primary"></i>
+                    <span class="small text-primary">Email</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Avis Google - garde ton code existant mais améliore le titre -->
+@if (Model.Avis != null && Model.Avis.Any())
+{
+    <section class="py-5" data-aos="fade-up" data-aos-duration="1000">
+        <div class="container text-center">
+            <h2 class="section-title display-5 fw-bold mb-3">Ils nous font confiance</h2>
+            <div class="mb-5 mt-5">
+                <div class="d-inline-flex align-items-center px-4 py-2 rounded-pill shadow-sm btn pointer-none">
+                    <span class="fw-bold fs-4 text-warning">4.8</span>
+                    <div class="text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <span class="">• 50+ avis Google</span>
+                </div>
+            </div>
+            @await Html.PartialAsync("_AvisGooglePartial", Model.Avis)
+            <div class="mt-4 bloc-btn-avis-google" data-aos="zoom-in" data-aos-duration="1000">
+                <a href="https://www.google.com/maps/place/Lp+Automobiles/" target="_blank" class="btn btn-outline-primary btn-lg pointer-none;">
+                    <i class="bi bi-google me-2"></i>
+                    Voir tous les avis Google
+                </a>
+            </div>
+        </div>
+    </section>
+}
+
+<!-- Carte - garde ton code existant -->
+<section class="py-5 bg-light" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+        <h2 class="section-title text-center display-5 fw-bold mb-5">Nous localiser</h2>
+        <div class="row">
+            <div class="map">
+                <div class="map-container rounded shadow">
+                    <iframe src="https://www.google.com/maps?q=14+Rue+Louis+Piquemal,+66240+Saint-Esteve&output=embed"
+                            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" class="rounded">
+                    </iframe>
+                </div>
+
+
+                <!-- Bouton Itinéraire -->
+                <div class="text-center block-btn-map">
+                    <button id="btnItineraire" class="btn btn-primary btn-lg px-5 py-3" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="bi bi-geo-alt-fill me-2"></i>
+                        Venir chez nous
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+                    <p class="text-muted mt-2 small">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Ouvre Google Maps avec l'itinéraire depuis votre position
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BOUTON SCROLL TO TOP -->
+<button id="scrollToTop" class="scroll-to-top-btn" title="Retour en haut">
+    <i class="bi bi-chevron-up"></i>
+</button>

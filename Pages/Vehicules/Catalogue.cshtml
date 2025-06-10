@@ -1,0 +1,389 @@
+﻿@page "/Vehicules/Catalogue"
+@model LpAutomobile.Pages.CatalogueModel
+@{
+    ViewData["Title"] = "Catalogue des véhicules - LP Automobile";
+}
+
+<div class="catalogue-container">
+    <!-- Header du catalogue -->
+    <div class="catalogue-header py-4 px-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="catalogue-title mb-2">
+                        <i class="bi bi-car-front me-3"></i>
+                        Catalogue de véhicules
+                    </h1>
+                    <p class="catalogue-subtitle text-muted mb-0">
+                        Découvrez notre sélection de véhicules d'occasion contrôlés et garantis
+                    </p>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <div class="results-summary">
+                        <div class="results-count">
+                            <span class="count-number">@Model.TotalVehicules</span>
+                            <span class="count-label">véhicule@(Model.TotalVehicules > 1 ? "s" : "") trouvé@(Model.TotalVehicules > 1 ? "s" : "")</span>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm mobile-filter-btn d-lg-none">
+                            <i class="bi bi-funnel me-1"></i>
+                            Filtres
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar filtres moderne -->
+            <div class="col-lg-3 col-xl-3">
+                <div class="filters-sidebar" id="filtersSidebar">
+                    <div class="filters-header">
+                        <h3 class="filters-title">
+                            <i class="bi bi-sliders me-2"></i>
+                            Filtres
+                        </h3>
+                        <button class="btn btn-sm btn-outline-danger reset-all-btn" id="resetAllFilters">
+                            <i class="bi bi-x-circle me-1"></i>
+                            Tout effacer
+                        </button>
+                    </div>
+
+                    <!-- Filtres actifs -->
+                    <div class="active-filters mb-3" id="activeFilters" style="display: none;">
+                        <h6 class="text-muted mb-2">Filtres actifs :</h6>
+                        <div class="active-filters-list"></div>
+                    </div>
+
+                    <!-- Marque -->
+                    <div class="filter-group">
+                        <button class="filter-toggle" data-target="marques-list">
+                            <span>Marque</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="filter-content open" id="marques-list"></div>
+                    </div>
+
+                    <!-- Modèle -->
+                    <div class="filter-group" id="modeles-section" style="display:none;">
+                        <button class="filter-toggle" data-target="modeles-list">
+                            <span>Modèle</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="filter-content" id="modeles-list"></div>
+                    </div>
+
+                    <!-- Couleur -->
+                    <div class="filter-group">
+                        <button class="filter-toggle" data-target="couleurs-list">
+                            <span>Couleur</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="filter-content" id="couleurs-list"></div>
+                    </div>
+
+                    <!-- Énergie -->
+                    <div class="filter-group">
+                        <button class="filter-toggle" data-target="energie-list">
+                            <span>Énergie</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="filter-content" id="energie-list"></div>
+                    </div>
+
+                    <!-- Transmission -->
+                    <div class="filter-group">
+                        <button class="filter-toggle" data-target="boite-list">
+                            <span>Transmission</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="filter-content" id="boite-list"></div>
+                    </div>
+
+                    <!-- Prix -->
+                    <div class="filter-group">
+                        <button class="filter-toggle" data-target="prix-wrapper">
+                            <span>Prix (€)</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="filter-content" id="prix-wrapper">
+                            <div class="range-slider-container">
+                                <div class="range-header">
+                                    <div class="range-values">
+                                        <span class="range-label" id="prixMinAffichage">0€</span>
+                                        <span class="range-label" id="prixMaxAffichage">100000€</span>
+                                    </div>
+                                    <div class="range-toggle">
+                                        <label class="switch">
+                                            <input type="checkbox" id="usePrix">
+                                            <span class="slider-switch"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="dual-range-slider disabled" id="prixGroup">
+                                    <div class="range-track"></div>
+                                    <div class="range-track-active" id="prixTrackActive"></div>
+                                    <input type="range" class="range-input" min="0" max="100000" step="1000" id="prixMin" value="0" disabled>
+                                    <input type="range" class="range-input" min="0" max="100000" step="1000" id="prixMax" value="100000" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kilométrage -->
+                    <div class="filter-group">
+                        <button class="filter-toggle" data-target="km-wrapper">
+                            <span>Kilométrage (km)</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="filter-content" id="km-wrapper">
+                            <div class="range-slider-container">
+                                <div class="range-header">
+                                    <div class="range-values">
+                                        <span class="range-label" id="kmMinAffichage">0 km</span>
+                                        <span class="range-label" id="kmMaxAffichage">300000 km</span>
+                                    </div>
+                                    <div class="range-toggle">
+                                        <label class="switch">
+                                            <input type="checkbox" id="useKm">
+                                            <span class="slider-switch"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="dual-range-slider disabled" id="kmGroup">
+                                    <div class="range-track"></div>
+                                    <div class="range-track-active" id="kmTrackActive"></div>
+                                    <input type="range" class="range-input" min="0" max="300000" step="10000" id="kmMin" value="0" disabled>
+                                    <input type="range" class="range-input" min="0" max="300000" step="10000" id="kmMax" value="300000" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Année -->
+                    <div class="filter-group">
+                        <button class="filter-toggle" data-target="annee-wrapper">
+                            <span>Année</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <div class="filter-content" id="annee-wrapper">
+                            <div class="range-slider-container">
+                                <div class="range-header">
+                                    <div class="range-values">
+                                        <span class="range-label" id="anneeMinAffichage">2000</span>
+                                        <span class="range-label" id="anneeMaxAffichage">2025</span>
+                                    </div>
+                                    <div class="range-toggle">
+                                        <label class="switch">
+                                            <input type="checkbox" id="useAnnee">
+                                            <span class="slider-switch"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="dual-range-slider disabled" id="anneeGroup">
+                                    <div class="range-track"></div>
+                                    <div class="range-track-active" id="anneeTrackActive"></div>
+                                    <input type="range" class="range-input" min="2000" max="2025" step="1" id="anneeMin" value="2000" disabled>
+                                    <input type="range" class="range-input" min="2000" max="2025" step="1" id="anneeMax" value="2025" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bouton d'application -->
+                    <div class="filters-actions">
+                        <button class="btn btn-primary w-100 apply-filters-btn" id="applyFilters">
+                            <i class="bi bi-search me-2"></i>
+                            Appliquer les filtres
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenu principal -->
+            <div class="col-lg-9 col-xl-9">
+                <div class="catalogue-content">
+                    <!-- Barre d'outils -->
+                    <div class="catalogue-toolbar">
+                        <div class="toolbar-left">
+                            <div class="view-modes">
+                                <button class="view-mode-btn active" data-view="grid">
+                                    <i class="bi bi-grid-3x3-gap"></i>
+                                </button>
+                                <button class="view-mode-btn" data-view="list">
+                                    <i class="bi bi-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="toolbar-right">
+                            <div class="sort-dropdown">
+                                <select class="form-select form-select-sm" id="sortBy">
+                                    <option value="date-desc">Plus récents</option>
+                                    <option value="price-asc">Prix croissant</option>
+                                    <option value="price-desc">Prix décroissant</option>
+                                    <option value="year-desc">Année décroissante</option>
+                                    <option value="km-asc">Kilométrage croissant</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grille des véhicules -->
+                    <div class="vehicles-grid" id="vehiclesGrid">
+                        @foreach (var vehicule in Model.Vehicules)
+                        {
+                            <div class="vehicle-card" data-aos="fade-up" data-aos-delay="@(Model.Vehicules.ToList().IndexOf(vehicule) * 100)">
+                                <!-- Badge de statut -->
+                                <div class="vehicle-badges">
+                                    @if (vehicule.Annee >= DateTime.Now.Year - 2)
+                                    {
+                                        <span class="badge badge-new">Récent</span>
+                                    }
+                                    @if (vehicule.Prix < 15000)
+                                    {
+                                        <span class="badge badge-price">Bon prix</span>
+                                    }
+                                    <span class="badge badge-guaranteed">Garanti</span>
+                                </div>
+
+                                <!-- Images du véhicule -->
+                                <div class="vehicle-images">
+                                    <div class="image-slider">
+                                        @for (int i = 0; i < vehicule.Photos.Count; i++)
+                                        {
+                                            <img src="@vehicule.Photos[i].Url"
+                                                 alt="@vehicule.Marque @vehicule.Modele"
+                                                 class="vehicle-image @(i == 0 ? "active" : "")"
+                                                 data-index="@i">
+                                        }
+                                    </div>
+
+                                    @if (vehicule.Photos.Count > 1)
+                                    {
+                                        <div class="image-navigation">
+                                            <button class="nav-btn prev-btn">
+                                                <i class="bi bi-chevron-left"></i>
+                                            </button>
+                                            <button class="nav-btn next-btn">
+                                                <i class="bi bi-chevron-right"></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="image-indicators">
+                                            @for (int i = 0; i < vehicule.Photos.Count; i++)
+                                            {
+                                                <span class="indicator @(i == 0 ? "active" : "")" data-index="@i"></span>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+
+                                <!-- Informations du véhicule -->
+                                <div class="vehicle-info">
+                                    <div class="vehicle-header">
+                                        <h3 class="vehicle-title">@vehicule.Marque @vehicule.Modele</h3>
+                                        <div class="vehicle-energy">
+                                            <span class="energy-badge energy-@vehicule.Energie.ToLower()">
+                                                @vehicule.Energie
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="vehicle-specs">
+                                        <div class="spec-item">
+                                            <i class="bi bi-calendar3"></i>
+                                            <span>@vehicule.Annee</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <i class="bi bi-speedometer2"></i>
+                                            <span>@vehicule.Kilometrage.ToString("N0") km</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <i class="bi bi-gear"></i>
+                                            <span>@vehicule.Transmission</span>
+                                        </div>
+                                        <div class="spec-item">
+                                            <i class="bi bi-palette"></i>
+                                            <span>@vehicule.Couleur</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="vehicle-description">
+                                        <p>@(vehicule.Description.Length > 100 ? vehicule.Description.Substring(0, 100) + "..." : vehicule.Description)</p>
+                                    </div>
+
+                                    <div class="vehicle-footer">
+                                        <div class="vehicle-price">
+                                            <div class="price-monthly">
+                                                <span class="price-label">À partir de</span>
+                                                <span class="price-value">@vehicule.PrixMensuel.ToString("C0")<small>/mois</small></span>
+                                            </div>
+                                            <div class="price-total">
+                                                <span class="price-main">@vehicule.Prix.ToString("C0")</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="vehicle-actions">
+                                            <button class="btn btn-outline-primary btn-sm favorite-btn" title="Ajouter aux favoris">
+                                                <i class="bi bi-heart"></i>
+                                            </button>
+                                            <a asp-page="/Vehicules/Catalogue/Details" asp-route-id="@vehicule.Id"
+                                               class="btn btn-primary btn-sm">
+                                                <i class="bi bi-eye me-1"></i>
+                                                Voir détails
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!-- Pagination moderne -->
+                    @if (Model.TotalPages > 1)
+                    {
+                        <div class="modern-pagination">
+                            <div class="pagination-info">
+                                <span>Page @Model.PageNumber sur @Model.TotalPages</span>
+                            </div>
+                            <nav class="pagination-nav">
+                                @if (Model.PageNumber > 1)
+                                {
+                                    <a href="@Url.Page("/Vehicules/Catalogue", new { PageNumber = Model.PageNumber - 1 })"
+                                       class="pagination-btn pagination-prev">
+                                        <i class="bi bi-chevron-left"></i>
+                                        Précédent
+                                    </a>
+                                }
+
+                                <div class="pagination-numbers">
+                                    @for (int i = Math.Max(1, Model.PageNumber - 2); i <= Math.Min(Model.TotalPages, Model.PageNumber + 2); i++)
+                                    {
+                                        <a href="@Url.Page("/Vehicules/Catalogue", new { PageNumber = i })"
+                                           class="pagination-number @(i == Model.PageNumber ? "active" : "")">
+                                            @i
+                                        </a>
+                                    }
+                                </div>
+
+                                @if (Model.PageNumber < Model.TotalPages)
+                                {
+                                    <a href="@Url.Page("/Vehicules/Catalogue", new { PageNumber = Model.PageNumber + 1 })"
+                                       class="pagination-btn pagination-next">
+                                        Suivant
+                                        <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                }
+                            </nav>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/catalogue.js"></script>
+}

@@ -1,0 +1,245 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LpAutomobile</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/catalogue.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/LpAutomobile.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- HEADER MODERNE -->
+    <header class="modern-header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <!-- Logo avec style -->
+                <a class="navbar-brand modern-brand" asp-area="" asp-page="/Index">
+                    <div class="brand-container">
+                        <div class="logo-circle bg-primary rounded-circle d-flex align-items-center justify-content-center">
+                            <span class="text-white fw-bold">LP</span>
+                        </div>
+                        <div class="brand-text">
+                            <h1 class="brand-name mb-0">LP Automobile</h1>
+                            <small class="brand-tagline text-muted">Petits prix, grands choix</small>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Bouton mobile avec animation -->
+                <button class="navbar-toggler modern-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="toggler-line"></span>
+                    <span class="toggler-line"></span>
+                    <span class="toggler-line"></span>
+                </button>
+
+                <!-- Menu principal -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link modern-nav-link" asp-page="/Index">
+                                <i class="bi bi-house me-1"></i>
+                                Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link modern-nav-link" asp-page="/Vehicules/Catalogue">
+                                <i class="bi bi-car-front me-1"></i>
+                                Catalogue
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link modern-nav-link" asp-page="/Vehicules/Index">
+                                <i class="bi bi-gear me-1"></i>
+                                Gestion
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link modern-nav-link" href="/Index#contact">
+                                <i class="bi bi-envelope me-1"></i>
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Actions rapides -->
+                    <div class="navbar-actions ms-3">
+                        <a href="tel:+33633169477" class="btn btn-outline-primary btn-sm me-2 action-btn">
+                            <i class="bi bi-telephone me-1"></i>
+                            <span class="d-none d-md-inline">06 33 16 94 77</span>
+                        </a>
+                        <a href="https://wa.me/33633169477" target="_blank" class="btn btn-outline-primary btn-sm action-btn">
+                            <i class="bi bi-whatsapp"></i>
+                            <span class="d-none d-lg-inline ms-1">WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- FOOTER PROFESSIONNEL -->
+    <footer class="footer-section bg-dark text-white">
+        <!-- Footer Principal -->
+        <div class="footer-main py-5">
+            <div class="container">
+                <div class="row">
+                    <!-- Colonne 1: À propos -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="footer-brand mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="logo-circle rounded-circle d-flex align-items-center justify-content-center me-3">
+                                    <span class="text-white fw-bold fs-4">LP</span>
+                                </div>
+                                <h4 class="text-white mb-0">LP AUTOMOBILE</h4>
+                            </div>
+                            <p class="text-light mb-0">Petits prix, grands choix, zéro stress</p>
+                        </div>
+
+                        <p class="text-light mb-4">
+                            Votre concessionnaire de confiance à Saint-Estève depuis plus de 5 ans.
+                            Spécialisés dans la vente de véhicules d'occasion, nous vous accompagnons
+                            avec transparence et professionnalisme.
+                        </p>
+
+                        <!-- Réseaux sociaux -->
+                        <div class="footer-social">
+                            <h6 class="text-white mb-3">Suivez-nous</h6>
+                            <div class="d-flex gap-3">
+                                <a href="https://www.facebook.com/Lpautomobile66/?locale=fr_FR" target="_blank"
+                                   class="social-link" title="Facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </a>
+                                <a href="https://www.google.com/maps/place/Lp+Automobiles/" target="_blank"
+                                   class="social-link" title="Google">
+                                    <i class="bi bi-google"></i>
+                                </a>
+                                <a href="https://occasion.largus.fr/auto/lp-automobile_152969/" target="_blank"
+                                   class="social-link" title="L'Argus">
+                                    <i class="bi bi-car-front"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Colonne 2: Liens rapides -->
+                    <div class="col-lg-2 col-md-6 mb-4">
+                        <h5 class="footer-title text-white mb-4">Navigation</h5>
+                        <ul class="footer-links list-unstyled">
+                            <li><a href="/" class="footer-link">Accueil</a></li>
+                            <li><a href="../Vehicules/Catalogue" class="footer-link">Catalogue</a></li>
+                            <li><a href="../Vehicules/Index" class="footer-link">Gestion</a></li>
+                            <li><a href="#contact" class="footer-link">Contact</a></li>
+                            <li><a href="/Privacy" class="footer-link">Confidentialité</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Colonne 3: Services -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <h5 class="footer-title text-white mb-4">Nos Services</h5>
+                        <ul class="footer-links list-unstyled">
+                            <li><a href="#" class="footer-link">Vente véhicules d'occasion</a></li>
+                            <li><a href="#" class="footer-link">Reprise de véhicules</a></li>
+                            <li><a href="#" class="footer-link">Financement</a></li>
+                            <li><a href="#" class="footer-link">Garantie véhicules</a></li>
+                            <li><a href="#" class="footer-link">Expertise automobile</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Colonne 4: Contact -->
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <h5 class="footer-title text-white mb-4">Contact</h5>
+                        <div class="footer-contact">
+                            <!-- Adresse -->
+                            <div class="contact-item d-flex align-items-start mb-3">
+                                <i class="bi bi-geo-alt-fill text-primary me-3 mt-1"></i>
+                                <div>
+                                    <strong class="text-white">Adresse</strong><br>
+                                    <span class="text-light">14 Rue Louis Piquemal<br>66240 Saint-Estève</span>
+                                </div>
+                            </div>
+
+                            <!-- Téléphone -->
+                            <div class="contact-item d-flex align-items-center mb-3">
+                                <i class="bi bi-telephone-fill text-primary me-3"></i>
+                                <div>
+                                    <strong class="text-white">Téléphone</strong><br>
+                                    <a href="tel:+33633169477" class="text-light text-decoration-none">
+                                        06 33 16 94 77
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="contact-item d-flex align-items-center mb-3">
+                                <i class="bi bi-envelope-fill text-primary me-3"></i>
+                                <div>
+                                    <strong class="text-white">Email</strong><br>
+                                    <a href="mailto:contact@lp-automobile.fr" class="text-light text-decoration-none">
+                                        contact@lp-automobile.fr
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- WhatsApp -->
+                            <div class="contact-item d-flex align-items-center">
+                                <i class="bi bi-whatsapp text-primary me-3"></i>
+                                <div>
+                                    <strong class="text-white">WhatsApp</strong><br>
+                                    <a href="https://wa.me/33633169477" target="_blank" class="text-light text-decoration-none">
+                                        Message direct
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom border-top border-secondary py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 text-center text-lg-start mb-3 mb-lg-0">
+                        <p class="mb-0 text-light">
+                            &copy; 2025 <strong>LP Automobile</strong>. Tous droits réservés.
+                        </p>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-end">
+                        <div class="footer-legal">
+                            <a href="/Privacy" class="footer-link me-3">Mentions légales</a>
+                            <a href="/Privacy" class="footer-link me-3">RGPD</a>
+                            <a href="/Privacy" class="footer-link">Cookies</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/footer.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,254 @@
+﻿@page
+@model LpAutomobile.Pages.Catalogue.DetailsModel
+@{
+    var v = Model.Vehicule;
+    ViewData["Title"] = $"{v.Marque} {v.Modele}";
+}
+
+<div class="container mx-auto px-4 py-10">
+    <!-- 🔙 Lien retour -->
+    <a href="/Vehicules/Catalogue" class="btn text-blue-600 mb-4 inline-block">
+        ← Retour au catalogue
+    </a>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+        <h2>@v.Marque @v.Modele</h2>
+
+        <!-- 🎞️ Carrousel d'images avec Bootstrap -->
+        @if (v.Photos != null && v.Photos.Count > 0)
+        {
+            <div id="vehiculePhotosCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @for (int i = 0; i < v.Photos.Count; i++)
+                    {
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <img src="@v.Photos[i].Url"
+                                 class="d-block w-100 object-fit-cover rounded"
+                                 style="height: 500px; object-position: center;" />
+                        </div>
+                    }
+                </div>
+
+                @if (v.Photos.Count > 1)
+                {
+                    <button class="carousel-control-prev" type="button" data-bs-target="#vehiculePhotosCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" style="filter: invert(1);"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#vehiculePhotosCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" style="filter: invert(1);"></span>
+                    </button>
+                }
+            </div>
+        }
+
+        <!-- 📋 Infos véhicule -->
+        <div class="bg-white rounded-xl shadow p-6 space-y-6">
+            <h1 class="text-3xl font-bold text-gray-900">@v.Marque @v.Modele</h1>
+            <p class="text-sm text-gray-600">@v.Description</p>
+
+            <div class="text-lg font-semibold text-blue-700">
+                <div>@v.PrixMensuel.ToString("C0") / mois</div>
+                <div class="text-black font-bold">@v.Prix.ToString("C0")</div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center text-gray-800">
+                <div><div class="font-semibold">📅 Année</div><div>@v.Annee</div></div>
+                <div><div class="font-semibold">🛣 Km</div><div>@v.Kilometrage.ToString("N0") km</div></div>
+                <div><div class="font-semibold">⚡ Énergie</div><div>@v.Energie</div></div>
+                <div><div class="font-semibold">⚙ Boîte</div><div>@v.Transmission</div></div>
+                <div><div class="font-semibold">🎨 Couleur</div><div>@v.Couleur</div></div>
+            </div>
+
+            @if (v.Equipements?.Count > 0)
+            {
+                <div class="border-t pt-4">
+                    <h2 class="font-semibold text-lg mb-2">Équipements principaux</h2>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        @foreach (var e in v.Equipements)
+                        {
+                            <li>@e.Nom</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Formulaire de contact -->
+<section class="py-5 form-contact" id="contact">
+    <div class="container">
+        <h2 class="mb-3">Contactez-nous</h2>
+        <form method="post" asp-page-handler="Contact">
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" name="Nom" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="Email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="Message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-15">Envoyer</button>
+        </form>
+    </div>
+
+    <!-- Réseaux sociaux & contacts -->
+    <div class="container mt-5 bg-light p-20">
+        <div class="row text-center align-items-center p-25">
+            <div class="col">
+                <a href="https://www.facebook.com/Lpautomobile66/?locale=fr_FR" target="_blank" class="text-decoration-none text-dark link-contact">
+                    <i class="bi bi-facebook fs-2"></i>
+                    <span>Facebook</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://occasion.largus.fr/auto/lp-automobile_152969/" target="_blank" class="text-decoration-none text-dark link-contact">
+                    <img src="/img/logo-argus.png" alt="L'Argus" class="img-argus">
+                </a>
+            </div>
+            <div class="col">
+                <a href="https://wa.me/33633169477" target="_blank" class="text-decoration-none text-dark link-contact">
+                    <i class="bi bi-whatsapp fs-2"></i>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="tel:+33633169477" class="text-decoration-none text-dark link-contact">
+                    <i class="bi bi-telephone-fill fs-2"></i>
+                    <span>Téléphone</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="mailto:ethanfrou1@gmail.com" class="text-decoration-none text-dark link-contact">
+                    <i class="bi bi-envelope-fill fs-2"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (Model.Avis != null && Model.Avis.Any())
+{
+
+    <!-- Avis Google -->
+    <section class="py-5">
+        <div class="container text-center">
+            <h2 class="mb-3">Ce que nos clients disent</h2>
+            @await Html.PartialAsync("_AvisGooglePartial", Model.Avis)
+            <div class="position-relative top--20">
+                <a href="https://www.google.com/maps/place/Lp+Automobiles/" target="_blank" class="btn btn-outline-dark btn-see-avis">
+                    Voir les avis Google
+                </a>
+            </div>
+        </div>
+    </section>
+}
+
+<!-- Carte -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="mb-3">Nous localiser</h2>
+        <iframe src="https://www.google.com/maps?q=14+Rue+Louis+Piquemal,+66240+Saint-Estève&output=embed"
+                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+        </iframe>
+    </div>
+</section>
+
+<!-- ✅ Modale succès -->
+<div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-xl shadow-xl p-8 max-w-md text-center animate__animated animate__fadeInDown">
+        <h3 class="text-2xl font-semibold mb-2 text-green-600">Message envoyé ✅</h3>
+        <p class="text-gray-700 mb-4">
+            Vous venez de contacter le garage.<br />
+            Merci de votre intérêt, nous vous répondrons rapidement.
+        </p>
+        <button onclick="closeModal()"
+                class="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition">
+            Fermer
+        </button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // 🎯 Carrousel simple + swipe
+        document.addEventListener("DOMContentLoaded", () => {
+            const slides = document.querySelectorAll(".slide");
+            const next = document.querySelector(".next");
+            const prev = document.querySelector(".prev");
+            const carousel = document.getElementById("carousel");
+            let currentIndex = 0;
+
+            const showSlide = (i) => {
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle("opacity-100", index === i);
+                    slide.classList.toggle("opacity-0", index !== i);
+                });
+            };
+
+            next?.addEventListener("click", () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            });
+
+            prev?.addEventListener("click", () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(currentIndex);
+            });
+
+            // 🎯 Swipe mobile
+            let startX = 0;
+            carousel.addEventListener("touchstart", (e) => {
+                startX = e.touches[0].clientX;
+            });
+            carousel.addEventListener("touchend", (e) => {
+                const deltaX = e.changedTouches[0].clientX - startX;
+                if (deltaX > 50) prev.click();
+                else if (deltaX < -50) next.click();
+            });
+
+            showSlide(currentIndex);
+
+            // ✅ Form check
+            const form = document.querySelector("form");
+            const inputs = form.querySelectorAll("input, textarea");
+            const submitBtn = document.getElementById("submitBtn");
+
+            function checkFields() {
+                const nom = form.querySelector('input[type="text"]').value.trim();
+                const email = form.querySelector('input[type="email"]').value.trim();
+                const message = form.querySelector('textarea').value.trim();
+
+                const valid = nom !== "" && email !== "" && message !== "";
+                submitBtn.disabled = !valid;
+                submitBtn.classList.toggle("opacity-50", !valid);
+                submitBtn.classList.toggle("cursor-not-allowed", !valid);
+            }
+
+            inputs.forEach(input => input.addEventListener("input", checkFields));
+            checkFields();
+
+            // ✅ Envoi + modale
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                setTimeout(() => {
+                    document.getElementById("successModal").classList.remove("hidden");
+                    document.getElementById("successModal").classList.add("flex");
+                    form.reset();
+                    checkFields();
+                }, 300);
+            });
+        });
+
+        function closeModal() {
+            document.getElementById("successModal").classList.add("hidden");
+            document.getElementById("successModal").classList.remove("flex");
+        }
+    </script>
+}

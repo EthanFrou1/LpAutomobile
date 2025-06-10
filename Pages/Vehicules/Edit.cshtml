@@ -1,0 +1,294 @@
+﻿@page "{id:int}"
+@model EditModel
+@{
+    ViewData["Title"] = "Modifier un véhicule";
+}
+
+<div class="max-w-3xl mx-auto section-edit-vehicule">
+    <h1 class="title-edit-vehicule">Modifier le véhicule</h1>
+
+    <form method="post" enctype="multipart/form-data" class="form-edit flex flex-col" id="editForm">
+        <input type="hidden" asp-for="Vehicule.Id" />
+
+        <div class="edit-marque">
+            <label class="block text-sm font-medium text-gray-700">Marque</label>
+            <select id="marqueSelect" asp-for="Vehicule.Marque" class="input"></select>
+        </div>
+
+        <div class="edit-modele">
+            <label class="block text-sm font-medium text-gray-700">Modèle</label>
+            <select id="modeleSelect" asp-for="Vehicule.Modele" class="input" disabled></select>
+        </div>
+
+        <div class="flex flex-col gap-20">
+            <div class="edit-annee">
+                <label class="block text-sm font-medium text-gray-700">Année</label>
+                <input asp-for="Vehicule.Annee" class="input" id="anneeInput" />
+            </div>
+            <div class="edit-km">
+                <label class="block text-sm font-medium text-gray-700">Kilométrage</label>
+                <input asp-for="Vehicule.Kilometrage" class="input" id="kmInput" />
+            </div>
+            <div class="edit-prix">
+                <label class="block text-sm font-medium text-gray-700">Prix (€)</label>
+                <input asp-for="Vehicule.Prix" class="input" id="prixInput" />
+            </div>
+            <div class="edit-color">
+                <label class="block text-sm font-medium text-gray-700">Couleur</label>
+                <select id="colorSelect" asp-for="Vehicule.Couleur" class="input"></select>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-20">
+            <div class="add-energie">
+                <label class="block text-sm font-medium text-gray-700">Énergie</label>
+                <select id="energieSelect" asp-for="Vehicule.Energie" class="input"></select>
+            </div>
+            <div class="add-transmission">
+                <label class="block text-sm font-medium text-gray-700">Transmission</label>
+                <select id="transmissionSelect" asp-for="Vehicule.Transmission" class="input"></select>
+            </div>
+        </div>
+
+        <!-- 📋 Équipements -->
+        <div class="flex flex-col gap-20">
+            <label class="text-lg font-semibold mb-2">Équipements</label>
+            <div id="equipementsContainer" class="list-equipement">
+                <!-- Les équipements seront ajoutés ici par JS -->
+            </div>
+        </div>
+
+        <div class="edit-description">
+            <label class="block text-sm font-medium text-gray-700">Description</label>
+            <textarea asp-for="Vehicule.Description" rows="4" class="input" id="descriptionInput"></textarea>
+        </div>
+
+        <div class="edit-photo">
+            <label class="block text-sm font-medium text-gray-700">Photos existantes</label>
+            <div id="existingPhotos" class="grid grid-cols-2 gap-4">
+                @foreach (var photo in Model.Vehicule.Photos)
+                {
+                    <div class="relative aspect-square rounded overflow-hidden shadow-md group flex">
+                        <img src="@photo.Url" class="w-full h-full object-cover" />
+                        <button type="button" class="btn btn-delete-photo" data-photo-id="@photo.Id">&times;</button>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="add-photo">
+            <label class="block text-sm font-medium text-gray-700">Ajouter des photos</label>
+            <input type="file" id="photoInput" name="photos" multiple accept="image/*" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+        </div>
+
+        <div class="bloc-btn-edit-vehicule">
+            <button type="submit" class="btn-edit-vehicule btn opacity-50 cursor-not-allowed" disabled id="saveBtn">
+                Enregistrer les modifications
+            </button>
+
+            <a asp-page="Index" class="btn-return btn">← Retour</a>
+        </div>
+    </form>
+</div>
+
+@if (TempData["FeedbackMessage"] != null && TempData["FeedbackType"]?.ToString() == "success")
+{
+    <div id="successEditModal" class="fixed inset-0 flex hidden modal bg-opacity-50 z-50">
+        <div class="modal-success-content bg-white p-6 rounded-lg shadow-lg text-center border border-green-300 text-green-800 gap-20"
+             style="max-width: 400px;">
+            <svg class="svg-success" viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="25" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-dasharray="166" stroke-dashoffset="166">
+                    <animate attributeName="stroke-dashoffset" from="166" to="0" dur="0.6s" fill="freeze" />
+                </circle>
+                <path fill="none" stroke="currentColor" stroke-width="2" d="M14 27l7 7 16-16"
+                      stroke-dasharray="48" stroke-dashoffset="48">
+                    <animate attributeName="stroke-dashoffset" from="48" to="0" begin="0.6s" dur="0.4s" fill="freeze" />
+                </path>
+            </svg>
+            <p class="text-sm margin-0">@TempData["FeedbackMessage"]</p>
+
+            <a href="/Vehicules/Index" class="btn bg-green-600 text-white rounded hover:bg-green-700 transition">
+                    ← Retour à la liste
+            </a>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    <script>
+        const form = document.getElementById("editForm");
+        const saveBtn = document.getElementById("saveBtn");
+        const originalData = new FormData(form);
+
+        form.addEventListener("input", () => {
+            const currentData = new FormData(form);
+            let isChanged = false;
+            for (const [key, value] of currentData.entries()) {
+                if (originalData.get(key) !== value) {
+                    isChanged = true;
+                    break;
+                }
+            }
+            if (isChanged) {
+                saveBtn.disabled = false;
+                saveBtn.classList.remove("opacity-50", "cursor-not-allowed");
+            } else {
+                saveBtn.disabled = true;
+                saveBtn.classList.add("opacity-50", "cursor-not-allowed");
+            }
+        });
+
+        document.querySelectorAll("#existingPhotos button").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const id = btn.getAttribute("data-photo-id");
+                btn.closest("div").remove();
+                const hiddenInput = document.createElement("input");
+                hiddenInput.type = "hidden";
+                hiddenInput.name = "PhotosToRemove";
+                hiddenInput.value = id;
+                form.appendChild(hiddenInput);
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const marqueSelect = document.getElementById("marqueSelect");
+            const modeleSelect = document.getElementById("modeleSelect");
+            const energieSelect = document.getElementById("energieSelect");
+            const transmissionSelect = document.getElementById("transmissionSelect");
+            const equipementContainer = document.getElementById("equipementsContainer");
+            const colorSelect = document.getElementById("colorSelect");
+
+            const selectedMarque = "@Model.Vehicule.Marque";
+            const selectedModele = "@Model.Vehicule.Modele";
+            const selectedEnergie = "@Model.Vehicule.Energie";
+            const selectedTransmission = "@Model.Vehicule.Transmission";
+            const selectedColor = "@Model.Vehicule.Couleur";
+
+            // Équipements liés au véhicule (injecté depuis Razor)
+            const equipementsActuels = @Html.Raw(Json.Serialize(Model.EquipementsDuVehicule.Select(e => e.Nom)));
+
+            fetch("/data/marques_modeles.json")
+                .then(res => res.json())
+                .then(data => {
+                    const energieData = data.find(d => d.energie)?.energie || [];
+                    const transmissionData = data.find(d => d.transmission)?.transmission || [];
+                    const marquesData = data.filter(d => d.marque);
+                    const equipementsData = data.find(d => d.equipements)?.equipements || [];
+                    const colorData = data.find(d => d.color)?.color || [];
+
+                    // Energie
+                    energieSelect.innerHTML = `<option disabled value="">Sélectionner</option>`;
+                    energieData.forEach(e => {
+                        const option = new Option(e, e);
+                        if (e === selectedEnergie) option.selected = true;
+                        energieSelect.appendChild(option);
+                    });
+
+                    // Transmission
+                    transmissionSelect.innerHTML = `<option disabled value="">Sélectionner</option>`;
+                    transmissionData.forEach(t => {
+                        const option = new Option(t, t);
+                        if (t === selectedTransmission) option.selected = true;
+                        transmissionSelect.appendChild(option);
+                    });
+
+                    // Couleur
+                    colorSelect.innerHTML = `<option disabled value="">Sélectionner</option>`;
+                    colorData.forEach(t => {
+                        const option = new Option(t, t);
+                        if (t === selectedColor) option.selected = true;
+                        colorSelect.appendChild(option);
+                    });
+
+
+                    // Marques
+                    marqueSelect.innerHTML = `<option disabled value="">Sélectionner</option>`;
+                    marquesData.forEach(entry => {
+                        const option = new Option(entry.marque, entry.marque);
+                        if (entry.marque === selectedMarque) option.selected = true;
+                        marqueSelect.appendChild(option);
+                    });
+
+                    // Modèles
+                    const selected = marquesData.find(d => d.marque === selectedMarque);
+                    if (selected) {
+                        modeleSelect.disabled = false;
+                        modeleSelect.classList.remove("opacity-50");
+                        modeleSelect.innerHTML = `<option disabled value="">Modèle</option>`;
+                        selected.modeles.forEach(m => {
+                            const option = new Option(m, m);
+                            if (m === selectedModele) option.selected = true;
+                            modeleSelect.appendChild(option);
+                        });
+                    }
+
+                    marqueSelect.addEventListener("change", () => {
+                        const marque = marqueSelect.value;
+                        const dataMatch = marquesData.find(d => d.marque === marque);
+
+                        modeleSelect.disabled = !dataMatch;
+                        modeleSelect.classList.toggle("opacity-50", !dataMatch);
+                        modeleSelect.innerHTML = `<option disabled selected value="">Modèle</option>`;
+
+                        if (dataMatch) {
+                            dataMatch.modeles.forEach(m => {
+                                const option = new Option(m, m);
+                                modeleSelect.appendChild(option);
+                            });
+                        }
+                    });
+
+                    // Équipements (checkbox dynamiques + coche si lié au véhicule)
+                    equipementsData.forEach(e => {
+                        const label = document.createElement("label");
+                        label.className = "inline-flex items-center gap-20 flex";
+
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.name = "EquipementsSelectionnes";
+                        checkbox.value = e;
+                        checkbox.className = "form-checkbox text-indigo-600";
+
+                        if (equipementsActuels.includes(e)) {
+                            checkbox.checked = true;
+                        }
+
+                        const span = document.createElement("span");
+                        span.className = "ml-2";
+                        span.textContent = e;
+
+                        label.appendChild(checkbox);
+                        label.appendChild(span);
+                        equipementContainer.appendChild(label);
+                    });
+                });
+        });
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const modal = document.getElementById("successEditModal");
+            if (modal && "@TempData["FeedbackType"]" === "success") {
+                modal.classList.remove("hidden");
+                setTimeout(() => {
+                    window.location.href = "/Vehicules/Index";
+                }, 5000);
+            }
+        });
+
+        form.addEventListener("submit", function (e) {
+            const anneeInput = document.getElementById("anneeInput");
+            const annee = anneeInput.value.trim();
+
+            if (!/^\d{4}$/.test(annee)) {
+                e.preventDefault();
+                alert("L'année doit comporter exactement 4 chiffres.");
+                anneeInput.classList.add("border", "border-red-500");
+                anneeInput.focus();
+            } else {
+                anneeInput.classList.remove("border", "border-red-500");
+            }
+        });
+    </script>
+}
+

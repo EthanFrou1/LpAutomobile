@@ -1,0 +1,222 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Véhicules disponibles";
+}
+<div class="bloc-index">
+    <div class="flex px-4 py-6 bloc-title-index">
+        <h1 class="text-3xl font-bold text-gray-800">Véhicules disponibles</h1>
+        <button class="btn">
+            <a asp-page="Create"
+               class="add-vehicule">
+                + Ajouter un véhicule
+            </a>
+        </button>
+    </div>
+
+    <!-- 🚘 Cartes véhicules -->
+    <div class="block-vehicules">
+        @foreach (var vehicule in Model.Vehicules)
+        {
+            <div class="shadow-lg block-vehicule">
+                <div class="section-photo">
+                    <!-- Slider -->
+                    <div class="h-100 slider">
+                        <div class="h-100 flex">
+                            @for (int i = 0; i < vehicule.Photos.Count; i++)
+                            {
+                                <!-- Photo -->
+                                var photo = vehicule.Photos[i];
+                                <img src="@photo.Url"
+                                     class="slide absolute w-full h-full object-cover transition-opacity img-silder duration-500 @(i == 0 ? "opacity-100 d-b" : "opacity-0 d-none")"
+                                     data-index="@i" />
+                            }
+                        </div>
+                        @if (vehicule.Photos.Count > 1)
+                        {
+                            <div class="navigation-silder">
+                                <!-- Flèches -->
+                                <button class="prev fleche-prev">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="svg-slider" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                                <button class="next fleche-next">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="svg-slider" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="separator"></div>
+                <!-- Infos -->
+                <div class="bloc-info">
+                    <div class="flex flex-col gap-2">
+                        <h2 class="text-2xl font-semibold text-gray-900 title-vehicule">@vehicule.Marque @vehicule.Modele</h2>
+                        <div class="separator"></div>
+                        <div class="price-vehicule">
+                            <div class="flex flex-col">
+                                <p class="text-gray-700 margin-0 font-weigth-600">À partir de</p>
+                                <p class="font-semibold margin-0">@vehicule.PrixMensuel.ToString("C0") /mois</p>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-gray-700 margin-0 font-weigth-600">ou</p>
+                                <p class="font-semibold margin-0">@vehicule.Prix.ToString("C0")</p>
+                            </div>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="flex description-icone">
+                            <div class="text-gray-700 year-vehicule">
+                                <svg class="flex-shrink-0" viewBox="0 0 1024 1024" style="display: inline-block; stroke: currentcolor; fill: currentcolor; width: 25px; height: 25px;">
+                                    <path d="M790.886 213.481h-107.439v-85.481h-42.769v85.439h-260.99v-85.439h-42.771v85.439h-103.762c-34.473 0-62.488 27.898-62.488 62.226v506.372c0 34.33 28.015 62.229 62.488 62.229h557.689c34.475 0 62.49-27.9 62.49-62.229v-506.329c0-34.329-28.015-62.227-62.49-62.227h0.043zM233.198 256.073h557.689c10.867 0 19.721 8.816 19.721 19.635v94.937h-597.169v-94.937c0-10.819 8.854-19.635 19.718-19.635h0.043zM790.886 801.715h-557.689c-10.864 0-19.717-8.815-19.717-19.635v-368.843h597.169v368.843c0 10.82-8.853 19.635-19.721 19.635h-0.043z"></path>
+                                    <path d="M398.164 539.217h-30.581v-40.508h76.005v228.975h-45.424v-188.467z"></path>
+                                    <path d="M641.702 498.078v38.63h-102.178v53.709c8.508-10.351 25.873-18.526 45.12-18.526 53.636 0 71.898 40.205 71.898 75.686 0 46.805-27.115 80.073-79.467 80.073-49.527 0-77.931-27.345-81.694-64.7h42.901c3.806 16.017 16.721 27.644 38.153 27.644 25.873 0 37.551-18.231 37.551-42.423 0-25.766-12.915-39.906-37.854-39.906-18.304 0-29.982 10.052-34.684 24.192h-42.257v-134.421l142.511 0.043z"></path>
+                                </svg>
+                                <p class="margin-0">@vehicule.Annee</p>
+                            </div>
+                            <div class="text-gray-700 km-vehicule">
+                                <svg class="flex-shrink-0" viewBox="0 0 1024 1024" style="display: inline-block; stroke: currentcolor; fill: currentcolor; width: 25px; height: 25px;">
+                                    <path d="M740.322 274.248c-60.173-63.889-141.722-100.628-229.649-103.42-3.533-0.121-7.027-0.081-10.564-0.081-0.286 0-0.567-0.081-0.892-0.081-0.286 0-0.529 0.081-0.772 0.081-83.419 0.404-162.407 31.52-223.599 88.651-1.544 1.457-3.007 2.913-4.51 4.41-1.219 0.768-2.357 1.659-3.413 2.711-1.015 1.012-1.909 2.144-2.682 3.278-60.257 61.582-92.64 143.112-93.372 226.181-0.041 0.606-0.203 1.212-0.203 1.86 0 0.73 0.122 1.455 0.203 2.185 0.163 44.305 9.264 88.973 27.995 131.174 3.372 7.569 10.808 12.058 18.609 12.058 2.722 0 5.526-0.563 8.207-1.737 10.28-4.535 14.912-16.469 10.361-26.667-13.856-31.236-21.738-63.97-23.932-96.742h39.169c11.214 0 20.316-9.062 20.316-20.233 0-11.166-9.102-20.228-20.316-20.228h-38.966c4.51-60.936 28.442-119.888 69.806-167.35l23.851 23.751c3.982 3.965 9.183 5.908 14.384 5.908s10.402-1.983 14.384-5.908c7.923-7.89 7.923-20.716 0-28.606l-23.851-23.751c48.636-42.080 107.796-65.184 168.055-69.553v38.843c0 11.167 9.101 20.231 20.314 20.231s20.318-9.064 20.318-20.231v-38.964c60.745 4.046 120.35 27.069 168.905 68.785l-24.704 24.6c-7.923 7.89-7.923 20.716 0 28.606 3.981 3.965 9.182 5.908 14.383 5.908s10.402-1.983 14.383-5.908l24.828-24.722c42.176 47.907 66.27 107.183 70.78 168.319h-40.917c-11.213 0-20.314 9.067-20.314 20.233s9.101 20.228 20.314 20.228h41.041c-2.236 32.777-10.121 65.51-23.974 96.785-4.553 10.236 0.124 22.174 10.402 26.667 10.278 4.531 22.268-0.124 26.778-10.359 53.47-120.614 29.495-260.734-61.073-356.871l-0.081-0.041z"></path>
+                                    <path d="M689.779 619.951h-379.42c-11.215 0-20.316 9.062-20.316 20.228v192.922c0 11.17 9.102 20.233 20.316 20.233h379.42c11.213 0 20.314-9.062 20.314-20.233v-192.922c0-11.166-9.101-20.228-20.314-20.228zM669.461 812.873h-338.787v-152.461h338.787v152.461z"></path>
+                                    <path d="M558.332 469.636c6.626-7.808 11.866-16.875 18.206-24.883 7.232-9.024 21.329-27.515 28.117-36.862 9.058-12.624 18.121-25.167 26.654-38.276 1.259-1.78-1.097-4.087-2.884-2.833-25.152 16.751-51.362 36.335-74.965 55.23-7.923 6.352-16.905 11.651-24.666 18.248-8.653-4.25-18.364-6.716-28.646-6.716-35.878 0-64.969 28.971-64.969 64.695 0 35.729 29.090 64.7 64.969 64.7s64.973-28.971 64.973-64.7c0-10.274-2.479-19.947-6.746-28.565l-0.043-0.038z"></path>
+                                    <path d="M405.437 683.554c-29.58 0-40.835 21.606-40.835 51.874 0 30.263 11.255 52.151 40.835 52.151s40.955-21.444 40.955-52.151c0-30.711-11.418-51.874-40.955-51.874zM405.437 761.647c-12.271 0-13.652-11.657-13.652-26.219 0-14.566 1.422-25.937 13.652-25.937s13.652 11.772 13.652 25.937c0 14.161-1.422 26.219-13.652 26.219z"></path>
+                                    <path d="M497.954 683.554c-29.581 0-40.836 21.606-40.836 51.874 0 30.263 11.255 52.151 40.836 52.151s40.956-21.444 40.956-52.151c0-30.711-11.418-51.874-40.956-51.874zM497.954 761.647c-12.271 0-13.653-11.657-13.653-26.219 0-14.566 1.425-25.937 13.653-25.937 12.233 0 13.653 11.772 13.653 25.937 0 14.161-1.421 26.219-13.653 26.219z"></path>
+                                    <path d="M590.473 683.554c-29.581 0-40.836 21.606-40.836 51.874 0 30.263 11.255 52.151 40.836 52.151s40.956-21.444 40.956-52.151c0-30.711-11.418-51.874-40.956-51.874zM590.473 761.647c-12.271 0-13.653-11.657-13.653-26.219 0-14.566 1.425-25.937 13.653-25.937 12.233 0 13.653 11.772 13.653 25.937 0 14.161-1.421 26.219-13.653 26.219z"></path>
+                                </svg>
+                                <p class="margin-0">@vehicule.Kilometrage.ToString("N0") km</p>
+                            </div>
+                            <div class="text-gray-700 energie-vehicule">
+                                <svg class="flex-shrink-0" viewBox="0 0 1024 1024" style="display: inline-block; stroke: currentcolor; fill: currentcolor; width: 25px; height: 25px;">
+                                    <path d="M857.681 686.097v-285.867c0-5.122-1.937-10.039-5.393-13.809l-129.668-141.254c-7.654-8.36-20.698-8.933-29.052-1.311-8.393 7.622-8.969 20.612-1.314 28.931l47.735 52.002c-12.553 15.285-27.038 41.184-18.231 72.943 1.195 4.303 2.385 8.851 3.622 13.441 10.863 40.937 24.358 91.792 63.287 91.792 0.495 0 0.99 0 1.485 0 9.668-0.329 18.556-2.21 26.377-4.753v188.297c0 0-0.124 18.893-10.739 29.67-5.474 5.534-13.21 8.235-23.663 8.235-9.549 0-16.542-2.415-21.44-7.334-8.107-8.196-9.835-22.537-9.877-27.699 0.495-7.091 1.647-41.677-22.302-68.233-17.984-19.913-44.608-30.037-79.177-30.037h-13.952v-333.321c0-48.027-39.258-87.121-87.488-87.121h-247.070c-48.229 0-87.488 39.094-87.488 87.121v508.425c0 48.026 39.258 87.121 87.488 87.121h247.070c48.23 0 87.488-39.095 87.488-87.121v-134.204h13.952c22.221 0 38.477 5.449 48.354 16.183 14.033 15.287 12.139 37.905 12.139 37.948-0.043 0.533-0.081 1.067-0.124 1.6-0.124 3.563-0.414 35.405 21.359 57.698 12.715 13.030 30.366 19.913 51.106 19.913s39.795-7.087 53.005-20.489c22.549-22.865 22.592-55.484 22.549-58.765h-0.038zM594.231 766.212c0 25.446-20.783 46.144-46.34 46.144h-247.070c-25.555 0-46.336-20.698-46.336-46.144v-508.425c0-25.448 20.782-46.142 46.336-46.142h247.070c25.557 0 46.34 20.694 46.34 46.142v508.425zM789.163 461.986c-9.011-4.838-19.507-44.34-23.991-61.264-1.276-4.753-2.509-9.425-3.746-13.892-3.332-12.007 1.276-23.112 6.793-31.267l48.311 52.617v45.324c-6.255 3.563-16.175 8.030-27.366 8.482z"></path>
+                                    <path d="M489.54 400.926c0 37.905-29.175 68.637-65.182 68.637s-65.184-30.733-65.184-68.637c0-37.905 51.851-128.059 65.184-128.059 11.811 0 65.182 90.154 65.182 128.059z"></path>
+                                    <path d="M493.12 625.737c-2.014-3.729-5.803-5.939-10.206-5.939h-43.247l18.394-73.434c1.399-5.615-1.195-11.149-6.298-13.402-5.717-2.543-12.548-0.329-16.294 5.205l-78.97 117.487c-2.634 3.934-3.004 8.768-0.905 12.659 2.016 3.729 5.802 5.943 10.205 5.943h43.25l-18.394 73.434c-1.399 5.615 1.193 11.145 6.296 13.402 1.605 0.695 3.251 1.024 4.938 1.024 4.321 0 8.642-2.253 11.358-6.272l78.969-117.487c2.633-3.934 3.004-8.806 0.905-12.659v0.038z"></path>
+                                </svg>
+                                <p class="margin-0">@vehicule.Energie</p>
+                            </div>
+                            <div class="text-gray-700 transmission-vehicule">
+                                <svg class="flex-shrink-0" viewBox="0 0 1024 1024" style="display: inline-block; stroke: currentcolor; fill: currentcolor; width: 25px; height: 25px;">
+                                    <path d="M773.508 301.524c-11.29 0-20.45 9.123-20.45 20.364v169.748h-143.104v-169.748c0-11.241-9.161-20.364-20.446-20.364-11.29 0-20.45 9.123-20.45 20.364v169.748h-143.104v-169.748c0-11.241-9.161-20.364-20.449-20.364s-20.449 9.123-20.449 20.364v169.748h-143.104v-169.748c0-11.241-9.161-20.364-20.449-20.364s-20.449 9.123-20.449 20.364v190.113c0 11.243 9.407 20.365 20.695 20.365h163.307v169.749c0 11.243 9.161 20.365 20.449 20.365s20.449-9.122 20.449-20.365v-169.749h143.104v169.749c0 11.243 9.161 20.365 20.45 20.365 11.285 0 20.446-9.122 20.446-20.365v-169.749h143.104v169.749c0 11.243 9.161 20.365 20.45 20.365s20.45-9.122 20.45-20.365v-380.227c0-11.241-9.161-20.364-20.45-20.364z"></path>
+                                    <path d="M221.544 170.667c-28.097 0-50.877 22.685-50.877 50.665s22.781 50.665 50.877 50.665c28.097 0 50.878-22.685 50.878-50.665s-22.781-50.665-50.878-50.665z"></path>
+                                    <path d="M405.833 170.667c-28.097 0-50.878 22.685-50.878 50.665s22.781 50.665 50.878 50.665c28.095 0 50.879-22.685 50.879-50.665s-22.784-50.665-50.879-50.665z"></path>
+                                    <path d="M590.161 170.667c-28.096 0-50.876 22.685-50.876 50.665s22.78 50.665 50.876 50.665c28.096 0 50.88-22.685 50.88-50.665s-22.784-50.665-50.88-50.665z"></path>
+                                    <path d="M774.49 272.037c28.1 0 50.88-22.685 50.88-50.665s-22.78-50.664-50.88-50.664c-28.096 0-50.876 22.685-50.876 50.664s22.78 50.665 50.876 50.665z"></path>
+                                    <path d="M405.833 853.333c28.099 0 50.879-22.682 50.879-50.662s-22.78-50.667-50.879-50.667c-28.099 0-50.878 22.686-50.878 50.667s22.779 50.662 50.878 50.662z"></path>
+                                    <path d="M590.161 752.004c-28.096 0-50.876 22.686-50.876 50.667 0 27.977 22.78 50.662 50.876 50.662s50.88-22.686 50.88-50.662c0-27.981-22.784-50.667-50.88-50.667z"></path>
+                                    <path d="M774.49 752.004c-28.096 0-50.876 22.686-50.876 50.667 0 27.977 22.78 50.662 50.876 50.662 28.1 0 50.88-22.686 50.88-50.662 0-27.981-22.78-50.667-50.88-50.667z"></path>
+                                </svg>
+                                <p class="margin-0">@vehicule.Transmission</p>
+                            </div>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="description-vehicule">
+                            <p class="text-sm text-gray-500 line-clamp-3 margin-0 description-text">@vehicule.Description</p>
+                        </div>
+                        @* <div class="">
+                    <button class="text-blue-600 hover:underline text-sm mt-1 show-more-btn hidden">Voir plus</button>
+                    </div> *@
+                    </div>
+
+                    <div class="flex gap-3 btn-modify-delete-vehicule">
+                        <button class="btn">
+                            <a asp-page="Edit" asp-route-id="@vehicule.Id"
+                               class="px-3 py-1 rounded bg-yellow-500 text-sm hover:bg-yellow-600 transition">Modifier</a>
+                        </button>
+                        <button type="button" class="btn-delete-vehicule btn" data-id="@vehicule.Id" data-nom="@vehicule.Marque @vehicule.Modele">
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- 📄 Pagination -->
+    @if (Model.TotalPages > 1)
+    {
+        <div class="flex justify-center mt-8 space-x-2">
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <a asp-page="/Catalogue"
+                   asp-route-Page="@i"
+                   asp-route-Marque="@Model.Marque"
+                   asp-route-PrixMax="@Model.PrixMax"
+                   asp-route-Energie="@Model.Energie"
+                   asp-route-Transmission="@Model.Transmission"
+                   class="px-4 py-2 rounded-full text-sm font-medium @(i == Model.Page ? "bg-black text-white" : "bg-gray-200 text-gray-800 hover:bg-gray-300")">
+                    @i
+                </a>
+            }
+        </div>
+    }
+
+</div>
+
+@* Modal de suppression d'un vehicule *@
+<div id="deleteModal" class="fixed inset-0 modal bg-black bg-opacity-50 hidden z-50">
+    <div class="modal-content bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4">⚠️ Confirmation</h2>
+        <p id="deleteMessage" class="text-gray-700 mb-6">
+            Cette action entraînera la suppression définitive du véhicule.
+        </p>
+        <form method="post" id="deleteForm">
+            <input type="hidden" name="VehiculeId" id="vehiculeIdToDelete" />
+            <div class="flex gap-3 justify-content-center">
+                <button type="button" id="cancelDeleteBtn" class="btn">
+                    Annuler
+                </button>
+                <button type="submit" class="btn btn-delete">
+                    Supprimer définitivement
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* Modale de succes de la suppression d'un vehicule *@
+@if (!string.IsNullOrEmpty(Model.FeedbackMessage))
+{
+    <div id="successModal" class="fixed inset-0 modal bg-opacity-50 hidden z-50">
+        <div class="modal-success-content bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+            <div class="bloc-svg-success">
+                <svg class="checkmark svg-success" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" />
+                    <path class="checkmark-check" fill="none" d="M14 27l7 7 16-16" />
+                </svg>
+                <p class="text-sm margin-0">@Model.FeedbackMessage Le véhicule {vehicule.Marque} {vehicule.Modele} a été supprimé avec succès.</p>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        document.querySelectorAll(".btn-delete-vehicule").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const vehiculeId = btn.getAttribute("data-id");
+                const nom = btn.getAttribute("data-nom");
+
+                document.getElementById("vehiculeIdToDelete").value = vehiculeId;
+                document.getElementById("deleteMessage").textContent =
+                    `⚠️ Vous êtes sur le point de supprimer le véhicule ${nom}. Cette action est irréversible.`;
+
+                document.getElementById("deleteModal").classList.remove("hidden");
+            });
+        });
+
+        document.getElementById("cancelDeleteBtn").addEventListener("click", () => {
+            document.getElementById("deleteModal").classList.add("hidden");
+        });
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const successModal = document.getElementById("successModal");
+            if (successModal) {
+                setTimeout(() => {
+                    successModal.remove();
+                }, 5000);
+            }
+        });
+    </script>
+}

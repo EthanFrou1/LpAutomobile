@@ -1,0 +1,437 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\LpAutomobile.bundle.scp.css",
+      "PackagePath": "staticwebassets\\LpAutomobile.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\catalogue.css",
+      "PackagePath": "staticwebassets\\css\\catalogue.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\footer.css",
+      "PackagePath": "staticwebassets\\css\\footer.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\data\\marques_modeles.json",
+      "PackagePath": "staticwebassets\\data\\marques_modeles.json"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\hero-lp-automobile.webp",
+      "PackagePath": "staticwebassets\\img\\hero-lp-automobile.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\img1.webp",
+      "PackagePath": "staticwebassets\\img\\img1.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\logo-argus.png",
+      "PackagePath": "staticwebassets\\img\\logo-argus.png"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\peugeot1.webp",
+      "PackagePath": "staticwebassets\\img\\peugeot1.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\peugeot2.webp",
+      "PackagePath": "staticwebassets\\img\\peugeot2.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\peugeot3.webp",
+      "PackagePath": "staticwebassets\\img\\peugeot3.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\peugeot4.webp",
+      "PackagePath": "staticwebassets\\img\\peugeot4.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\porsche1.webp",
+      "PackagePath": "staticwebassets\\img\\porsche1.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\porsche2.webp",
+      "PackagePath": "staticwebassets\\img\\porsche2.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\porsche3.webp",
+      "PackagePath": "staticwebassets\\img\\porsche3.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\porsche4.webp",
+      "PackagePath": "staticwebassets\\img\\porsche4.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\porsche5.webp",
+      "PackagePath": "staticwebassets\\img\\porsche5.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\suzukiSwift1.webp",
+      "PackagePath": "staticwebassets\\img\\suzukiSwift1.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\suzukiSwift2.webp",
+      "PackagePath": "staticwebassets\\img\\suzukiSwift2.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\suzukiSwift3.webp",
+      "PackagePath": "staticwebassets\\img\\suzukiSwift3.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\img\\suzukiSwift4.webp",
+      "PackagePath": "staticwebassets\\img\\suzukiSwift4.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\catalogue.js",
+      "PackagePath": "staticwebassets\\js\\catalogue.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\footer.js",
+      "PackagePath": "staticwebassets\\js\\footer.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\01f6cef9-1d33-42fd-a6d5-3a3c973dec45_porsche4.webp",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\01f6cef9-1d33-42fd-a6d5-3a3c973dec45_porsche4.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\20a52ab7-dcde-40f7-b8c7-68ec053ed13c_fiatpanda2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\20a52ab7-dcde-40f7-b8c7-68ec053ed13c_fiatpanda2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\36dd07ed-9ec8-469f-8319-6265cbf64cb2_peugeot4.webp",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\36dd07ed-9ec8-469f-8319-6265cbf64cb2_peugeot4.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\436db2e9-a92c-4d17-9949-272117ba3761_teslaY2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\436db2e9-a92c-4d17-9949-272117ba3761_teslaY2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\451ff478-b463-4568-babd-c3854758229f_porsche1.webp",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\451ff478-b463-4568-babd-c3854758229f_porsche1.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\56662f12-821b-4e1f-b870-fd09411c3c16_teslaY2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\56662f12-821b-4e1f-b870-fd09411c3c16_teslaY2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\5e606ec3-fd7f-40a3-bafc-eeed31bee3ff_audirs62.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\5e606ec3-fd7f-40a3-bafc-eeed31bee3ff_audirs62.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\691d5a00-5585-443c-aa2c-177515cd0bbc_teslaY1.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\691d5a00-5585-443c-aa2c-177515cd0bbc_teslaY1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\701fe850-7a08-404e-a860-8a2a676fe9fe_teslaY1.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\701fe850-7a08-404e-a860-8a2a676fe9fe_teslaY1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\78f4845c-4769-45cb-a4db-f72687901810_bmw3.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\78f4845c-4769-45cb-a4db-f72687901810_bmw3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\80e49e7a-1bb5-4f4b-b531-dfd222a55d33_peugeot2.webp",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\80e49e7a-1bb5-4f4b-b531-dfd222a55d33_peugeot2.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\8175eddd-e573-4ec8-bbf4-1c8530afb9be_porsche5.webp",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\8175eddd-e573-4ec8-bbf4-1c8530afb9be_porsche5.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\84c32003-a9f7-435c-8950-16cb69d52841_teslaY3.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\84c32003-a9f7-435c-8950-16cb69d52841_teslaY3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\86dddf93-78ea-477b-a859-97eb9e52cd8a_porsche3.webp",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\86dddf93-78ea-477b-a859-97eb9e52cd8a_porsche3.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\8892bf8b-e21d-4edd-bad7-be486b9bcf15_peugeot1.webp",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\8892bf8b-e21d-4edd-bad7-be486b9bcf15_peugeot1.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\b0bde91f-7357-4b2c-807a-68bce5e76d68_bmw2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\b0bde91f-7357-4b2c-807a-68bce5e76d68_bmw2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\b2efae2f-0fb0-42d2-b244-5807dc35f68e_porsche2.webp",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\b2efae2f-0fb0-42d2-b244-5807dc35f68e_porsche2.webp"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\ce88ad29-3b17-4262-bb1e-48c90519cc74_teslaY1.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\ce88ad29-3b17-4262-bb1e-48c90519cc74_teslaY1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\e47bcf54-8d06-4ccf-8730-23def090b343_teslaY2.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\e47bcf54-8d06-4ccf-8730-23def090b343_teslaY2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\f0e6c3af-dbe8-482e-8ecf-7ed20e9a65ef_audirs61.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\f0e6c3af-dbe8-482e-8ecf-7ed20e9a65ef_audirs61.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\f6b7acc0-0bb5-40b0-bfa3-ebbe519bc252_teslaY1.jpg",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\f6b7acc0-0bb5-40b0-bfa3-ebbe519bc252_teslaY1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\uploads\\vehicules\\fa76c69a-3d83-4213-a177-da92fcd720a2_peugeot3.webp",
+      "PackagePath": "staticwebassets\\uploads\\vehicules\\fa76c69a-3d83-4213-a177-da92fcd720a2_peugeot3.webp"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.LpAutomobile.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.LpAutomobile.props",
+      "PackagePath": "build\\LpAutomobile.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.LpAutomobile.props",
+      "PackagePath": "buildMultiTargeting\\LpAutomobile.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.LpAutomobile.props",
+      "PackagePath": "buildTransitive\\LpAutomobile.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

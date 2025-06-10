@@ -1,0 +1,1263 @@
+﻿
+/* =================================
+   CATALOGUE MODERNE
+   ================================= */
+
+.catalogue-container {
+    background: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* Header du catalogue */
+.catalogue-header {
+    background: white;
+    border-bottom: 1px solid #e9ecef;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.catalogue-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.catalogue-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.results-summary {
+    text-align: right;
+}
+
+.results-count {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.count-number {
+    font-size: 2rem;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+}
+
+.count-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.mobile-filter-btn {
+    margin-top: 1rem;
+    border-radius: 25px;
+}
+
+/* =================================
+   SIDEBAR FILTRES
+   ================================= */
+
+.filters-sidebar {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    position: sticky;
+    top: 100px;
+    overflow-y: auto;
+}
+
+.filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.filters-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.reset-all-btn {
+    border-radius: 20px;
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+}
+
+/* Filtres actifs */
+.active-filters {
+    background: #e3f2fd;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid #bbdefb;
+    margin-bottom: 1rem;
+}
+
+    .active-filters h6 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #1976d2;
+    }
+
+.active-filters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.filter-tag {
+    display: inline-flex;
+    align-items: center;
+    background: #2196f3;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    gap: 0.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.remove-tag {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 0.3rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+    .remove-tag:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+    }
+
+    .remove-tag:active {
+        transform: scale(0.9);
+    }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+    .filter-tag .remove-tag {
+        background: none;
+        border: none;
+        color: white;
+        margin-left: 0.5rem;
+        font-size: 0.7rem;
+        cursor: pointer;
+    }
+
+/* Groupes de filtres */
+.filter-group {
+    margin-bottom: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.filter-toggle {
+    width: 100%;
+    background: #f8f9fa;
+    border: none;
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .filter-toggle:hover {
+        background: #e9ecef;
+        color: #007bff;
+    }
+
+    .filter-toggle.active {
+        background: #007bff;
+        color: white;
+    }
+
+    .filter-toggle i {
+        transition: transform 0.3s ease;
+    }
+
+    .filter-toggle.active i {
+        transform: rotate(180deg);
+    }
+
+.filter-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: white;
+}
+
+    .filter-content.open {
+        max-height: 100%;
+        padding: 1rem 1.25rem;
+    }
+
+/* Checkboxes personnalisées */
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .filter-checkbox:hover {
+        background: #f8f9fa;
+        border-radius: 5px;
+        padding-left: 0.5rem;
+    }
+
+    .filter-checkbox input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-right: 0.75rem;
+        border-radius: 4px;
+        border: 2px solid #ddd;
+        cursor: pointer;
+    }
+
+        .filter-checkbox input[type="checkbox"]:checked {
+            background: #007bff;
+            border-color: #007bff;
+        }
+
+    .filter-checkbox label {
+        cursor: pointer;
+        font-size: 0.95rem;
+        color: #333;
+        margin: 0;
+        width: 100%;
+    }
+
+/* Bouton d'application */
+.filters-actions {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid #f8f9fa;
+}
+
+.apply-filters-btn {
+    border-radius: 25px;
+    font-weight: 600;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+    .apply-filters-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+    }
+
+/* =================================
+   CONTENU PRINCIPAL
+   ================================= */
+
+.catalogue-content {
+    padding-left: 2rem;
+}
+
+/* Barre d'outils */
+.catalogue-toolbar {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view-modes {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.view-mode-btn {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .view-mode-btn.active,
+    .view-mode-btn:hover {
+        background: #007bff;
+        color: white;
+        border-color: #007bff;
+    }
+
+.sort-dropdown select {
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* =================================
+   GRILLE VÉHICULES
+   ================================= */
+
+.vehicles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.vehicle-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+    .vehicle-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+/* Badges du véhicule */
+.vehicle-badges {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-new {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.badge-price {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    color: white;
+}
+
+.badge-guaranteed {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+}
+
+/* Images du véhicule */
+.vehicle-images {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.image-slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.vehicle-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+    .vehicle-image.active {
+        opacity: 1;
+    }
+
+/* Navigation des images */
+.image-navigation {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    pointer-events: none;
+}
+
+.nav-btn {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    opacity: 0;
+}
+
+.vehicle-card:hover .nav-btn {
+    opacity: 1;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 123, 255, 0.8);
+    transform: scale(1.1);
+}
+
+/* Indicateurs d'images */
+.image-indicators {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .indicator.active {
+        background: white;
+        transform: scale(1.2);
+    }
+
+/* Informations du véhicule */
+.vehicle-info {
+    padding: 1.5rem;
+}
+
+.vehicle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+.vehicle-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.vehicle-energy {
+    flex-shrink: 0;
+}
+
+.energy-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.energy-électrique {
+    background: linear-gradient(135deg, #4caf50, #8bc34a);
+    color: white;
+}
+
+.energy-hybride {
+    background: linear-gradient(135deg, #ff9800, #ffc107);
+    color: white;
+}
+
+.energy-essence {
+    background: linear-gradient(135deg, #f44336, #e91e63);
+    color: white;
+}
+
+.energy-diesel {
+    background: linear-gradient(135deg, #9c27b0, #673ab7);
+    color: white;
+}
+
+/* Spécifications */
+.vehicle-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.spec-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+    .spec-item i {
+        color: #007bff;
+        font-size: 1rem;
+    }
+
+/* Description */
+.vehicle-description {
+    margin-bottom: 1.5rem;
+}
+
+    .vehicle-description p {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+/* Footer de la carte */
+.vehicle-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 1rem;
+}
+
+/* Prix */
+.vehicle-price {
+    flex: 1;
+}
+
+.price-monthly {
+    margin-bottom: 0.5rem;
+}
+
+.price-label {
+    font-size: 0.8rem;
+    color: #666;
+    display: block;
+}
+
+.price-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #007bff;
+}
+
+    .price-value small {
+        font-size: 0.8rem;
+        opacity: 0.8;
+    }
+
+.price-total {
+    margin-bottom: 0;
+}
+
+.price-main {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Actions */
+.vehicle-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.favorite-btn {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+    .favorite-btn:hover {
+        background: #dc3545;
+        border-color: #dc3545;
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .favorite-btn.active {
+        background: #dc3545;
+        border-color: #dc3545;
+        color: white;
+    }
+
+.btn-primary {
+    border-radius: 25px;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+    }
+
+/* =================================
+   PAGINATION MODERNE
+   ================================= */
+
+.modern-pagination {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagination-info {
+    color: #666;
+    font-weight: 500;
+}
+
+.pagination-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pagination-btn,
+.pagination-number {
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    border: 1px solid #dee2e6;
+    background: white;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .pagination-btn:hover,
+    .pagination-number:hover {
+        background: #f8f9fa;
+        border-color: #007bff;
+        color: #007bff;
+        transform: translateY(-2px);
+    }
+
+    .pagination-number.active {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        border-color: #007bff;
+        color: white;
+    }
+
+.pagination-numbers {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* =================================
+   RESPONSIVE
+   ================================= */
+
+/* Tablet */
+@media (max-width: 991.98px) {
+    .catalogue-content {
+        padding-left: 0;
+        margin-top: 2rem;
+    }
+
+    .filters-sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        height: 100vh;
+        z-index: 1050;
+        transition: left 0.3s ease;
+        border-radius: 0;
+        max-height: none;
+    }
+
+        .filters-sidebar.open {
+            left: 0;
+        }
+
+    .vehicles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .vehicle-card {
+        border-radius: 15px;
+    }
+
+    .catalogue-toolbar {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .toolbar-left,
+    .toolbar-right {
+        display: flex;
+        justify-content: center;
+    }
+
+    .modern-pagination {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+    .catalogue-title {
+        font-size: 2rem;
+    }
+
+    .results-summary {
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .vehicles-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .vehicle-specs {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .vehicle-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .vehicle-actions {
+        justify-content: space-between;
+    }
+
+    .pagination-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pagination-numbers {
+        order: -1;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+}
+
+/* =================================
+   ANIMATIONS ET TRANSITIONS
+   ================================= */
+
+/* Animation d'apparition des cartes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.vehicle-card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Animation de chargement */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Overlay pour mobile */
+.filters-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+    .filters-overlay.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+/* États de chargement */
+.vehicles-grid.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* =================================
+   UTILITAIRES
+   ================================= */
+
+/* Mode liste (pour plus tard) */
+.vehicles-grid.list-view {
+    grid-template-columns: 1fr;
+}
+
+    .vehicles-grid.list-view .vehicle-card {
+        display: flex;
+        height: 200px;
+    }
+
+    .vehicles-grid.list-view .vehicle-images {
+        width: 300px;
+        flex-shrink: 0;
+    }
+
+    .vehicles-grid.list-view .vehicle-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+/* Mode sombre (pour plus tard) */
+.dark-mode .catalogue-container {
+    background: #1a1a1a;
+}
+
+.dark-mode .vehicle-card,
+.dark-mode .filters-sidebar,
+.dark-mode .catalogue-toolbar {
+    background: #2d2d2d;
+    color: #fff;
+}
+
+/* Personnalisation scrollbar */
+.filters-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.filters-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.filters-sidebar::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 3px;
+}
+
+    .filters-sidebar::-webkit-scrollbar-thumb:hover {
+        background: #0056b3;
+    }
+
+
+/* =================================
+   SLIDERS AMÉLIORÉS
+   ================================= */
+
+.range-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.range-values {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.range-label {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    padding: 0.3rem 0.8rem;
+    background: #f8f9fa;
+    border-radius: 15px;
+    border: 1px solid #e9ecef;
+}
+
+/* Switch ON/OFF moderne */
+.range-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.slider-switch {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 25px;
+}
+
+    .slider-switch:before {
+        position: absolute;
+        content: "";
+        height: 19px;
+        width: 19px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.3s;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+input:checked + .slider-switch {
+    background-color: #007bff;
+}
+
+    input:checked + .slider-switch:before {
+        transform: translateX(25px);
+    }
+
+.switch-label {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Dual Range Slider amélioré */
+.dual-range-slider {
+    position: relative;
+    height: 50px;
+    margin: 1rem 0;
+}
+
+.range-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    transform: translateY(-50%);
+}
+
+.range-track-active {
+    position: absolute;
+    top: 50%;
+    height: 6px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    border-radius: 3px;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+.range-input {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    pointer-events: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+}
+
+    .range-input::-webkit-slider-track {
+        width: 100%;
+        height: 6px;
+        background: transparent;
+        border: none;
+        outline: none;
+    }
+
+    .range-input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 22px;
+        height: 22px;
+        background: #007bff;
+        border-radius: 50%;
+        cursor: pointer;
+        pointer-events: all;
+        box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        border: 3px solid white;
+        transition: all 0.3s ease;
+    }
+
+        .range-input::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        .range-input::-webkit-slider-thumb:active {
+            transform: scale(0.95);
+        }
+
+    .range-input::-moz-range-thumb {
+        width: 22px;
+        height: 22px;
+        background: #007bff;
+        border-radius: 50%;
+        cursor: pointer;
+        pointer-events: all;
+        border: 3px solid white;
+        box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        transition: all 0.3s ease;
+        -moz-appearance: none;
+    }
+
+        .range-input::-moz-range-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+        }
+
+    .range-input::-moz-range-track {
+        background: transparent;
+        border: none;
+        outline: none;
+    }
+
+/* État désactivé */
+.dual-range-slider.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+    .dual-range-slider.disabled .range-input::-webkit-slider-thumb {
+        background: #6c757d;
+        box-shadow: none;
+    }
+
+    .dual-range-slider.disabled .range-input::-moz-range-thumb {
+        background: #6c757d;
+        box-shadow: none;
+    }
+
+    .dual-range-slider.disabled .range-track-active {
+        background: #6c757d;
+    }
+
+/* Tooltips pour les valeurs */
+.range-tooltip {
+    position: absolute;
+    background: #333;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    top: -35px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+    .range-tooltip:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #333 transparent transparent transparent;
+    }
+
+.range-input:hover + .range-tooltip,
+.range-input:active + .range-tooltip {
+    opacity: 1;
+}
+
+/* Animation lors de l'activation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dual-range-slider:not(.disabled) {
+    animation: slideIn 0.3s ease;
+}
+
+/* =================================
+   CORRECTION ANIMATION FILTER-CONTENT
+   ================================= */
+
+.filter-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease-out, padding 0.25s ease-out;
+    padding: 0 1.25rem;
+}
+
+    .filter-content.open {
+        max-height: 400px;
+        transition: max-height 0.25s ease-in, padding 0.25s ease-in;
+        padding: 1rem 1.25rem;
+    }
+
+/* Amélioration des toggles */
+.filter-toggle {
+    width: 100%;
+    background: #f8f9fa;
+    border: none;
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .filter-toggle:hover {
+        background-color: #e9ecef;
+        color: #007bff;
+    }
+
+    .filter-toggle.active {
+        background: #007bff;
+        color: white;
+    }
+
+    .filter-toggle i {
+        transition: transform 0.25s ease;
+    }
+
+    .filter-toggle.active i {
+        transform: rotate(180deg);
+    }
+
+/* Responsive */
+@media (max-width: 767.98px) {
+    .range-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+    }
+
+    .range-values {
+        justify-content: space-between;
+    }
+
+    .range-toggle {
+        justify-content: center;
+    }
+}

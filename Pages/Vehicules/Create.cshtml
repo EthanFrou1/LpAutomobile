@@ -1,0 +1,258 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Ajouter un véhicule";
+}
+
+<div class="max-w-3xl mx-auto section-add-vehicule">
+    <h1 class="title-add-vehicule">Ajouter un véhicule</h1>
+
+    <form method="post" enctype="multipart/form-data" class="form-add flex flex-col">
+
+        <div class="add-marque">
+            <label class="block text-sm font-medium text-gray-700">Marque</label>
+            <select id="marqueSelect" asp-for="Vehicule.Marque" class="input" required></select>
+        </div>
+
+        <div class="add-modele">
+            <label class="block text-sm font-medium text-gray-700">Modèle</label>
+            <select id="modeleSelect" asp-for="Vehicule.Modele" class="input" disabled required></select>
+        </div>
+
+        <div class="flex flex-col gap-20">
+            <div class="add-annee">
+                <label class="block text-sm font-medium text-gray-700">Année</label>
+                <input asp-for="Vehicule.Annee" class="input" required />
+            </div>
+            <div class="add-km">
+                <label class="block text-sm font-medium text-gray-700">Kilométrage</label>
+                <input asp-for="Vehicule.Kilometrage" class="input" required />
+            </div>
+            <div class="add-prix">
+                <label class="block text-sm font-medium text-gray-700">Prix (€)</label>
+                <input asp-for="Vehicule.Prix" class="input" required />
+            </div>
+            <div class="add-color">
+                <label class="block text-sm font-medium text-gray-700">Couleur</label>
+                <select id="colorSelect" asp-for="Vehicule.Couleur" class="input" required></select>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-20">
+            <div class="add-energie">
+                <label class="block text-sm font-medium text-gray-700">Énergie</label>
+                <select name="Vehicule.Energie" id="energieSelect" class="input" required></select>
+            </div>
+            <div class="add-transmission">
+                <label class="block text-sm font-medium text-gray-700">Transmission</label>
+                <select name="Vehicule.Transmission" id="transmissionSelect" class="input" required></select>
+            </div>
+        </div>
+        
+        <div class="flex flex-col gap-20">
+            <label class="text-lg font-semibold mb-2">Équipements</label>
+            <div id="equipementsContainer" class="list-equipement">
+                <!-- Les équipements seront ajoutés ici par JS -->
+            </div>
+        </div>
+
+        <div class="add-description">
+            <label class="block text-sm font-medium text-gray-700">Description</label>
+            <textarea asp-for="Vehicule.Description" rows="4" class="" required></textarea>
+        </div>
+
+        <div class="add-photo">
+            <label class="block text-sm font-medium text-gray-700">Photos du véhicule</label>
+            <input type="file" id="photoInput" name="photos" multiple accept="image/*"
+                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required />
+            <p id="photoError" class="text-red-600 text-sm mt-2 hidden"></p>
+        </div>
+
+        <!-- Zone de preview -->
+        <div id="preview" class="mt-4 grid grid-cols-2 gap-4"></div>
+
+
+        <div class="bloc-btn-add-vehicule">
+            <button type="submit" class="btn-add-vehicule btn">
+                Ajouter le véhicule
+            </button>
+
+            <button type="submit" class="btn-return btn">
+                <a asp-page="Index" class="text-gray-600 hover:underline">← Retour à la liste</a>
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // 📷 Gestion preview images (inchangée)
+        const input = document.getElementById('photoInput');
+        const preview = document.getElementById('preview');
+        const errorMsg = document.getElementById('photoError');
+        const equipementContainer = document.getElementById("equipementsContainer");
+
+        let filesList = [];
+        const maxFiles = 12;
+        const maxSize = 5 * 1024 * 1024; // 5 Mo
+
+        input.addEventListener('change', function () {
+            let newFiles = Array.from(this.files);
+
+            for (const file of newFiles) {
+                if (file.size > maxSize) {
+                    errorMsg.textContent = `❌ "${file.name}" dépasse 5 Mo.`;
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+            }
+
+            if (filesList.length + newFiles.length > maxFiles) {
+                errorMsg.textContent = `❌ Maximum ${maxFiles} images autorisées.`;
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+
+            errorMsg.classList.add('hidden');
+            filesList = [...filesList, ...newFiles];
+            updatePreview();
+        });
+
+        function updatePreview() {
+            preview.innerHTML = "";
+
+            filesList.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = "relative aspect-square rounded overflow-hidden shadow-md group";
+
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = "w-full h-full object-cover";
+
+                    const btn = document.createElement('button');
+                    btn.textContent = "✕";
+                    btn.type = "button";
+                    btn.className =
+                        "absolute top-1 right-1 w-6 h-6 text-xs font-bold rounded-full bg-red-600 group-hover:opacity-100 transition";
+                    btn.onclick = () => {
+                        filesList.splice(index, 1);
+                        updatePreview();
+                    };
+
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(btn);
+                    preview.appendChild(wrapper);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            const dataTransfer = new DataTransfer();
+            filesList.forEach(f => dataTransfer.items.add(f));
+            input.files = dataTransfer.files;
+        }
+
+        // 📥 Données dynamiques depuis JSON
+        document.addEventListener("DOMContentLoaded", () => {
+            const marqueSelect = document.getElementById("marqueSelect");
+            const modeleSelect = document.getElementById("modeleSelect");
+            const energieSelect = document.getElementById("energieSelect");
+            const transmissionSelect = document.getElementById("transmissionSelect");
+            const colorSelect = document.getElementById("colorSelect");
+
+            fetch("/data/marques_modeles.json")
+                .then(res => res.json())
+                .then(data => {
+                    const energieData = data.find(d => d.energie)?.energie || [];
+                    const transmissionData = data.find(d => d.transmission)?.transmission || [];
+                    const equipementsData = data.find(d => d.equipements)?.equipements || [];
+                    const marquesData = data.filter(d => d.marque);
+                    const colorData = data.find(d => d.color)?.color || [];
+
+                    energieSelect.innerHTML = `<option disabled selected value="">Sélectionner</option>`;
+                    energieData.forEach(e => {
+                        const option = document.createElement("option");
+                        option.value = e;
+                        option.textContent = e;
+                        energieSelect.appendChild(option);
+                    });
+
+                    transmissionSelect.innerHTML = `<option disabled selected value="">Sélectionner</option>`;
+                    transmissionData.forEach(t => {
+                        const option = document.createElement("option");
+                        option.value = t;
+                        option.textContent = t;
+                        transmissionSelect.appendChild(option);
+                    });
+
+                    colorSelect.innerHTML = `<option disabled selected value="">Sélectionner</option>`;
+                    colorData.forEach(t => {
+                        const option = document.createElement("option");
+                        option.value = t;
+                        option.textContent = t;
+                        colorSelect.appendChild(option);
+                    });
+
+                    marqueSelect.innerHTML = `<option disabled selected value="">Sélectionner</option>`;
+                    marquesData.forEach(entry => {
+                        const option = document.createElement("option");
+                        option.value = entry.marque;
+                        option.textContent = entry.marque;
+                        marqueSelect.appendChild(option);
+                    });
+
+                    marqueSelect.addEventListener("change", () => {
+                        const selected = marquesData.find(d => d.marque === marqueSelect.value);
+                        modeleSelect.innerHTML = `<option disabled selected value="">Modèle</option>`;
+                        modeleSelect.disabled = !selected;
+                        modeleSelect.classList.toggle("opacity-50", !selected);
+
+                        if (selected) {
+                            selected.modeles.forEach(m => {
+                                const option = document.createElement("option");
+                                option.value = m;
+                                option.textContent = m;
+                                modeleSelect.appendChild(option);
+                            });
+                        }
+                    });
+
+                    equipementsData.forEach(e => {
+                        const label = document.createElement("label");
+                        label.className = "inline-flex items-center gap-20 flex";
+
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.name = "EquipementsSelectionnes";
+                        checkbox.value = e;
+                        checkbox.className = "form-checkbox text-indigo-600";
+
+                        const span = document.createElement("span");
+                        span.className = "ml-2";
+                        span.textContent = e;
+
+                        label.appendChild(checkbox);
+                        label.appendChild(span);
+                        equipementContainer.appendChild(label);
+                    });
+                });
+        });
+
+        // ✅ Vérification personnalisée de l'année (4 chiffres)
+        document.querySelector("form").addEventListener("submit", function (e) {
+            const anneeInput = document.querySelector("input[name='Vehicule.Annee']");
+            const annee = anneeInput?.value?.trim() || "";
+
+            if (!/^\d{4}$/.test(annee)) {
+                e.preventDefault();
+                alert("L'année doit comporter exactement 4 chiffres.");
+                anneeInput.classList.add("border", "border-red-500");
+                anneeInput.focus();
+            } else {
+                anneeInput.classList.remove("border", "border-red-500");
+            }
+        });
+    </script>
+}
+

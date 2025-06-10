@@ -1,0 +1,74 @@
+﻿[
+  {
+    "equipements": [
+      "Caméra de recul",
+      "Radar de recul",
+      "Bluetooth",
+      "Régulateur de vitesse",
+      "Feux LED",
+      "Isofix",
+      "Jantes alliage",
+      "Toit panoramique",
+      "GPS intégré",
+      "Climatisation automatique"
+    ]
+  },
+  {
+    "energie": [ "Électrique", "Hybride", "Essence", "Diesel" ]
+  },
+  {
+    "transmission": [ "Automatique", "Manuelle" ]
+  },
+  {
+    "color": [
+      "Noir",
+      "Rouge",
+      "Vert",
+      "Gris",
+      "Bleu",
+      "Rose",
+      "Blanc",
+      "Jaune"
+    ]
+  },
+  {
+    "marque": "Peugeot",
+    "modeles": [ "208", "308", "508", "3008", "5008" ]
+  },
+  {
+    "marque": "Renault",
+    "modeles": [ "Clio", "Captur", "Mégane", "Talisman", "Scenic" ]
+  },
+  {
+    "marque": "Citroën",
+    "modeles": [ "C3", "C4", "C5", "C4 Picasso", "Berlingo" ]
+  },
+  {
+    "marque": "Volkswagen",
+    "modeles": [ "Golf", "Polo", "Passat", "Tiguan", "T-Roc" ]
+  },
+  {
+    "marque": "Toyota",
+    "modeles": [ "Yaris", "Corolla", "C-HR", "RAV4", "Auris" ]
+  },
+  {
+    "marque": "BMW",
+    "modeles": [ "Série 1", "Série 3", "Série 5", "X1", "X3" ]
+  },
+  {
+    "marque": "Tesla",
+    "modeles": [ "Model 3", "Model Y", "Model S", "Model X" ]
+  },
+  {
+    "marque": "Fiat",
+    "modeles": [ "500", "Panda", "Tipo", "500X", "Ducato" ]
+  },
+  {
+    "marque": "Audi",
+    "modeles": [ "A1", "A3", "A4", "A6", "Q3", "Q5" ]
+  },
+  {
+    "marque": "Dacia",
+    "modeles": [ "Sandero", "Duster", "Jogger", "Spring", "Logan" ]
+  }
+]

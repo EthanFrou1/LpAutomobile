@@ -1,0 +1,20 @@
+@page "{id:int}"
+@model DeleteModel
+@{
+    ViewData["Title"] = "Supprimer un véhicule";
+}
+
+<h1>Supprimer un véhicule</h1>
+
+<p>Êtes-vous sûr de vouloir supprimer ce véhicule ?</p>
+
+<div>
+    <strong>@Model.Vehicule.Marque @Model.Vehicule.Modele</strong><br />
+    Année : @Model.Vehicule.Annee — @Model.Vehicule.Kilometrage km — @Model.Vehicule.Prix €
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="Vehicule.Id" />
+    <button type="submit">Oui, supprimer</button>
+    <a asp-page="Index">Annuler</a>
+</form>
