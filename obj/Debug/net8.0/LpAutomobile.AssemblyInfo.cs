@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LpAutomobile")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5dd05df79a83165c486d75f458bac8b6f15582f7")]
 [assembly: System.Reflection.AssemblyProductAttribute("LpAutomobile")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LpAutomobile")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

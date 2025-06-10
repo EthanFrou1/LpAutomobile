@@ -44,7 +44,7 @@
                             <i class="bi bi-sliders me-2"></i>
                             Filtres
                         </h3>
-                        <button class="btn btn-sm btn-outline-danger reset-all-btn" id="resetAllFilters">
+                        <button class="btn btn-sm reset-all-btn" id="resetAllFilters">
                             <i class="bi bi-x-circle me-1"></i>
                             Tout effacer
                         </button>
@@ -230,12 +230,12 @@
                     </div>
 
                     <!-- Grille des véhicules -->
-                    <div class="vehicles-grid" id="vehiclesGrid">
+                    <div class="vehicules-grid" id="vehiculesGrid">
                         @foreach (var vehicule in Model.Vehicules)
                         {
-                            <div class="vehicle-card" data-aos="fade-up" data-aos-delay="@(Model.Vehicules.ToList().IndexOf(vehicule) * 100)">
+                            <div class="vehicule-card" data-aos="fade-up" data-aos-delay="@(Model.Vehicules.ToList().IndexOf(vehicule) * 100)">
                                 <!-- Badge de statut -->
-                                <div class="vehicle-badges">
+                                <div class="vehicule-badges">
                                     @if (vehicule.Annee >= DateTime.Now.Year - 2)
                                     {
                                         <span class="badge badge-new">Récent</span>
@@ -248,13 +248,13 @@
                                 </div>
 
                                 <!-- Images du véhicule -->
-                                <div class="vehicle-images">
+                                <div class="vehicule-images">
                                     <div class="image-slider">
                                         @for (int i = 0; i < vehicule.Photos.Count; i++)
                                         {
                                             <img src="@vehicule.Photos[i].Url"
                                                  alt="@vehicule.Marque @vehicule.Modele"
-                                                 class="vehicle-image @(i == 0 ? "active" : "")"
+                                                 class="vehicule-image @(i == 0 ? "active" : "")"
                                                  data-index="@i">
                                         }
                                     </div>
@@ -280,17 +280,17 @@
                                 </div>
 
                                 <!-- Informations du véhicule -->
-                                <div class="vehicle-info">
-                                    <div class="vehicle-header">
-                                        <h3 class="vehicle-title">@vehicule.Marque @vehicule.Modele</h3>
-                                        <div class="vehicle-energy">
+                                <div class="vehicule-info">
+                                    <div class="vehicule-header">
+                                        <h3 class="vehicule-title">@vehicule.Marque @vehicule.Modele</h3>
+                                        <div class="vehicule-energy">
                                             <span class="energy-badge energy-@vehicule.Energie.ToLower()">
                                                 @vehicule.Energie
                                             </span>
                                         </div>
                                     </div>
 
-                                    <div class="vehicle-specs">
+                                    <div class="vehicule-specs">
                                         <div class="spec-item">
                                             <i class="bi bi-calendar3"></i>
                                             <span>@vehicule.Annee</span>
@@ -309,12 +309,12 @@
                                         </div>
                                     </div>
 
-                                    <div class="vehicle-description">
+                                    <div class="vehicule-description">
                                         <p>@(vehicule.Description.Length > 100 ? vehicule.Description.Substring(0, 100) + "..." : vehicule.Description)</p>
                                     </div>
 
-                                    <div class="vehicle-footer">
-                                        <div class="vehicle-price">
+                                    <div class="vehicule-footer">
+                                        <div class="vehicule-price">
                                             <div class="price-monthly">
                                                 <span class="price-label">À partir de</span>
                                                 <span class="price-value">@vehicule.PrixMensuel.ToString("C0")<small>/mois</small></span>
@@ -324,11 +324,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="vehicle-actions">
+                                        <div class="vehicule-actions">
                                             <button class="btn btn-outline-primary btn-sm favorite-btn" title="Ajouter aux favoris">
                                                 <i class="bi bi-heart"></i>
                                             </button>
-                                            <a asp-page="/Vehicules/Catalogue/Details" asp-route-id="@vehicule.Id"
+                                            <a asp-page="/Vehicules/Details" asp-route-id="@vehicule.Id"
                                                class="btn btn-primary btn-sm">
                                                 <i class="bi bi-eye me-1"></i>
                                                 Voir détails

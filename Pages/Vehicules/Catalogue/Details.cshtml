@@ -1,254 +1,382 @@
-﻿@page
+﻿@page "/Vehicules/Details/{id:int}"
 @model LpAutomobile.Pages.Catalogue.DetailsModel
 @{
     var v = Model.Vehicule;
-    ViewData["Title"] = $"{v.Marque} {v.Modele}";
+    ViewData["Title"] = $"{v.Marque} {v.Modele} - LP Automobile";
 }
 
-<div class="container mx-auto px-4 py-10">
-    <!-- 🔙 Lien retour -->
-    <a href="/Vehicules/Catalogue" class="btn text-blue-600 mb-4 inline-block">
-        ← Retour au catalogue
-    </a>
+<!-- Hero Section avec breadcrumb -->
+<div class="vehicule-hero-section">
+    <div class="container nav-detail">
+        <!-- Breadcrumb moderne -->
+        <nav class="breadcrumb-nav" aria-label="breadcrumb">
+            <ol class="breadcrumb-list">
+                <li><a href="/" class="breadcrumb-link">Accueil</a></li>
+                <li><a href="/Vehicules/Catalogue" class="breadcrumb-link">Catalogue</a></li>
+                <li class="breadcrumb-current">@v.Marque @v.Modele</li>
+            </ol>
+        </nav>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- Badge de retour -->
+        <a href="/Vehicules/Catalogue" class="back-button">
+            <i class="bi bi-arrow-left"></i>
+            Retour au catalogue
+        </a>
+    </div>
+</div>
 
-        <h2>@v.Marque @v.Modele</h2>
-
-        <!-- 🎞️ Carrousel d'images avec Bootstrap -->
-        @if (v.Photos != null && v.Photos.Count > 0)
-        {
-            <div id="vehiculePhotosCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    @for (int i = 0; i < v.Photos.Count; i++)
-                    {
-                        <div class="carousel-item @(i == 0 ? "active" : "")">
-                            <img src="@v.Photos[i].Url"
-                                 class="d-block w-100 object-fit-cover rounded"
-                                 style="height: 500px; object-position: center;" />
-                        </div>
-                    }
-                </div>
-
-                @if (v.Photos.Count > 1)
+<!-- Section principale véhicule -->
+<div class="vehicule-detail-container">
+    <div class="container">
+        <div class="vehicule-detail-grid">
+            
+            <!-- Colonne gauche : Photos -->
+            <div class="vehicule-photos-section">
+                <!-- Galerie principale -->
+                @if (v.Photos != null && v.Photos.Count > 0)
                 {
-                    <button class="carousel-control-prev" type="button" data-bs-target="#vehiculePhotosCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" style="filter: invert(1);"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#vehiculePhotosCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" style="filter: invert(1);"></span>
-                    </button>
+                    <div class="main-gallery">
+                        <div id="vehiculePhotosCarousel" class="photo-carousel" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                @for (int i = 0; i < v.Photos.Count; i++)
+                                {
+                                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                                        <img src="@v.Photos[i].Url" 
+                                             alt="@v.Marque @v.Modele - Photo @(i + 1)"
+                                             class="main-photo" 
+                                             onclick="openPhotoModal(@i)">
+                                        
+                                        <!-- Badge compteur photos -->
+                                        <div class="photo-counter">
+                                            <i class="bi bi-camera"></i>
+                                            @(i + 1) / @v.Photos.Count
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            @if (v.Photos.Count > 1)
+                            {
+                                <button class="carousel-control carousel-control-prev btn" type="button" data-bs-target="#vehiculePhotosCarousel" data-bs-slide="prev">
+                                    <i class="bi bi-chevron-left"></i>
+                                </button>
+                                <button class="carousel-control carousel-control-next btn" type="button" data-bs-target="#vehiculePhotosCarousel" data-bs-slide="next">
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            }
+                        </div>
+
+                        <!-- Miniatures -->
+                        @if (v.Photos.Count > 1)
+                        {
+                            <div class="photo-thumbnails">
+                                @for (int i = 0; i < Math.Min(v.Photos.Count, 6); i++)
+                                {
+                                    <div class="thumbnail @(i == 0 ? "active" : "")" 
+                                         data-bs-target="#vehiculePhotosCarousel" 
+                                         data-bs-slide-to="@i">
+                                        <img src="@v.Photos[i].Url" alt="Miniature @(i + 1)">
+                                        @if (i == 5 && v.Photos.Count > 6)
+                                        {
+                                            <div class="thumbnail-overlay">
+                                                +@(v.Photos.Count - 5)
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="no-photo-placeholder">
+                        <i class="bi bi-image"></i>
+                        <p>Aucune photo disponible</p>
+                    </div>
                 }
             </div>
-        }
 
-        <!-- 📋 Infos véhicule -->
-        <div class="bg-white rounded-xl shadow p-6 space-y-6">
-            <h1 class="text-3xl font-bold text-gray-900">@v.Marque @v.Modele</h1>
-            <p class="text-sm text-gray-600">@v.Description</p>
-
-            <div class="text-lg font-semibold text-blue-700">
-                <div>@v.PrixMensuel.ToString("C0") / mois</div>
-                <div class="text-black font-bold">@v.Prix.ToString("C0")</div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center text-gray-800">
-                <div><div class="font-semibold">📅 Année</div><div>@v.Annee</div></div>
-                <div><div class="font-semibold">🛣 Km</div><div>@v.Kilometrage.ToString("N0") km</div></div>
-                <div><div class="font-semibold">⚡ Énergie</div><div>@v.Energie</div></div>
-                <div><div class="font-semibold">⚙ Boîte</div><div>@v.Transmission</div></div>
-                <div><div class="font-semibold">🎨 Couleur</div><div>@v.Couleur</div></div>
-            </div>
-
-            @if (v.Equipements?.Count > 0)
-            {
-                <div class="border-t pt-4">
-                    <h2 class="font-semibold text-lg mb-2">Équipements principaux</h2>
-                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
-                        @foreach (var e in v.Equipements)
+            <!-- Colonne droite : Informations et actions -->
+            <div class="vehicule-info-section">
+                
+                <!-- Header véhicule -->
+                <div class="vehicule-header-details">
+                    <div class="vehicule-badges-details">
+                        @if (v.Annee >= DateTime.Now.Year - 2)
                         {
-                            <li>@e.Nom</li>
+                            <span class="badge badge-recent">Récent</span>
                         }
-                    </ul>
+                        @if (v.Prix < 15000)
+                        {
+                            <span class="badge badge-good-price">Bon prix</span>
+                        }
+                        <span class="badge badge-guaranteed">Garanti</span>
+                    </div>
+                    
+                    <h1 class="vehicule-title">@v.Marque @v.Modele</h1>
+                    <p class="vehicule-subtitle">@v.Description</p>
                 </div>
-            }
+
+                <!-- Prix principal -->
+                <div class="price-section">
+                    <div class="main-price">
+                        <span class="price-amount">@v.Prix.ToString("C0")</span>
+                        <span class="price-label">Prix de vente</span>
+                    </div>
+                    <div class="monthly-price">
+                        <span class="monthly-amount">@v.PrixMensuel.ToString("C0")</span>
+                        <span class="monthly-label">/ mois sur 60 mois*</span>
+                    </div>
+                </div>
+
+                <!-- Boutons d'action principaux -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary btn-large btn-contact" onclick="openContactModal('interest')">
+                        <i class="bi bi-chat-dots"></i>
+                        Je suis intéressé(e)
+                    </button>
+                    <button class="btn btn-outline-primary btn-large btn-offer" onclick="openContactModal('offer')">
+                        <i class="bi bi-tag"></i>
+                        Faire une offre
+                    </button>
+                    <button class="btn btn-outline-secondary btn-reservation" onclick="openContactModal('reservation')">
+                        <i class="bi bi-calendar-check"></i>
+                        Réserver un essai
+                    </button>
+                </div>
+
+                <!-- Caractéristiques principales -->
+                <div class="vehicule-specs-details">
+                    <h3>Caractéristiques</h3>
+                    <div class="specs-grid">
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="bi bi-calendar3"></i>
+                            </div>
+                            <div class="spec-content">
+                                <span class="spec-label">Année</span>
+                                <span class="spec-value">@v.Annee</span>
+                            </div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="bi bi-speedometer2"></i>
+                            </div>
+                            <div class="spec-content">
+                                <span class="spec-label">Kilométrage</span>
+                                <span class="spec-value">@v.Kilometrage.ToString("N0") km</span>
+                            </div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="bi bi-lightning"></i>
+                            </div>
+                            <div class="spec-content">
+                                <span class="spec-label">Énergie</span>
+                                <span class="spec-value">@v.Energie</span>
+                            </div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="bi bi-gear"></i>
+                            </div>
+                            <div class="spec-content">
+                                <span class="spec-label">Transmission</span>
+                                <span class="spec-value">@v.Transmission</span>
+                            </div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-icon">
+                                <i class="bi bi-palette"></i>
+                            </div>
+                            <div class="spec-content">
+                                <span class="spec-label">Couleur</span>
+                                <span class="spec-value">@v.Couleur</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Équipements -->
+                @if (v.Equipements?.Count > 0)
+                {
+                    <div class="vehicule-equipment">
+                        <h3>Équipements inclus</h3>
+                        <div class="equipment-list">
+                            @foreach (var equipement in v.Equipements.Take(6))
+                            {
+                                <div class="equipment-item">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>@equipement.Nom</span>
+                                </div>
+                            }
+                            @if (v.Equipements.Count > 6)
+                            {
+                                <button class="show-more-equipment" onclick="showAllEquipment()">
+                                    + Voir tous les équipements (@v.Equipements.Count)
+                                </button>
+                            }
+                        </div>
+                    </div>
+                }
+
+                <!-- Garanties et services -->
+                <div class="guarantees-section">
+                    <h3>Nos garanties</h3>
+                    <div class="guarantee-items">
+                        <div class="guarantee-item">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Véhicule contrôlé</span>
+                        </div>
+                        <div class="guarantee-item">
+                            <i class="bi bi-tools"></i>
+                            <span>Garantie mécanique</span>
+                        </div>
+                        <div class="guarantee-item">
+                            <i class="bi bi-arrow-repeat"></i>
+                            <span>Reprise possible</span>
+                        </div>
+                        <div class="guarantee-item">
+                            <i class="bi bi-credit-card"></i>
+                            <span>Financement disponible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Formulaire de contact -->
-<section class="py-5 form-contact" id="contact">
-    <div class="container">
-        <h2 class="mb-3">Contactez-nous</h2>
-        <form method="post" asp-page-handler="Contact">
-            <div class="mb-3">
-                <label for="nom" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="nom" name="Nom" required>
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="Email" required>
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" id="message" name="Message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary w-15">Envoyer</button>
-        </form>
-    </div>
 
-    <!-- Réseaux sociaux & contacts -->
-    <div class="container mt-5 bg-light p-20">
-        <div class="row text-center align-items-center p-25">
-            <div class="col">
-                <a href="https://www.facebook.com/Lpautomobile66/?locale=fr_FR" target="_blank" class="text-decoration-none text-dark link-contact">
-                    <i class="bi bi-facebook fs-2"></i>
-                    <span>Facebook</span>
+<!-- Modal photos -->
+<div id="photoModal" class="photo-modal">
+    <div class="photo-modal-content">
+        <div class="photo-modal-body">
+            <div class="photo-modal-nav">
+                <button class="photo-nav-btn btn" id="prevPhotoBtn" onclick="prevModalPhoto()">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+            </div>
+            <img id="modalPhoto" src="" alt="">
+            <div class="photo-modal-counter">
+                <span id="modalPhotoCounter">1 / @(v.Photos?.Count ?? 0)</span>
+            </div>
+             <div class="photo-modal-nav">
+                <button class="photo-nav-btn btn" id="nextPhotoBtn" onclick="nextModalPhoto()">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+        <button class="photo-modal-close" onclick="closePhotoModal()">
+            <i class="bi bi-x"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Réseaux sociaux & contacts -->
+<section class="bg-light py-4 text-white text-primary">
+    <div class="container">
+        <div class="row text-center align-items-center">
+            <div class="col-6 col-md">
+                <a href="https://www.facebook.com/Lpautomobile66/?locale=fr_FR" target="_blank" class="text-white text-decoration-none link-contact">
+                    <i class="bi bi-facebook fs-2 mb-2 d-block text-primary"></i>
+                    <span class="small text-primary">Facebook</span>
                 </a>
             </div>
-            <div class="col">
-                <a href="https://occasion.largus.fr/auto/lp-automobile_152969/" target="_blank" class="text-decoration-none text-dark link-contact">
-                    <img src="/img/logo-argus.png" alt="L'Argus" class="img-argus">
+            <div class="col-6 col-md">
+                <a href="https://occasion.largus.fr/auto/lp-automobile_152969/" target="_blank" class="text-white text-decoration-none link-contact">
+                    <img src="/img/logo-argus.png" alt="L'Argus" class="img-argus mb-2"/>
+                    <span class="small d-block"></span>
                 </a>
             </div>
-            <div class="col">
-                <a href="https://wa.me/33633169477" target="_blank" class="text-decoration-none text-dark link-contact">
-                    <i class="bi bi-whatsapp fs-2"></i>
-                    <span>WhatsApp</span>
+            <div class="col-6 col-md">
+                <a href="https://wa.me/33633169477" target="_blank" class="text-white text-decoration-none link-contact">
+                    <i class="bi bi-whatsapp fs-2 mb-2 d-block text-primary"></i>
+                    <span class="small text-primary">WhatsApp</span>
                 </a>
             </div>
-            <div class="col">
-                <a href="tel:+33633169477" class="text-decoration-none text-dark link-contact">
-                    <i class="bi bi-telephone-fill fs-2"></i>
-                    <span>Téléphone</span>
+            <div class="col-6 col-md">
+                <a href="tel:+33633169477" class="text-white text-decoration-none link-contact">
+                    <i class="bi bi-telephone-fill fs-2 mb-2 d-block text-primary"></i>
+                    <span class="small text-primary">06 33 16 94 77</span>
                 </a>
             </div>
-            <div class="col">
-                <a href="mailto:ethanfrou1@gmail.com" class="text-decoration-none text-dark link-contact">
-                    <i class="bi bi-envelope-fill fs-2"></i>
-                    <span>Email</span>
+            <div class="col-6 col-md">
+                <a href="mailto:ethanfrou1@gmail.com" class="text-white text-decoration-none link-contact">
+                    <i class="bi bi-envelope-fill fs-2 mb-2 d-block text-primary"></i>
+                    <span class="small text-primary">Email</span>
                 </a>
             </div>
         </div>
     </div>
 </section>
 
+<!-- Avis Google - garde ton code existant mais améliore le titre -->
 @if (Model.Avis != null && Model.Avis.Any())
 {
-
-    <!-- Avis Google -->
-    <section class="py-5">
+    <section class="py-5" data-aos="fade-up" data-aos-duration="1000">
         <div class="container text-center">
-            <h2 class="mb-3">Ce que nos clients disent</h2>
+            <h2 class="section-title display-5 fw-bold mb-3">Ils nous font confiance</h2>
+            <div class="mb-5 mt-5">
+                <div class="d-inline-flex align-items-center px-4 py-2 rounded-pill shadow-sm btn pointer-none">
+                    <span class="fw-bold fs-4 text-warning">4.8</span>
+                    <div class="text-warning">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <span class="">• 50+ avis Google</span>
+                </div>
+            </div>
             @await Html.PartialAsync("_AvisGooglePartial", Model.Avis)
-            <div class="position-relative top--20">
-                <a href="https://www.google.com/maps/place/Lp+Automobiles/" target="_blank" class="btn btn-outline-dark btn-see-avis">
-                    Voir les avis Google
+            <div class="mt-4 bloc-btn-avis-google" data-aos="zoom-in" data-aos-duration="1000">
+                <a href="https://www.google.com/maps/place/Lp+Automobiles/" target="_blank" class="btn btn-outline-primary btn-lg pointer-none;">
+                    <i class="bi bi-google me-2"></i>
+                    Voir tous les avis Google
                 </a>
             </div>
         </div>
     </section>
 }
 
-<!-- Carte -->
-<section class="py-5 bg-light">
+<!-- Carte - garde ton code existant -->
+<section class="py-5 bg-light" data-aos="fade-up" data-aos-duration="1000">
     <div class="container">
-        <h2 class="mb-3">Nous localiser</h2>
-        <iframe src="https://www.google.com/maps?q=14+Rue+Louis+Piquemal,+66240+Saint-Estève&output=embed"
-                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
-        </iframe>
+        <h2 class="section-title text-center display-5 fw-bold mb-5">Nous localiser</h2>
+        <div class="row">
+            <div class="map">
+                <div class="map-container rounded shadow">
+                    <iframe src="https://www.google.com/maps?q=14+Rue+Louis+Piquemal,+66240+Saint-Esteve&output=embed"
+                            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" class="rounded">
+                    </iframe>
+                </div>
+
+
+                <!-- Bouton Itinéraire -->
+                <div class="text-center block-btn-map">
+                    <button id="btnItineraire" class="btn btn-primary btn-lg px-5 py-3" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="bi bi-geo-alt-fill me-2"></i>
+                        Venir chez nous
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+                    <p class="text-muted mt-2 small">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Ouvre Google Maps avec l'itinéraire depuis votre position
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- ✅ Modale succès -->
-<div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-    <div class="bg-white rounded-xl shadow-xl p-8 max-w-md text-center animate__animated animate__fadeInDown">
-        <h3 class="text-2xl font-semibold mb-2 text-green-600">Message envoyé ✅</h3>
-        <p class="text-gray-700 mb-4">
-            Vous venez de contacter le garage.<br />
-            Merci de votre intérêt, nous vous répondrons rapidement.
-        </p>
-        <button onclick="closeModal()"
-                class="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 transition">
-            Fermer
-        </button>
-    </div>
-</div>
+<!-- BOUTON SCROLL TO TOP -->
+<button id="scrollToTop" class="scroll-to-top-btn" title="Retour en haut">
+    <i class="bi bi-chevron-up"></i>
+</button>
 
 @section Scripts {
-    <script>
-        // 🎯 Carrousel simple + swipe
-        document.addEventListener("DOMContentLoaded", () => {
-            const slides = document.querySelectorAll(".slide");
-            const next = document.querySelector(".next");
-            const prev = document.querySelector(".prev");
-            const carousel = document.getElementById("carousel");
-            let currentIndex = 0;
-
-            const showSlide = (i) => {
-                slides.forEach((slide, index) => {
-                    slide.classList.toggle("opacity-100", index === i);
-                    slide.classList.toggle("opacity-0", index !== i);
-                });
-            };
-
-            next?.addEventListener("click", () => {
-                currentIndex = (currentIndex + 1) % slides.length;
-                showSlide(currentIndex);
-            });
-
-            prev?.addEventListener("click", () => {
-                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-                showSlide(currentIndex);
-            });
-
-            // 🎯 Swipe mobile
-            let startX = 0;
-            carousel.addEventListener("touchstart", (e) => {
-                startX = e.touches[0].clientX;
-            });
-            carousel.addEventListener("touchend", (e) => {
-                const deltaX = e.changedTouches[0].clientX - startX;
-                if (deltaX > 50) prev.click();
-                else if (deltaX < -50) next.click();
-            });
-
-            showSlide(currentIndex);
-
-            // ✅ Form check
-            const form = document.querySelector("form");
-            const inputs = form.querySelectorAll("input, textarea");
-            const submitBtn = document.getElementById("submitBtn");
-
-            function checkFields() {
-                const nom = form.querySelector('input[type="text"]').value.trim();
-                const email = form.querySelector('input[type="email"]').value.trim();
-                const message = form.querySelector('textarea').value.trim();
-
-                const valid = nom !== "" && email !== "" && message !== "";
-                submitBtn.disabled = !valid;
-                submitBtn.classList.toggle("opacity-50", !valid);
-                submitBtn.classList.toggle("cursor-not-allowed", !valid);
-            }
-
-            inputs.forEach(input => input.addEventListener("input", checkFields));
-            checkFields();
-
-            // ✅ Envoi + modale
-            form.addEventListener("submit", (e) => {
-                e.preventDefault();
-                setTimeout(() => {
-                    document.getElementById("successModal").classList.remove("hidden");
-                    document.getElementById("successModal").classList.add("flex");
-                    form.reset();
-                    checkFields();
-                }, 300);
-            });
-        });
-
-        function closeModal() {
-            document.getElementById("successModal").classList.add("hidden");
-            document.getElementById("successModal").classList.remove("flex");
-        }
-    </script>
+    <script src="~/js/details.js"></script>
 }

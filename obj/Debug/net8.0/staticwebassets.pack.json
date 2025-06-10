@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\catalogue.css"
     },
     {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\details.css",
+      "PackagePath": "staticwebassets\\css\\details.css"
+    },
+    {
       "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\footer.css",
       "PackagePath": "staticwebassets\\css\\footer.css"
     },
@@ -91,6 +95,10 @@
     {
       "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\catalogue.js",
       "PackagePath": "staticwebassets\\js\\catalogue.js"
+    },
+    {
+      "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\details.js",
+      "PackagePath": "staticwebassets\\js\\details.js"
     },
     {
       "Id": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\footer.js",

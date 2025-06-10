@@ -293,3 +293,4 @@ C:\Users\ethan\Documents\GitHub\LpAutomobile\bin\Debug\net8.0\runtimes\win\lib\n
 C:\Users\ethan\Documents\GitHub\LpAutomobile\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\ethan\Documents\GitHub\LpAutomobile\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\ethan\Documents\GitHub\LpAutomobile\bin\Debug\net8.0\wwwroot\data\marques_modeles.json
+C:\Users\ethan\Documents\GitHub\LpAutomobile\obj\Debug\net8.0\LpAutomobile.sourcelink.json

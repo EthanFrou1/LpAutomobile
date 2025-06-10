@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // =================================
 
     function renderVehicules() {
-        const container = document.getElementById('vehiclesGrid');
+        const container = document.getElementById('vehiculesGrid');
         const countElement = document.querySelector('.count-number');
         const countLabel = document.querySelector('.count-label');
 
@@ -122,8 +122,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Créer les cartes de véhicules
         filteredVehicules.forEach((vehicule, index) => {
-            const vehicleCard = createVehicleCard(vehicule, index);
-            container.appendChild(vehicleCard);
+            const vehiculeCard = createvehiculeCard(vehicule, index);
+            container.appendChild(vehiculeCard);
         });
 
         // Réinitialiser les sliders d'images
@@ -131,30 +131,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         setupFavorites();
 
         // Animation d'apparition
-        animateVehicleCards();
+        animatevehiculeCards();
     }
 
-    function createVehicleCard(vehicule, index) {
+    function createvehiculeCard(vehicule, index) {
         const card = document.createElement('div');
-        card.className = 'vehicle-card';
+        card.className = 'vehicule-card';
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
 
         card.innerHTML = `
             <!-- Badge de statut -->
-            <div class="vehicle-badges">
+            <div class="vehicule-badges">
                 ${vehicule.annee >= new Date().getFullYear() - 2 ? '<span class="badge badge-new">Récent</span>' : ''}
                 ${vehicule.prix < 15000 ? '<span class="badge badge-price">Bon prix</span>' : ''}
                 <span class="badge badge-guaranteed">Garanti</span>
             </div>
 
             <!-- Images du véhicule -->
-            <div class="vehicle-images">
+            <div class="vehicule-images">
                 <div class="image-slider">
                     ${vehicule.photos.map((photo, i) => `
                         <img src="${photo.url}" 
                              alt="${vehicule.marque} ${vehicule.modele}"
-                             class="vehicle-image ${i === 0 ? 'active' : ''}"
+                             class="vehicule-image ${i === 0 ? 'active' : ''}"
                              data-index="${i}">
                     `).join('')}
                 </div>
@@ -178,17 +178,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             </div>
 
             <!-- Informations du véhicule -->
-            <div class="vehicle-info">
-                <div class="vehicle-header">
-                    <h3 class="vehicle-title">${vehicule.marque} ${vehicule.modele}</h3>
-                    <div class="vehicle-energy">
+            <div class="vehicule-info">
+                <div class="vehicule-header">
+                    <h3 class="vehicule-title">${vehicule.marque} ${vehicule.modele}</h3>
+                    <div class="vehicule-energy">
                         <span class="energy-badge energy-${vehicule.energie.toLowerCase()}">
                             ${vehicule.energie}
                         </span>
                     </div>
                 </div>
 
-                <div class="vehicle-specs">
+                <div class="vehicule-specs">
                     <div class="spec-item">
                         <i class="bi bi-calendar3"></i>
                         <span>${vehicule.annee}</span>
@@ -207,12 +207,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                     </div>
                 </div>
 
-                <div class="vehicle-description">
+                <div class="vehicule-description">
                     <p>${vehicule.description.length > 100 ? vehicule.description.substring(0, 100) + '...' : vehicule.description}</p>
                 </div>
 
-                <div class="vehicle-footer">
-                    <div class="vehicle-price">
+                <div class="vehicule-footer">
+                    <div class="vehicule-price">
                         <div class="price-monthly">
                             <span class="price-label">À partir de</span>
                             <span class="price-value">${vehicule.prixMensuel.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}<small>/mois</small></span>
@@ -222,11 +222,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                         </div>
                     </div>
 
-                    <div class="vehicle-actions">
-                        <button class="btn btn-outline-primary btn-sm favorite-btn" title="Ajouter aux favoris" data-vehicle-id="${vehicule.id}">
+                    <div class="vehicule-actions">
+                        <button class="btn btn-outline-primary btn-sm favorite-btn" title="Ajouter aux favoris" data-vehicule-id="${vehicule.id}">
                             <i class="bi bi-heart"></i>
                         </button>
-                        <a href="/Vehicules/Catalogue/Details/${vehicule.id}" class="btn btn-primary btn-sm">
+                        <a href="/Vehicules/Details/${vehicule.id}" class="btn btn-primary btn-sm">
                             <i class="bi bi-eye me-1"></i>
                             Voir détails
                         </a>
@@ -744,8 +744,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // =================================
 
     function setupImageSliders() {
-        document.querySelectorAll('.vehicle-card').forEach(card => {
-            const images = card.querySelectorAll('.vehicle-image');
+        document.querySelectorAll('.vehicule-card').forEach(card => {
+            const images = card.querySelectorAll('.vehicule-image');
             const indicators = card.querySelectorAll('.indicator');
             const prevBtn = card.querySelector('.prev-btn');
             const nextBtn = card.querySelector('.next-btn');
@@ -856,18 +856,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     function setupViewModes() {
         const gridBtn = document.querySelector('.view-mode-btn[data-view="grid"]');
         const listBtn = document.querySelector('.view-mode-btn[data-view="list"]');
-        const vehiclesGrid = document.querySelector('.vehicles-grid');
+        const vehiculesGrid = document.querySelector('.vehicules-grid');
 
-        if (!vehiclesGrid) return;
+        if (!vehiculesGrid) return;
 
         gridBtn?.addEventListener('click', () => {
-            vehiclesGrid.classList.remove('list-view');
+            vehiculesGrid.classList.remove('list-view');
             gridBtn.classList.add('active');
             listBtn?.classList.remove('active');
         });
 
         listBtn?.addEventListener('click', () => {
-            vehiclesGrid.classList.add('list-view');
+            vehiculesGrid.classList.add('list-view');
             listBtn.classList.add('active');
             gridBtn?.classList.remove('active');
         });
@@ -915,8 +915,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // ANIMATIONS ET UTILS
     // =================================
 
-    function animateVehicleCards() {
-        const cards = document.querySelectorAll('.vehicle-card');
+    function animatevehiculeCards() {
+        const cards = document.querySelectorAll('.vehicule-card');
         cards.forEach((card, index) => {
             setTimeout(() => {
                 card.style.transition = 'all 0.5s ease';
@@ -927,7 +927,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function showLoading() {
-        const container = document.getElementById('vehiclesGrid');
+        const container = document.getElementById('vehiculesGrid');
         container.innerHTML = `
             <div class="col-12 text-center py-5">
                 <div class="spinner-border text-primary" role="status">
@@ -943,7 +943,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function showError(message) {
-        const container = document.getElementById('vehiclesGrid');
+        const container = document.getElementById('vehiculesGrid');
         container.innerHTML = `
             <div class="col-12 text-center py-5">
                 <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>

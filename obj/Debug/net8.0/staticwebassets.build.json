@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4DNpEbaixoQgMFUIGMnr9jf+JMgSNsvGinUPRQ5bdqY=",
+  "Hash": "OQXq48GEjShSYkeX5oM5++rg0abksO9ErqA+ipTPvWU=",
   "Source": "LpAutomobile",
   "BasePath": "_content/LpAutomobile",
   "Mode": "Default",
@@ -1214,6 +1214,25 @@
       "OriginalItemSpec": "wwwroot\\css\\catalogue.css"
     },
     {
+      "Identity": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\details.css",
+      "SourceId": "LpAutomobile",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\",
+      "BasePath": "_content/LpAutomobile",
+      "RelativePath": "css/details.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\details.css"
+    },
+    {
       "Identity": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\footer.css",
       "SourceId": "LpAutomobile",
       "SourceType": "Discovered",
@@ -1611,6 +1630,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\catalogue.js"
+    },
+    {
+      "Identity": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\details.js",
+      "SourceId": "LpAutomobile",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\",
+      "BasePath": "_content/LpAutomobile",
+      "RelativePath": "js/details.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\details.js"
     },
     {
       "Identity": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\footer.js",

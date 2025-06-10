@@ -142,12 +142,7 @@ html {
 
 a {
     text-decoration: none;
-    color: white;
 }
-
-    a:hover {
-        color: white;
-    }
 
 .btn {
     border-radius: 10px;
@@ -1802,14 +1797,6 @@ input#nom, input#email, input#message {
 /* =================================
    ACCESSIBILITÉ
    ================================= */
-
-/* Focus states */
-.modern-nav-link:focus,
-.action-btn:focus,
-.modern-toggler:focus {
-    outline: 2px solid #007bff;
-    outline-offset: 2px;
-}
 
 /* Contraste élevé */
 @media (prefers-contrast: high) {
