@@ -489,7 +489,67 @@
     <i class="bi bi-chevron-up"></i>
 </button>
 
+@* Modal de succès d'envoi d'email (toujours présente, cachée par défaut) *@
+<div id="successModal" class="contact-modal d-none">
+    <div class="modal-overlay"></div>
+    <div class="modal-content success-modal">
+        <div class="modal-header">
+            <div class="success-icon">
+                <i class="bi bi-check-lg"></i>
+            </div>
+            <h3 class="modal-title">Message envoyé !</h3>
+        </div>
+        <div class="modal-body">
+            <p class="modal-message" id="successMessage">Votre message a été envoyé avec succès !</p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="closeContactModal('success')">
+                    <i class="bi bi-check-lg me-2"></i>
+                    Parfait !
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
-@* Modal de succes d'envoie d'email  *@
-
-@* Modal d'echec d'envoie d'email  *@
+@* Modal d'échec d'envoi d'email (toujours présente, cachée par défaut) *@
+<div id="errorModal" class="contact-modal d-none">
+    <div class="modal-overlay"></div>
+    <div class="modal-content error-modal">
+        <div class="modal-header">
+            <div class="error-icon">
+                <i class="bi bi-exclamation-triangle"></i>
+            </div>
+            <h3 class="modal-title">Oups, une erreur !</h3>
+        </div>
+        <div class="modal-body">
+            <p class="modal-message" id="errorMessage">Une erreur est survenue lors de l'envoi.</p>
+            <div class="modal-contact-info">
+                <h5>Vous pouvez aussi nous contacter directement :</h5>
+                <div class="contact-methods">
+                    <a href="tel:+33633169477" class="contact-method">
+                        <i class="bi bi-telephone"></i>
+                        06 33 16 94 77
+                    </a>
+                    <a href="mailto:ethanfrou1@gmail.com" class="contact-method">
+                        <i class="bi bi-envelope"></i>
+                        Email direct
+                    </a>
+                    <a href="https://wa.me/33633169477" target="_blank" class="contact-method">
+                        <i class="bi bi-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-outline-primary" onclick="closeContactModal('error')">
+                    <i class="bi bi-arrow-left me-2"></i>
+                    Fermer
+                </button>
+                <button class="btn btn-primary" onclick="retryContactForm()">
+                    <i class="bi bi-arrow-repeat me-2"></i>
+                    Réessayer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

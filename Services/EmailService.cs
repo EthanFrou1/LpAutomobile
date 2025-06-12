@@ -174,7 +174,7 @@ namespace LpAutomobile.Services
                             📧 Répondre par email
                         </a>
                         {(!string.IsNullOrEmpty(model.Telephone) ? $@"
-                        <a href='tel:{model.Telephone}' 
+                        <a href='https://wa.me/{model.Telephone}' 
                            style='display: inline-block; background-color: #28a745; color: white; padding: 12px 25px; text-decoration: none; border-radius: 6px; font-weight: bold;'>
                             📞 Appeler le client
                         </a>" : "")}

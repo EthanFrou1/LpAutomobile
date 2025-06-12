@@ -1,4 +1,7 @@
-﻿// Slider photo dans catalogue
+﻿// =================================
+// SLIDERS PHOTO DANS CATALOGUE
+// =================================
+
 document.addEventListener("DOMContentLoaded", () => {
     const sliders = document.querySelectorAll(".slider");
 
@@ -33,18 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
         showSlide(currentIndex);
     });
 
-    // 📌 Fixer le filtre au scroll
+    // Fixer le filtre au scroll
     const filtreForm = document.querySelector('.section-filtre');
-    const offsetTop = filtreForm.offsetTop;
+    if (filtreForm) {
+        const offsetTop = filtreForm.offsetTop;
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > offsetTop) {
+                filtreForm.classList.add('filtre-fixed');
+            } else {
+                filtreForm.classList.remove('filtre-fixed');
+            }
+        });
+    }
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > offsetTop) {
-            filtreForm.classList.add('filtre-fixed');
-        } else {
-            filtreForm.classList.remove('filtre-fixed');
-        }
-    });
-
+    // Gestion des descriptions longues
     document.querySelectorAll('.description-text').forEach(desc => {
         const maxLength = 150;
         const fullText = desc.textContent.trim();
@@ -54,23 +59,24 @@ document.addEventListener("DOMContentLoaded", () => {
             desc.textContent = shortText;
 
             const button = desc.nextElementSibling;
-            button.classList.remove('hidden');
+            if (button) {
+                button.classList.remove('hidden');
 
-            let isExpanded = false;
-            button.addEventListener('click', () => {
-                if (!isExpanded) {
-                    desc.textContent = fullText;
-                    button.textContent = "Voir moins";
-                } else {
-                    desc.textContent = shortText;
-                    button.textContent = "Voir plus";
-                }
-                isExpanded = !isExpanded;
-            });
+                let isExpanded = false;
+                button.addEventListener('click', () => {
+                    if (!isExpanded) {
+                        desc.textContent = fullText;
+                        button.textContent = "Voir moins";
+                    } else {
+                        desc.textContent = shortText;
+                        button.textContent = "Voir plus";
+                    }
+                    isExpanded = !isExpanded;
+                });
+            }
         }
     });
 });
-
 
 // =================================
 // ANIMATIONS PAGE D'ACCUEIL
@@ -78,14 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // =================================
-    // ANIMATION DES COMPTEURS
-    // =================================
-
+    // Animation des compteurs
     function animateCounter(element) {
         const target = parseInt(element.getAttribute('data-counter'));
-        const duration = 2000; // 2 secondes
-        const step = target / (duration / 16); // 60 FPS
+        const duration = 2000;
+        const step = target / (duration / 16);
         let current = 0;
 
         const timer = setInterval(() => {
@@ -95,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 clearInterval(timer);
             }
 
-            // Formatage des nombres
             if (target >= 100) {
                 element.textContent = Math.floor(current).toLocaleString();
             } else {
@@ -104,13 +106,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 16);
     }
 
-    // Observer pour déclencher l'animation quand les stats sont visibles
+    // Observer pour les stats
     const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const counters = entry.target.querySelectorAll('[data-counter]');
                 counters.forEach(counter => {
-                    // Éviter de relancer l'animation
                     if (!counter.classList.contains('animated')) {
                         counter.classList.add('animated');
                         animateCounter(counter);
@@ -120,16 +121,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }, { threshold: 0.5 });
 
-    // Observer la section stats
     const statsSection = document.querySelector('.stats-section');
     if (statsSection) {
         statsObserver.observe(statsSection);
     }
 
-    // =================================
-    // SMOOTH SCROLL POUR LES ANCRES
-    // =================================
-
+    // Smooth scroll pour les ancres
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -143,27 +140,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // =================================
-    // PARALLAX EFFECT POUR LE HERO
-    // =================================
-
-    const heroSection = document.querySelector('.hero-section');
+    // Parallax effect pour le hero
     const heroImage = document.querySelector('.hero-image');
-
-    if (heroSection && heroImage) {
+    if (heroImage) {
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const parallaxSpeed = 0.5;
-
-            // Appliquer l'effet parallax
-            heroImage.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+            heroImage.style.transform = `translateY(${scrolled * 0.5}px)`;
         });
     }
 
-    // =================================
-    // ANIMATION DES BADGES AU HOVER
-    // =================================
-
+    // Animation des badges au hover
     const badges = document.querySelectorAll('.badge-item');
     badges.forEach(badge => {
         badge.addEventListener('mouseenter', function () {
@@ -175,10 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // =================================
-    // ANIMATION DES BOUTONS
-    // =================================
-
+    // Animation des boutons
     const buttons = document.querySelectorAll('.btn-hero, .btn-hero-outline');
     buttons.forEach(button => {
         button.addEventListener('mouseenter', function () {
@@ -190,20 +173,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // =================================
-    // GESTION DU SCROLL INDICATOR
-    // =================================
-
+    // Gestion du scroll indicator
     const scrollIndicator = document.querySelector('.scroll-indicator');
     if (scrollIndicator) {
-        // Cacher l'indicateur après scroll
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             const opacity = Math.max(0, 1 - (scrolled / 300));
             scrollIndicator.style.opacity = opacity;
         });
 
-        // Clic sur l'indicateur pour scroller
         scrollIndicator.addEventListener('click', () => {
             const nextSection = document.querySelector('.stats-section');
             if (nextSection) {
@@ -215,10 +193,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // =================================
-    // ANIMATION DES FEATURE CARDS
-    // =================================
-
+    // Animation des feature cards
     const featureCards = document.querySelectorAll('.feature-card');
     const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -226,24 +201,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 setTimeout(() => {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                }, index * 100); // Délai progressif
+                }, index * 100);
             }
         });
     }, { threshold: 0.3 });
 
     featureCards.forEach(card => {
-        // État initial
         card.style.opacity = '0';
         card.style.transform = 'translateY(30px)';
         card.style.transition = 'all 0.6s ease';
-
         cardObserver.observe(card);
     });
 
-    // =================================
-    // ANIMATION DES PROCESS STEPS
-    // =================================
-
+    // Animation des process steps
     const processSteps = document.querySelectorAll('.process-step');
     const stepObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -252,7 +222,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
 
-                    // Animation du numéro
                     const stepNumber = entry.target.querySelector('.step-number');
                     if (stepNumber) {
                         stepNumber.style.animation = 'pulse 0.6s ease';
@@ -266,32 +235,10 @@ document.addEventListener("DOMContentLoaded", function () {
         step.style.opacity = '0';
         step.style.transform = 'translateY(40px)';
         step.style.transition = 'all 0.8s ease';
-
         stepObserver.observe(step);
     });
 
-    // =================================
-    // VALIDATION FORMULAIRE EN TEMPS RÉEL
-    // =================================
-
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        const inputs = contactForm.querySelectorAll('input, textarea');
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-
-        // Animation de soumission
-        contactForm.addEventListener('submit', function (e) {
-            if (submitBtn) {
-                submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Envoi en cours...';
-                submitBtn.disabled = true;
-            }
-        });
-    }
-
-    // =================================
-    // LAZY LOADING DES IMAGES
-    // =================================
-
+    // Lazy loading des images
     const images = document.querySelectorAll('img[data-src]');
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -306,25 +253,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     images.forEach(img => imageObserver.observe(img));
 
-    // =================================
-    // GESTION DU REDIMENSIONNEMENT
-    // =================================
-
+    // Gestion du redimensionnement
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-            // Recalculer les hauteurs si nécessaire
             const heroSection = document.querySelector('.hero-section');
             if (heroSection && window.innerWidth < 768) {
                 heroSection.style.minHeight = '60vh';
             }
         }, 250);
     });
-
-    // =================================
-    // AMÉLIORATION DES PERFORMANCES
-    // =================================
 
     // Préchargement des images importantes
     const preloadImages = [
@@ -337,19 +276,15 @@ document.addEventListener("DOMContentLoaded", function () {
         img.src = src;
     });
 
-    // Optimisation du scroll
+    // Optimisation du scroll avec throttling
     let ticking = false;
-
     function updateScrollEffects() {
-        // Tous les effets de scroll ici
         const scrolled = window.pageYOffset;
 
-        // Parallax hero
         if (heroImage) {
             heroImage.style.transform = `translateY(${scrolled * 0.5}px)`;
         }
 
-        // Scroll indicator
         if (scrollIndicator) {
             const opacity = Math.max(0, 1 - (scrolled / 300));
             scrollIndicator.style.opacity = opacity;
@@ -364,10 +299,6 @@ document.addEventListener("DOMContentLoaded", function () {
             ticking = true;
         }
     });
-
-    // =================================
-    // ANIMATIONS CSS CUSTOM
-    // =================================
 
     // Ajout des animations CSS dynamiques
     const style = document.createElement('style');
@@ -393,94 +324,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     `;
     document.head.appendChild(style);
-
-    // =================================
-    // DEBUGGING (À RETIRER EN PROD)
-    // =================================
-
-    if (window.location.hostname === 'localhost') {
-        console.log('🚀 Animations de la page d\'accueil chargées');
-        console.log('📊 Compteurs:', document.querySelectorAll('[data-counter]').length);
-        console.log('🎯 Feature cards:', featureCards.length);
-        console.log('⚙️ Process steps:', processSteps.length);
-    }
 });
 
 // =================================
-// FONCTIONS UTILITAIRES
-// =================================
-
-// Fonction pour détecter si un élément est visible
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-// Fonction pour les animations de type "typewriter"
-function typeWriter(element, text, speed = 50) {
-    let i = 0;
-    element.textContent = '';
-
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-
-    type();
-}
-
-// Fonction pour créer des confettis (pour célébrer les soumissions)
-function createConfetti() {
-    // Implémentation simple de confettis
-    for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.style.position = 'fixed';
-        confetti.style.width = '10px';
-        confetti.style.height = '10px';
-        confetti.style.backgroundColor = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#f9ca24'][Math.floor(Math.random() * 4)];
-        confetti.style.left = Math.random() * window.innerWidth + 'px';
-        confetti.style.top = '-10px';
-        confetti.style.zIndex = '9999';
-        confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
-
-        document.body.appendChild(confetti);
-
-        setTimeout(() => {
-            confetti.remove();
-        }, 5000);
-    }
-}
-
-// Animation de chute pour les confettis
-const confettiStyle = document.createElement('style');
-confettiStyle.textContent = `
-    @keyframes fall {
-        to {
-            transform: translateY(100vh) rotate(360deg);
-        }
-    }
-`;
-document.head.appendChild(confettiStyle);
-
-
-// =================================
-// VALIDATION FORMULAIRE - SUBMIT UNIQUEMENT
+// BOUTON ITINÉRAIRE
 // =================================
 
 document.addEventListener("DOMContentLoaded", function () {
-
-    // =================================
-    // BOUTON ITINÉRAIRE (inchangé)
-    // =================================
-
     const btnItineraire = document.getElementById('btnItineraire');
 
     if (btnItineraire) {
@@ -529,509 +379,478 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-    
-    // =================================
-    // FORMULAIRE - VERSION CORRIGÉE QUI ENVOIE VRAIMENT
-    // =================================
-
-    const contactForm = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('submitBtn');
-
-    if (contactForm && submitBtn) {
-        const nomInput = document.querySelector('input[name="Contact.Nom"]');
-        const emailInput = document.querySelector('input[name="Contact.Email"]');
-        const messageInput = document.querySelector('textarea[name="Contact.Message"]');
-        const telephoneInput = document.querySelector('input[name="Contact.Telephone"]');
-
-        // Vérification de sécurité
-        if (!nomInput || !emailInput || !messageInput) {
-            console.warn('❌ Éléments du formulaire non trouvés');
-            return;
-        }
-
-        function checkFormCompletion() {
-            const nomValid = nomInput.value.trim().length >= 2;
-            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
-            const messageValid = messageInput.value.trim().length >= 10;
-
-            const isFormComplete = nomValid && emailValid && messageValid;
-
-            if (isFormComplete) {
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('btn-secondary');
-                submitBtn.classList.add('btn-primary');
-            } else {
-                submitBtn.disabled = true;
-                submitBtn.classList.remove('btn-primary');
-                submitBtn.classList.add('btn-secondary');
-            }
-        }
-
-        // Événements de validation en temps réel
-        nomInput.addEventListener('input', () => {
-            checkFormCompletion();
-        });
-
-        emailInput.addEventListener('input', () => {
-            checkFormCompletion();
-        });
-
-        messageInput.addEventListener('input', () => {
-            checkFormCompletion();
-        });
-
-        // Le téléphone n'est pas obligatoire
-        if (telephoneInput) {
-            telephoneInput.addEventListener('input', () => {
-                const phone = telephoneInput.value.trim();
-                if (phone && !/^[\d\s\+\-\(\)\.]{10,}$/.test(phone)) {
-                    telephoneInput.setCustomValidity('Format de téléphone invalide');
-                } else {
-                    telephoneInput.setCustomValidity('');
-                }
-            });
-        }
-
-        // État initial - IMPORTANT : vérifier dès le chargement
-        checkFormCompletion();
-
-        // =================================
-        // SOUMISSION - SANS e.preventDefault() !
-        // =================================
-
-        contactForm.addEventListener('submit', function (e) {
-            // 1. Validation côté client
-            let isFormValid = true;
-
-            // Nettoyer les classes
-            [nomInput, emailInput, messageInput].forEach(input => {
-                input.classList.remove('is-valid', 'is-invalid');
-            });
-
-            // Validation nom
-            if (nomInput.value.trim().length < 2) {
-                nomInput.classList.add('is-invalid');
-                isFormValid = false;
-            } else {
-                nomInput.classList.add('is-valid');
-            }
-
-            // Validation email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailInput.value.trim())) {
-                emailInput.classList.add('is-invalid');
-                isFormValid = false;
-            } else {
-                emailInput.classList.add('is-valid');
-            }
-
-            // Validation message
-            if (messageInput.value.trim().length < 10) {
-                messageInput.classList.add('is-invalid');
-                isFormValid = false;
-            } else {
-                messageInput.classList.add('is-valid');
-            }
-
-            // Validation téléphone (optionnel)
-            if (telephoneInput && telephoneInput.value.trim()) {
-                const phone = telephoneInput.value.trim();
-                if (!/^[\d\s\+\-\(\)\.]{10,}$/.test(phone)) {
-                    telephoneInput.classList.add('is-invalid');
-                    isFormValid = false;
-                } else {
-                    telephoneInput.classList.add('is-valid');
-                }
-            }
-
-            // 2. Si invalide, empêcher l'envoi
-            if (!isFormValid) {
-                e.preventDefault(); // ⚠️ Seulement ici en cas d'erreur
-                const firstInvalidField = contactForm.querySelector('.is-invalid');
-                if (firstInvalidField) {
-                    firstInvalidField.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                    setTimeout(() => {
-                        firstInvalidField.focus();
-                    }, 500);
-                }
-                return;
-            }
-
-            // 3. Si tout est valide, montrer l'animation et LAISSER LE FORMULAIRE S'ENVOYER
-            showLoadingState();
-
-        });
-
-        // =================================
-        // ANIMATION DE CHARGEMENT UNIQUEMENT
-        // =================================
-
-        function showLoadingState() {
-            try {
-                submitBtn.disabled = true;
-                submitBtn.classList.add('loading');
-
-                const btnText = submitBtn.querySelector('.btn-text');
-                const spinner = submitBtn.querySelector('.spinner-border');
-
-                if (btnText) {
-                    btnText.textContent = 'Envoi en cours...';
-                }
-
-                if (spinner) {
-                    spinner.classList.remove('d-none');
-                }
-
-                // Désactiver les champs
-                const formElements = contactForm.querySelectorAll('input, textarea, button');
-                formElements.forEach(element => {
-                    element.disabled = true;
-                });
-
-            } catch (error) {
-                console.warn('Erreur animation:', error);
-                submitBtn.disabled = true;
-            }
-        }
-    }
-
-    // =================================
-    // MODAL DE SUCCÈS MODERNE
-    // =================================
-
-    function showSuccessModal() {
-        const modal = document.createElement('div');
-        modal.className = 'success-modal';
-        modal.innerHTML = `
-            <div class="success-modal-content">
-                <div class="success-icon">
-                    <svg class="checkmark" viewBox="0 0 52 52">
-                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                        <path class="checkmark-check" fill="none" d="M14 27l7 7 16-16"/>
-                    </svg>
-                </div>
-                <h3>Message envoyé avec succès !</h3>
-                <p>Merci pour votre message. Nous vous répondrons dans les plus brefs délais.</p>
-                <div class="modal-actions">
-                    <button class="btn btn-primary" onclick="closeSuccessModal()">
-                        <i class="bi bi-check me-1"></i>
-                        Parfait !
-                    </button>
-                </div>
-            </div>
-        `;
-
-        // Styles CSS pour la modal
-        addModalStyles();
-
-        document.body.appendChild(modal);
-
-        // Animation d'apparition
-        requestAnimationFrame(() => {
-            modal.classList.add('show');
-        });
-
-        // Fermeture automatique après 3 secondes
-        setTimeout(() => {
-            closeSuccessModal();
-        }, 3000);
-
-        // Confettis de célébration
-        createConfetti();
-
-        console.log('🎉 Modal de succès affichée');
-    }
-
-    // =================================
-    // MODAL D'ERREUR
-    // =================================
-
-    function showErrorModal() {
-        const modal = document.createElement('div');
-        modal.className = 'error-modal';
-        modal.innerHTML = `
-            <div class="error-modal-content">
-                <div class="error-icon">
-                    <i class="bi bi-exclamation-triangle"></i>
-                </div>
-                <h3>Erreur d'envoi</h3>
-                <p>Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou nous contacter directement.</p>
-                <div class="modal-actions">
-                    <button class="btn btn-outline-primary" onclick="closeErrorModal()">
-                        <i class="bi bi-arrow-repeat me-1"></i>
-                        Réessayer
-                    </button>
-                    <a href="tel:+33633169477" class="btn btn-primary">
-                        <i class="bi bi-telephone me-1"></i>
-                        Nous appeler
-                    </a>
-                </div>
-            </div>
-        `;
-
-        addModalStyles();
-        document.body.appendChild(modal);
-
-        requestAnimationFrame(() => {
-            modal.classList.add('show');
-        });
-        
-    }
-
-    // =================================
-    // FONCTIONS DE FERMETURE DES MODALS
-    // =================================
-
-    window.closeSuccessModal = function () {
-        const modal = document.querySelector('.success-modal');
-        if (modal) {
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.remove();
-            }, 300);
-        }
-    };
-
-    window.closeErrorModal = function () {
-        const modal = document.querySelector('.error-modal');
-        if (modal) {
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.remove();
-            }, 300);
-        }
-    };
-
-    // =================================
-    // FONCTIONS UTILITAIRES
-    // =================================
-
-    function trackInteraction(category, action, label = '') {
-        if (typeof gtag !== 'undefined') {
-            gtag('event', action, {
-                event_category: category,
-                event_label: label
-            });
-        }
-
-        if (window.location.hostname === 'localhost') {
-            console.log('📊 Track:', { category, action, label });
-        }
-    }
-
-
-    function createConfetti() {
-        for (let i = 0; i < 50; i++) {
-            const confetti = document.createElement('div');
-            const colors = ['#28a745', '#007bff', '#ffc107', '#dc3545', '#6f42c1', '#fd7e14'];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-            confetti.style.cssText = `
-                position: fixed;
-                width: ${Math.random() * 8 + 4}px;
-                height: ${Math.random() * 8 + 4}px;
-                background: ${randomColor};
-                left: ${Math.random() * window.innerWidth}px;
-                top: -10px;
-                z-index: 9999;
-                animation: confettiFall ${Math.random() * 3 + 2}s linear forwards;
-                border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
-                transform: rotate(${Math.random() * 360}deg);
-            `;
-
-            document.body.appendChild(confetti);
-
-            setTimeout(() => {
-                if (confetti.parentElement) {
-                    confetti.remove();
-                }
-            }, 4000);
-        }
-    }
-
-     //=================================
-     //STYLES CSS POUR LES MODALS
-     //=================================
-
-    function addModalStyles() {
-        if (document.querySelector('#modal-styles')) return;
-
-        const styles = document.createElement('style');
-        styles.id = 'modal-styles';
-        styles.textContent = `
-            .success-modal, .error-modal {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.7);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 10000;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-
-            .success-modal.show, .error-modal.show {
-                opacity: 1;
-            }
-
-            .success-modal-content, .error-modal-content {
-                background: white;
-                padding: 2.5rem;
-                border-radius: 20px;
-                text-align: center;
-                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-                max-width: 450px;
-                width: 90%;
-                transform: translateY(20px);
-                transition: transform 0.3s ease;
-            }
-
-            .success-modal.show .success-modal-content,
-            .error-modal.show .error-modal-content {
-                transform: translateY(0);
-            }
-
-            .success-icon {
-                margin-bottom: 1.5rem;
-            }
-
-            .checkmark {
-                width: 80px;
-                height: 80px;
-                margin: 0 auto;
-                stroke-width: 2;
-                stroke: #28a745;
-                stroke-miterlimit: 10;
-                margin-bottom: 1rem;
-            }
-
-            .checkmark-circle {
-                stroke-dasharray: 166;
-                stroke-dashoffset: 166;
-                animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-            }
-
-            .checkmark-check {
-                transform-origin: 50% 50%;
-                stroke-dasharray: 48;
-                stroke-dashoffset: 48;
-                animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
-            }
-
-            @keyframes stroke {
-                100% {
-                    stroke-dashoffset: 0;
-                }
-            }
-
-            .error-icon i {
-                font-size: 4rem;
-                color: #dc3545;
-                margin-bottom: 1rem;
-            }
-
-            .modal-actions {
-                margin-top: 1.5rem;
-                display: flex;
-                gap: 0.5rem;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            @keyframes confettiFall {
-                0% {
-                    transform: translateY(-20px) rotate(0deg);
-                    opacity: 1;
-                }
-                100% {
-                    transform: translateY(100vh) rotate(720deg);
-                    opacity: 0;
-                }
-            }
-
-            /* Responsive */
-            @media (max-width: 768px) {
-                .success-modal-content, .error-modal-content {
-                    padding: 1.5rem;
-                    margin: 1rem;
-                }
-                
-                .modal-actions {
-                    flex-direction: column;
-                }
-                
-                .modal-actions .btn {
-                    width: 100%;
-                }
-            }
-        `;
-        document.head.appendChild(styles);
-    }
 });
-
 
 // =================================
 // HEADER SCROLL EFFECTS
 // =================================
 
-document.addeventlistener('domcontentloaded', function () {
-    const header = document.queryselector('.modern-header');
+document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.modern-header');
 
     if (header) {
-        let lastscrolltop = 0;
-        let isscrolling = false;
+        let lastScrollTop = 0;
+        let isScrolling = false;
 
-        function handlescroll() {
-            const scrolltop = window.pageyoffset || document.documentelement.scrolltop;
+        function handleScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-            // ajouter classe "scrolled" après 50px de scroll
-            if (scrolltop > 50) {
-                header.classlist.add('scrolled');
+            if (scrollTop > 50) {
+                header.classList.add('scrolled');
             } else {
-                header.classlist.remove('scrolled');
+                header.classList.remove('scrolled');
             }
 
-            lastscrolltop = scrolltop;
-            isscrolling = false;
+            lastScrollTop = scrollTop;
+            isScrolling = false;
         }
 
-        // throttle scroll event pour la performance
-        window.addeventlistener('scroll', function () {
-            if (!isscrolling) {
-                requestanimationframe(handlescroll);
-                isscrolling = true;
+        window.addEventListener('scroll', function () {
+            if (!isScrolling) {
+                requestAnimationFrame(handleScroll);
+                isScrolling = true;
             }
         }, { passive: true });
     }
 
-    // animation du logo au clic
-    const logocircle = document.queryselector('.logo-circle');
-    if (logocircle) {
-        logocircle.addeventlistener('click', function () {
+    // Animation du logo au clic
+    const logoCircle = document.querySelector('.logo-circle');
+    if (logoCircle) {
+        logoCircle.addEventListener('click', function () {
             this.style.animation = 'none';
-            settimeout(() => {
+            setTimeout(() => {
                 this.style.animation = 'shine 0.6s ease';
             }, 10);
         });
     }
 
-    // fermer le menu mobile en cliquant sur un lien
-    const navlinks = document.queryselectorall('.modern-nav-link');
-    const navbarcollapse = document.queryselector('.navbar-collapse');
-    const navbartoggler = document.queryselector('.navbar-toggler');
+    // Fermer le menu mobile en cliquant sur un lien
+    const navLinks = document.querySelectorAll('.modern-nav-link');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navbarToggler = document.querySelector('.navbar-toggler');
 
-    navlinks.foreach(link => {
-        link.addeventlistener('click', () => {
-            if (navbarcollapse.classlist.contains('show')) {
-                navbartoggler.click();
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                navbarToggler.click();
             }
         });
     });
 });
+
+// =================================
+// GESTION DU FORMULAIRE DE CONTACT - VERSION UNIFIÉE
+// =================================
+
+document.addEventListener("DOMContentLoaded", function () {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (contactForm && submitBtn) {
+        // Setup de la validation en temps réel
+        setupFormValidation();
+
+        // Setup des événements des modales
+        setupModalEvents();
+
+        // Gestion de la soumission
+        contactForm.addEventListener('submit', handleFormSubmit);
+    }
+});
+
+// =================================
+// VALIDATION EN TEMPS RÉEL
+// =================================
+
+function setupFormValidation() {
+    const nomInput = document.querySelector('input[name="Contact.Nom"]');
+    const emailInput = document.querySelector('input[name="Contact.Email"]');
+    const messageInput = document.querySelector('textarea[name="Contact.Message"]');
+    const telephoneInput = document.querySelector('input[name="Contact.Telephone"]');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (!nomInput || !emailInput || !messageInput) {
+        console.warn('❌ Éléments du formulaire non trouvés');
+        return;
+    }
+
+    function checkFormCompletion() {
+        const nomValid = nomInput.value.trim().length >= 2;
+        const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+        const messageValid = messageInput.value.trim().length >= 10;
+
+        const isFormComplete = nomValid && emailValid && messageValid;
+
+        if (submitBtn) {
+            submitBtn.disabled = !isFormComplete;
+            submitBtn.classList.toggle('btn-primary', isFormComplete);
+            submitBtn.classList.toggle('btn-secondary', !isFormComplete);
+        }
+    }
+
+    // Event listeners pour la validation en temps réel
+    [nomInput, emailInput, messageInput].forEach(input => {
+        input.addEventListener('input', checkFormCompletion);
+        input.addEventListener('blur', checkFormCompletion);
+    });
+
+    // Validation téléphone (optionnel)
+    if (telephoneInput) {
+        telephoneInput.addEventListener('input', () => {
+            const phone = telephoneInput.value.trim();
+            if (phone && !/^[\d\s\+\-\(\)\.]{10,}$/.test(phone)) {
+                telephoneInput.setCustomValidity('Format de téléphone invalide');
+            } else {
+                telephoneInput.setCustomValidity('');
+            }
+        });
+    }
+
+    // État initial
+    checkFormCompletion();
+}
+
+// =================================
+// SOUMISSION DU FORMULAIRE
+// =================================
+
+async function handleFormSubmit(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    // Validation côté client
+    if (!validateForm()) {
+        return;
+    }
+
+    // État de chargement
+    setSubmitLoading(true);
+
+    try {
+        // Envoi AJAX avec header pour déclencher la réponse JSON
+        const response = await fetch(form.action || window.location.pathname, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || '',
+                'X-Requested-With': 'XMLHttpRequest'  // ✅ Ce header déclenche la réponse JSON
+            }
+        });
+
+        if (response.ok) {
+            const contentType = response.headers.get('content-type');
+
+            if (contentType && contentType.includes('application/json')) {
+                // ✅ Réponse JSON - C'est ce qu'on veut !
+                const result = await response.json();
+
+                console.log('Résultat:', result);
+
+                if (result.success) {
+                    // Succès
+                    clearForm();
+                    showSuccessModal(result.message);
+                } else {
+                    // Erreur
+                    showErrorModal(result.message);
+                }
+            } else {
+                // Fallback si pas de JSON (ne devrait pas arriver)
+                console.warn('Réponse HTML inattendue');
+                clearForm();
+                const nom = formData.get('Contact.Nom') || 'Cher client';
+                showSuccessModal(`Merci ${nom} ! Votre message a été envoyé.`);
+            }
+        } else {
+            throw new Error(`Erreur HTTP ${response.status}`);
+        }
+
+    } catch (error) {
+        console.error('Erreur lors de l\'envoi:', error);
+        showErrorModal('Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer ou nous contacter directement.');
+    } finally {
+        setSubmitLoading(false);
+    }
+}
+
+function validateForm() {
+    const nomInput = document.querySelector('input[name="Contact.Nom"]');
+    const emailInput = document.querySelector('input[name="Contact.Email"]');
+    const messageInput = document.querySelector('textarea[name="Contact.Message"]');
+    const telephoneInput = document.querySelector('input[name="Contact.Telephone"]');
+
+    let isValid = true;
+
+    // Reset des classes de validation
+    [nomInput, emailInput, messageInput, telephoneInput].forEach(input => {
+        if (input) {
+            input.classList.remove('is-valid', 'is-invalid');
+        }
+    });
+
+    // Validation nom
+    if (nomInput.value.trim().length < 2) {
+        nomInput.classList.add('is-invalid');
+        isValid = false;
+    } else {
+        nomInput.classList.add('is-valid');
+    }
+
+    // Validation email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput.value.trim())) {
+        emailInput.classList.add('is-invalid');
+        isValid = false;
+    } else {
+        emailInput.classList.add('is-valid');
+    }
+
+    // Validation message
+    if (messageInput.value.trim().length < 10) {
+        messageInput.classList.add('is-invalid');
+        isValid = false;
+    } else {
+        messageInput.classList.add('is-valid');
+    }
+
+    // Validation téléphone (optionnel)
+    if (telephoneInput && telephoneInput.value.trim()) {
+        const phone = telephoneInput.value.trim();
+        if (!/^[\d\s\+\-\(\)\.]{10,}$/.test(phone)) {
+            telephoneInput.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            telephoneInput.classList.add('is-valid');
+        }
+    }
+
+    // Scroller vers le premier champ en erreur
+    if (!isValid) {
+        const firstInvalid = document.querySelector('.is-invalid');
+        if (firstInvalid) {
+            firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => firstInvalid.focus(), 500);
+        }
+    }
+
+    return isValid;
+}
+
+// =================================
+// GESTION DES ÉTATS DU FORMULAIRE
+// =================================
+
+function setSubmitLoading(isLoading) {
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = submitBtn.querySelector('.btn-text');
+    const spinner = submitBtn.querySelector('.spinner-border');
+
+    if (isLoading) {
+        submitBtn.disabled = true;
+        btnText.textContent = 'Envoi en cours...';
+        spinner.classList.remove('d-none');
+        submitBtn.classList.add('loading');
+        submitBtn.classList.remove('btn-primary');
+        submitBtn.classList.add('btn-secondary');
+    } else {
+        btnText.textContent = 'Envoyer le message';
+        spinner.classList.add('d-none');
+        submitBtn.classList.remove('loading');
+    }
+}
+
+function clearForm() {
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.reset();
+
+        // Supprimer les classes de validation
+        form.querySelectorAll('.is-valid, .is-invalid').forEach(el => {
+            el.classList.remove('is-valid', 'is-invalid');
+        });
+
+        // ✅ REMETTRE LE BOUTON À L'ÉTAT INITIAL (désactivé et gris)
+        const submitBtn = document.getElementById('submitBtn');
+        if (submitBtn) {
+            submitBtn.disabled = true;  // Désactivé car formulaire vide
+            submitBtn.classList.remove('btn-primary', 'loading');
+            submitBtn.classList.add('btn-secondary');
+
+            // Remettre le texte et cacher le spinner
+            const btnText = submitBtn.querySelector('.btn-text');
+            const spinner = submitBtn.querySelector('.spinner-border');
+            if (btnText) btnText.textContent = 'Envoyer le message';
+            if (spinner) spinner.classList.add('d-none');
+        }
+    }
+}
+
+// =================================
+// GESTION DES MODALES
+// =================================
+
+function showSuccessModal(message) {
+    const modal = document.getElementById('successModal');
+    const messageEl = document.getElementById('successMessage');
+
+    if (modal && messageEl) {
+        messageEl.textContent = message;
+        modal.classList.remove('d-none');
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+
+        /* Auto-fermeture après 5 secondes */
+        setTimeout(() => {
+            closeContactModal('success');
+        }, 5000);
+
+        // Confettis pour célébrer !
+        createContactConfetti();
+    }
+}
+
+function showErrorModal(message) {
+    const modal = document.getElementById('errorModal');
+    const messageEl = document.getElementById('errorMessage');
+
+    if (modal && messageEl) {
+        messageEl.textContent = message;
+        modal.classList.remove('d-none');
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+
+        console.log('❌ Modal d\'erreur affichée');
+    }
+}
+
+function closeContactModal(type) {
+    const modal = document.getElementById(type === 'success' ? 'successModal' : 'errorModal');
+
+    if (!modal) return;
+
+    modal.classList.add('closing');
+    modal.classList.remove('show');
+
+    setTimeout(() => {
+        modal.classList.add('d-none');
+        modal.classList.remove('closing');
+        document.body.style.overflow = '';
+    }, 300);
+}
+
+function retryContactForm() {
+    closeContactModal('error');
+
+    setTimeout(() => {
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            setTimeout(() => {
+                const firstInput = contactForm.querySelector('input, textarea');
+                if (firstInput) firstInput.focus();
+            }, 1000);
+        }
+    }, 300);
+}
+
+function setupModalEvents() {
+    // Fermeture des modales en cliquant sur l'overlay
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', () => {
+            const modal = overlay.closest('.contact-modal');
+            if (modal.id === 'successModal') {
+                closeContactModal('success');
+            } else if (modal.id === 'errorModal') {
+                closeContactModal('error');
+            }
+        });
+    });
+
+    // Fermeture avec la touche Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const successModal = document.getElementById('successModal');
+            const errorModal = document.getElementById('errorModal');
+
+            if (successModal && successModal.classList.contains('show')) {
+                closeContactModal('success');
+            } else if (errorModal && errorModal.classList.contains('show')) {
+                closeContactModal('error');
+            }
+        }
+    });
+}
+
+// =================================
+// CONFETTIS POUR LA RÉUSSITE
+// =================================
+
+function createContactConfetti() {
+    const colors = ['#28a745', '#20c997', '#007bff', '#ffc107', '#fd7e14'];
+    const confettiCount = 80;
+
+    for (let i = 0; i < confettiCount; i++) {
+        createSingleConfetti(colors[Math.floor(Math.random() * colors.length)]);
+    }
+}
+
+function createSingleConfetti(color) {
+    const confetti = document.createElement('div');
+
+    confetti.style.cssText = `
+        position: fixed;
+        width: ${Math.random() * 10 + 5}px;
+        height: ${Math.random() * 10 + 5}px;
+        background: ${color};
+        left: ${Math.random() * window.innerWidth}px;
+        top: -20px;
+        z-index: 10000;
+        border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+        opacity: 0.9;
+        pointer-events: none;
+        animation: confettiFall ${Math.random() * 4 + 3}s linear forwards;
+        transform: rotate(${Math.random() * 360}deg);
+    `;
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => {
+        if (confetti.parentElement) {
+            confetti.remove();
+        }
+    }, 7000);
+}
+
+// Animation CSS pour les confettis
+if (!document.querySelector('#confetti-animation-styles')) {
+    const confettiStyles = document.createElement('style');
+    confettiStyles.id = 'confetti-animation-styles';
+    confettiStyles.textContent = `
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(confettiStyles);
+}
+
+// =================================
+// FONCTIONS UTILITAIRES
+// =================================
+function trackInteraction(category, action, label = '') {
+    if (typeof gtag !== 'undefined') {
+        gtag('event', action, {
+            event_category: category,
+            event_label: label
+        });
+    }
+}

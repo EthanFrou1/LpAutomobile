@@ -1002,17 +1002,10 @@ div#avisSlider {
 .contact-form .form-control {
     border: 2px solid #e9ecef;
     border-radius: 10px;
-    padding: 1rem;
+    padding: 10px;
     transition: all 0.3s ease;
-    background-color: #fff;
+    font-size: medium;
 }
-
-    .contact-form .form-control {
-        border: 2px solid #e9ecef;
-        border-radius: 10px;
-        padding: 1rem;
-        transition: all 0.3s ease;
-    }
 
         .contact-form .form-control:focus {
             border-color: #007bff;
@@ -1305,6 +1298,10 @@ div#avisSlider {
     }
 }
 
+.d-inline-flex.align-items-center.px-4.py-2.rounded-pill.shadow-sm.btn.pointer-none {
+    gap: 10px;
+}
+
 /* Mobile */
 @media (max-width: 767.98px) {
     .hero-section {
@@ -1465,7 +1462,7 @@ html {
 }
 
 .form-label {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
 }
 
@@ -1868,4 +1865,323 @@ input#nom, input#email, input#message {
 
 .dark-mode .brand-name {
     color: #fff;
+}
+
+
+
+/* =================================
+   MODALES DE CONTACT
+   ================================= */
+
+.contact-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1060;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+    .contact-modal.show {
+        display: flex;
+        opacity: 1;
+    }
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-modal.show .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+/* Modal Succès */
+.success-modal {
+    border: 3px solid #28a745;
+}
+
+    .success-modal .modal-header {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        border-radius: 17px 17px 0 0;
+        gap: 30px;
+        justify-content: center;
+    }
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: successPulse 0.6s ease-in-out;
+}
+
+    .success-icon i {
+        font-size: 2.5rem;
+        color: white;
+        animation: checkmarkPop 0.4s ease-in-out 0.2s both;
+    }
+
+/* Animations pour l'icône de succès */
+@keyframes successPulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Modal Erreur */
+.error-modal {
+    border: 3px solid #dc3545;
+}
+
+    .error-modal .modal-header {
+        background: linear-gradient(135deg, #dc3545, #c82333);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        border-radius: 17px 17px 0 0;
+    }
+
+.error-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: shake 0.6s ease-in-out;
+}
+
+    .error-icon i {
+        font-size: 2.5rem;
+        color: white;
+    }
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* Corps des modales */
+.modal-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+p#successMessage{
+    margin: 0px;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+
+/* Infos de contact dans la modal d'erreur */
+.modal-contact-info {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+}
+
+    .modal-contact-info h5 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #495057;
+    }
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #495057;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+    .contact-method:hover {
+        background: #e9ecef;
+        color: #007bff;
+        transform: translateX(5px);
+    }
+
+    .contact-method i {
+        font-size: 1.2rem;
+        width: 20px;
+        text-align: center;
+    }
+
+/* Actions des modales */
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+    .modal-actions .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        min-width: 120px;
+    }
+
+        .modal-actions .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+
+    .modal-header {
+        padding: 1.5rem !important;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .success-icon,
+    .error-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .checkmark {
+        width: 60px;
+        height: 60px;
+    }
+
+    .error-icon i {
+        font-size: 2rem;
+    }
+
+    .modal-title {
+        font-size: 1.3rem;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+        .modal-actions .btn {
+            width: 100%;
+        }
+
+    .contact-methods {
+        gap: 0.5rem;
+    }
+
+    .contact-method {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation d'entrée */
+.contact-modal {
+    animation: modalFadeIn 0.4s ease forwards;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+
+    to {
+        opacity: 1;
+        backdrop-filter: blur(5px);
+    }
+}
+
+/* Animation de sortie */
+.contact-modal.closing {
+    animation: modalFadeOut 0.3s ease forwards;
+}
+
+@keyframes modalFadeOut {
+    from {
+        opacity: 1;
+        backdrop-filter: blur(5px);
+    }
+
+    to {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
 }
