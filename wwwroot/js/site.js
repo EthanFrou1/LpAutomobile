@@ -529,22 +529,25 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
+    
     // =================================
-    // FORMULAIRE - VALIDATION SIMPLE
+    // FORMULAIRE - VERSION CORRIGÉE QUI ENVOIE VRAIMENT
     // =================================
 
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
 
     if (contactForm && submitBtn) {
-        const nomInput = document.getElementById('nom');
-        const emailInput = document.getElementById('email');
-        const messageInput = document.getElementById('message');
+        const nomInput = document.querySelector('input[name="Contact.Nom"]');
+        const emailInput = document.querySelector('input[name="Contact.Email"]');
+        const messageInput = document.querySelector('textarea[name="Contact.Message"]');
+        const telephoneInput = document.querySelector('input[name="Contact.Telephone"]');
 
-        // =================================
-        // GESTION DE L'ÉTAT DU BOUTON
-        // =================================
+        // Vérification de sécurité
+        if (!nomInput || !emailInput || !messageInput) {
+            console.warn('❌ Éléments du formulaire non trouvés');
+            return;
+        }
 
         function checkFormCompletion() {
             const nomValid = nomInput.value.trim().length >= 2;
@@ -564,35 +567,49 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        // =================================
-        // ÉVÉNEMENTS INPUT (POUR LE BOUTON SEULEMENT)
-        // =================================
+        // Événements de validation en temps réel
+        nomInput.addEventListener('input', () => {
+            checkFormCompletion();
+        });
 
-        nomInput.addEventListener('input', checkFormCompletion);
-        emailInput.addEventListener('input', checkFormCompletion);
-        messageInput.addEventListener('input', checkFormCompletion);
+        emailInput.addEventListener('input', () => {
+            checkFormCompletion();
+        });
 
-        // État initial du bouton
+        messageInput.addEventListener('input', () => {
+            checkFormCompletion();
+        });
+
+        // Le téléphone n'est pas obligatoire
+        if (telephoneInput) {
+            telephoneInput.addEventListener('input', () => {
+                const phone = telephoneInput.value.trim();
+                if (phone && !/^[\d\s\+\-\(\)\.]{10,}$/.test(phone)) {
+                    telephoneInput.setCustomValidity('Format de téléphone invalide');
+                } else {
+                    telephoneInput.setCustomValidity('');
+                }
+            });
+        }
+
+        // État initial - IMPORTANT : vérifier dès le chargement
         checkFormCompletion();
 
         // =================================
-        // SOUMISSION DU FORMULAIRE
+        // SOUMISSION - SANS e.preventDefault() !
         // =================================
 
         contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // 1. Nettoyer toutes les classes de validation existantes
-            nomInput.classList.remove('is-valid', 'is-invalid');
-            emailInput.classList.remove('is-valid', 'is-invalid');
-            messageInput.classList.remove('is-valid', 'is-invalid');
-
-            // 2. Vérifier chaque champ et ajouter les classes appropriées
+            // 1. Validation côté client
             let isFormValid = true;
 
+            // Nettoyer les classes
+            [nomInput, emailInput, messageInput].forEach(input => {
+                input.classList.remove('is-valid', 'is-invalid');
+            });
+
             // Validation nom
-            const nomValue = nomInput.value.trim();
-            if (nomValue.length < 2) {
+            if (nomInput.value.trim().length < 2) {
                 nomInput.classList.add('is-invalid');
                 isFormValid = false;
             } else {
@@ -600,9 +617,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // Validation email
-            const emailValue = emailInput.value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailValue)) {
+            if (!emailRegex.test(emailInput.value.trim())) {
                 emailInput.classList.add('is-invalid');
                 isFormValid = false;
             } else {
@@ -610,184 +626,184 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // Validation message
-            const messageValue = messageInput.value.trim();
-            if (messageValue.length < 10) {
+            if (messageInput.value.trim().length < 10) {
                 messageInput.classList.add('is-invalid');
                 isFormValid = false;
             } else {
                 messageInput.classList.add('is-valid');
             }
 
-            // 3. Si le formulaire n'est pas valide, scroller vers le premier champ en erreur
+            // Validation téléphone (optionnel)
+            if (telephoneInput && telephoneInput.value.trim()) {
+                const phone = telephoneInput.value.trim();
+                if (!/^[\d\s\+\-\(\)\.]{10,}$/.test(phone)) {
+                    telephoneInput.classList.add('is-invalid');
+                    isFormValid = false;
+                } else {
+                    telephoneInput.classList.add('is-valid');
+                }
+            }
+
+            // 2. Si invalide, empêcher l'envoi
             if (!isFormValid) {
+                e.preventDefault(); // ⚠️ Seulement ici en cas d'erreur
                 const firstInvalidField = contactForm.querySelector('.is-invalid');
                 if (firstInvalidField) {
                     firstInvalidField.scrollIntoView({
                         behavior: 'smooth',
                         block: 'center'
                     });
-                    // Petit délai pour que le scroll se termine avant le focus
                     setTimeout(() => {
                         firstInvalidField.focus();
                     }, 500);
                 }
-                return; // Arrêter l'exécution ici
+                return;
             }
 
-            // 4. Si tout est valide, procéder à l'envoi
-            sendForm();
+            // 3. Si tout est valide, montrer l'animation et LAISSER LE FORMULAIRE S'ENVOYER
+            showLoadingState();
+
         });
 
         // =================================
-        // FONCTION D'ENVOI
+        // ANIMATION DE CHARGEMENT UNIQUEMENT
         // =================================
 
-        function sendForm() {
-            // Animation de chargement
-            submitBtn.classList.add('loading');
-            submitBtn.querySelector('.btn-text').textContent = 'Envoi en cours...';
-            submitBtn.querySelector('.spinner-border').classList.remove('d-none');
+        function showLoadingState() {
+            try {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('loading');
 
-            // Désactiver tout le formulaire
-            const formElements = contactForm.querySelectorAll('input, textarea, button');
-            formElements.forEach(element => {
-                element.disabled = true;
-            });
+                const btnText = submitBtn.querySelector('.btn-text');
+                const spinner = submitBtn.querySelector('.spinner-border');
 
-            // Simulation d'envoi (remplace par ton code d'envoi réel)
-            setTimeout(() => {
-                // Succès !
-                showSuccessMessage();
+                if (btnText) {
+                    btnText.textContent = 'Envoi en cours...';
+                }
 
-                // Reset complet du formulaire
-                contactForm.reset();
+                if (spinner) {
+                    spinner.classList.remove('d-none');
+                }
 
-                // Supprimer toutes les classes de validation
-                nomInput.classList.remove('is-valid', 'is-invalid');
-                emailInput.classList.remove('is-valid', 'is-invalid');
-                messageInput.classList.remove('is-valid', 'is-invalid');
-
-                // Réactiver le formulaire
+                // Désactiver les champs
+                const formElements = contactForm.querySelectorAll('input, textarea, button');
                 formElements.forEach(element => {
-                    element.disabled = false;
+                    element.disabled = true;
                 });
 
-                // Reset du bouton
-                submitBtn.classList.remove('loading');
-                submitBtn.querySelector('.btn-text').textContent = 'Envoyer le message';
-                submitBtn.querySelector('.spinner-border').classList.add('d-none');
-
-                // Remettre le bouton en état initial (désactivé)
-                checkFormCompletion();
-
-                // Tracking
-                trackInteraction('Contact', 'form_submitted', 'contact_form');
-
-            }, 2000);
+            } catch (error) {
+                console.warn('Erreur animation:', error);
+                submitBtn.disabled = true;
+            }
         }
     }
 
     // =================================
-    // MESSAGE DE SUCCÈS
+    // MODAL DE SUCCÈS MODERNE
     // =================================
 
-    function showSuccessMessage() {
+    function showSuccessModal() {
         const modal = document.createElement('div');
         modal.className = 'success-modal';
         modal.innerHTML = `
             <div class="success-modal-content">
                 <div class="success-icon">
-                    <i class="bi bi-check-circle-fill"></i>
+                    <svg class="checkmark" viewBox="0 0 52 52">
+                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark-check" fill="none" d="M14 27l7 7 16-16"/>
+                    </svg>
                 </div>
                 <h3>Message envoyé avec succès !</h3>
                 <p>Merci pour votre message. Nous vous répondrons dans les plus brefs délais.</p>
-                <button class="btn btn-primary" onclick="this.parentElement.parentElement.remove()">
-                    Parfait !
-                </button>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" onclick="closeSuccessModal()">
+                        <i class="bi bi-check me-1"></i>
+                        Parfait !
+                    </button>
+                </div>
             </div>
         `;
 
-        // Styles pour la modale
-        modal.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            animation: fadeIn 0.3s ease;
-        `;
-
-        const content = modal.querySelector('.success-modal-content');
-        content.style.cssText = `
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            max-width: 450px;
-            width: 90%;
-            animation: slideInUp 0.4s ease;
-        `;
-
-        const icon = modal.querySelector('.success-icon i');
-        icon.style.cssText = `
-            font-size: 5rem;
-            color: #28a745;
-            margin-bottom: 1.5rem;
-            animation: bounceIn 0.6s ease;
-        `;
-
-        // Ajouter les animations CSS si elles n'existent pas
-        if (!document.querySelector('#success-modal-styles')) {
-            const styles = document.createElement('style');
-            styles.id = 'success-modal-styles';
-            styles.textContent = `
-                @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-                @keyframes slideInUp {
-                    from { transform: translateY(50px); opacity: 0; }
-                    to { transform: translateY(0); opacity: 1; }
-                }
-                @keyframes bounceIn {
-                    0% { transform: scale(0.3); opacity: 0; }
-                    50% { transform: scale(1.05); }
-                    70% { transform: scale(0.9); }
-                    100% { transform: scale(1); opacity: 1; }
-                }
-            `;
-            document.head.appendChild(styles);
-        }
+        // Styles CSS pour la modal
+        addModalStyles();
 
         document.body.appendChild(modal);
 
-        // Fermer automatiquement après 6 secondes
+        // Animation d'apparition
+        requestAnimationFrame(() => {
+            modal.classList.add('show');
+        });
+
+        // Fermeture automatique après 3 secondes
         setTimeout(() => {
-            if (modal.parentElement) {
-                modal.style.animation = 'fadeOut 0.3s ease forwards';
-                setTimeout(() => modal.remove(), 300);
-            }
-        }, 6000);
+            closeSuccessModal();
+        }, 3000);
 
-        // Ajouter animation de fermeture
-        const fadeOutStyle = document.createElement('style');
-        fadeOutStyle.textContent = `
-            @keyframes fadeOut {
-                from { opacity: 1; }
-                to { opacity: 0; }
-            }
-        `;
-        document.head.appendChild(fadeOutStyle);
-
-        // Confettis pour célébrer !
+        // Confettis de célébration
         createConfetti();
+
+        console.log('🎉 Modal de succès affichée');
     }
+
+    // =================================
+    // MODAL D'ERREUR
+    // =================================
+
+    function showErrorModal() {
+        const modal = document.createElement('div');
+        modal.className = 'error-modal';
+        modal.innerHTML = `
+            <div class="error-modal-content">
+                <div class="error-icon">
+                    <i class="bi bi-exclamation-triangle"></i>
+                </div>
+                <h3>Erreur d'envoi</h3>
+                <p>Une erreur s'est produite lors de l'envoi. Veuillez réessayer ou nous contacter directement.</p>
+                <div class="modal-actions">
+                    <button class="btn btn-outline-primary" onclick="closeErrorModal()">
+                        <i class="bi bi-arrow-repeat me-1"></i>
+                        Réessayer
+                    </button>
+                    <a href="tel:+33633169477" class="btn btn-primary">
+                        <i class="bi bi-telephone me-1"></i>
+                        Nous appeler
+                    </a>
+                </div>
+            </div>
+        `;
+
+        addModalStyles();
+        document.body.appendChild(modal);
+
+        requestAnimationFrame(() => {
+            modal.classList.add('show');
+        });
+        
+    }
+
+    // =================================
+    // FONCTIONS DE FERMETURE DES MODALS
+    // =================================
+
+    window.closeSuccessModal = function () {
+        const modal = document.querySelector('.success-modal');
+        if (modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.remove();
+            }, 300);
+        }
+    };
+
+    window.closeErrorModal = function () {
+        const modal = document.querySelector('.error-modal');
+        if (modal) {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.remove();
+            }, 300);
+        }
+    };
 
     // =================================
     // FONCTIONS UTILITAIRES
@@ -806,8 +822,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+
     function createConfetti() {
-        for (let i = 0; i < 60; i++) {
+        for (let i = 0; i < 50; i++) {
             const confetti = document.createElement('div');
             const colors = ['#28a745', '#007bff', '#ffc107', '#dc3545', '#6f42c1', '#fd7e14'];
             const randomColor = colors[Math.floor(Math.random() * colors.length)];
@@ -818,9 +835,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 height: ${Math.random() * 8 + 4}px;
                 background: ${randomColor};
                 left: ${Math.random() * window.innerWidth}px;
-                top: -20px;
+                top: -10px;
                 z-index: 9999;
-                animation: confettiFall ${Math.random() * 4 + 3}s linear forwards;
+                animation: confettiFall ${Math.random() * 3 + 2}s linear forwards;
                 border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
                 transform: rotate(${Math.random() * 360}deg);
             `;
@@ -831,60 +848,131 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (confetti.parentElement) {
                     confetti.remove();
                 }
-            }, 7000);
-        }
-
-        // Animation CSS pour les confettis
-        if (!document.querySelector('#confetti-styles')) {
-            const confettiStyles = document.createElement('style');
-            confettiStyles.id = 'confetti-styles';
-            confettiStyles.textContent = `
-                @keyframes confettiFall {
-                    0% {
-                        transform: translateY(-20px) rotate(0deg);
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translateY(100vh) rotate(720deg);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(confettiStyles);
+            }, 4000);
         }
     }
 
-    // =================================
-    // DEBUGGING
-    // =================================
+     //=================================
+     //STYLES CSS POUR LES MODALS
+     //=================================
 
-    if (window.location.hostname === 'localhost') {
-        console.log('✅ Formulaire configuré : validation uniquement au submit');
+    function addModalStyles() {
+        if (document.querySelector('#modal-styles')) return;
 
-        // Fonction utile pour tester
-        window.testFormValidation = function () {
-            console.log('Test de validation...');
-            nomInput.value = 'T'; // Trop court
-            emailInput.value = 'email-invalide'; // Email invalide
-            messageInput.value = 'Court'; // Trop court
+        const styles = document.createElement('style');
+        styles.id = 'modal-styles';
+        styles.textContent = `
+            .success-modal, .error-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
 
-            // Simuler le clic sur submit
-            contactForm.dispatchEvent(new Event('submit', { bubbles: true }));
-        };
+            .success-modal.show, .error-modal.show {
+                opacity: 1;
+            }
 
-        window.testFormSuccess = function () {
-            console.log('Test de succès...');
-            nomInput.value = 'John Doe';
-            emailInput.value = 'john@example.com';
-            messageInput.value = 'Ceci est un message de test suffisamment long pour être valide.';
+            .success-modal-content, .error-modal-content {
+                background: white;
+                padding: 2.5rem;
+                border-radius: 20px;
+                text-align: center;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+                max-width: 450px;
+                width: 90%;
+                transform: translateY(20px);
+                transition: transform 0.3s ease;
+            }
 
-            // Simuler le clic sur submit
-            contactForm.dispatchEvent(new Event('submit', { bubbles: true }));
-        };
+            .success-modal.show .success-modal-content,
+            .error-modal.show .error-modal-content {
+                transform: translateY(0);
+            }
 
-        console.log('🧪 Fonctions de test disponibles:');
-        console.log('- window.testFormValidation() : Test avec erreurs');
-        console.log('- window.testFormSuccess() : Test avec succès');
+            .success-icon {
+                margin-bottom: 1.5rem;
+            }
+
+            .checkmark {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+                stroke-width: 2;
+                stroke: #28a745;
+                stroke-miterlimit: 10;
+                margin-bottom: 1rem;
+            }
+
+            .checkmark-circle {
+                stroke-dasharray: 166;
+                stroke-dashoffset: 166;
+                animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+            }
+
+            .checkmark-check {
+                transform-origin: 50% 50%;
+                stroke-dasharray: 48;
+                stroke-dashoffset: 48;
+                animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+            }
+
+            @keyframes stroke {
+                100% {
+                    stroke-dashoffset: 0;
+                }
+            }
+
+            .error-icon i {
+                font-size: 4rem;
+                color: #dc3545;
+                margin-bottom: 1rem;
+            }
+
+            .modal-actions {
+                margin-top: 1.5rem;
+                display: flex;
+                gap: 0.5rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            @keyframes confettiFall {
+                0% {
+                    transform: translateY(-20px) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .success-modal-content, .error-modal-content {
+                    padding: 1.5rem;
+                    margin: 1rem;
+                }
+                
+                .modal-actions {
+                    flex-direction: column;
+                }
+                
+                .modal-actions .btn {
+                    width: 100%;
+                }
+            }
+        `;
+        document.head.appendChild(styles);
     }
 });
 
@@ -893,56 +981,56 @@ document.addEventListener("DOMContentLoaded", function () {
 // HEADER SCROLL EFFECTS
 // =================================
 
-document.addEventListener('DOMContentLoaded', function () {
-    const header = document.querySelector('.modern-header');
+document.addeventlistener('domcontentloaded', function () {
+    const header = document.queryselector('.modern-header');
 
     if (header) {
-        let lastScrollTop = 0;
-        let isScrolling = false;
+        let lastscrolltop = 0;
+        let isscrolling = false;
 
-        function handleScroll() {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        function handlescroll() {
+            const scrolltop = window.pageyoffset || document.documentelement.scrolltop;
 
-            // Ajouter classe "scrolled" après 50px de scroll
-            if (scrollTop > 50) {
-                header.classList.add('scrolled');
+            // ajouter classe "scrolled" après 50px de scroll
+            if (scrolltop > 50) {
+                header.classlist.add('scrolled');
             } else {
-                header.classList.remove('scrolled');
+                header.classlist.remove('scrolled');
             }
 
-            lastScrollTop = scrollTop;
-            isScrolling = false;
+            lastscrolltop = scrolltop;
+            isscrolling = false;
         }
 
-        // Throttle scroll event pour la performance
-        window.addEventListener('scroll', function () {
-            if (!isScrolling) {
-                requestAnimationFrame(handleScroll);
-                isScrolling = true;
+        // throttle scroll event pour la performance
+        window.addeventlistener('scroll', function () {
+            if (!isscrolling) {
+                requestanimationframe(handlescroll);
+                isscrolling = true;
             }
         }, { passive: true });
     }
 
-    // Animation du logo au clic
-    const logoCircle = document.querySelector('.logo-circle');
-    if (logoCircle) {
-        logoCircle.addEventListener('click', function () {
+    // animation du logo au clic
+    const logocircle = document.queryselector('.logo-circle');
+    if (logocircle) {
+        logocircle.addeventlistener('click', function () {
             this.style.animation = 'none';
-            setTimeout(() => {
+            settimeout(() => {
                 this.style.animation = 'shine 0.6s ease';
             }, 10);
         });
     }
 
-    // Fermer le menu mobile en cliquant sur un lien
-    const navLinks = document.querySelectorAll('.modern-nav-link');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    const navbarToggler = document.querySelector('.navbar-toggler');
+    // fermer le menu mobile en cliquant sur un lien
+    const navlinks = document.queryselectorall('.modern-nav-link');
+    const navbarcollapse = document.queryselector('.navbar-collapse');
+    const navbartoggler = document.queryselector('.navbar-toggler');
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navbarCollapse.classList.contains('show')) {
-                navbarToggler.click();
+    navlinks.foreach(link => {
+        link.addeventlistener('click', () => {
+            if (navbarcollapse.classlist.contains('show')) {
+                navbartoggler.click();
             }
         });
     });

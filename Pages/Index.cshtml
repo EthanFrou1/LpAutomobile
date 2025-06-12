@@ -328,27 +328,38 @@
                     Une question ? Contactez-nous !
                 </h2>
 
-                <form method="post" asp-page-handler="Contact" class="contact-form" id="contactForm">
+                <form method="post" class="contact-form" id="contactForm">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="nom" class="form-label" >Nom complet *</label>
-                            <input type="text" class="form-control form-control-lg" placeholder="Veuillez saisir votre nom complet." id="nom" name="Nom" required>
+                            <label asp-for="Contact.Nom" class="form-label">Nom complet *</label>
+                            <input asp-for="Contact.Nom" class="form-control form-control-lg" placeholder="Veuillez saisir votre nom complet." required>
+                            <span asp-validation-for="Contact.Nom" class="text-danger"></span>
                             <div class="invalid-feedback">
                                 Veuillez saisir votre nom complet.
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Email *</label>
-                            <input type="email" class="form-control form-control-lg" placeholder="Veuillez saisir une adresse email valide." id="email" name="Email" required>
+                            <label asp-for="Contact.Email" class="form-label">Email *</label>
+                            <input asp-for="Contact.Email" type="email" class="form-control form-control-lg" placeholder="Veuillez saisir une adresse email valide." required>
+                            <span asp-validation-for="Contact.Email" class="text-danger"></span>
                             <div class="invalid-feedback">
                                 Veuillez saisir une adresse email valide.
                             </div>
                         </div>
                     </div>
+
+                    <!-- Champ téléphone optionnel -->
                     <div class="mb-3">
-                        <h3 for="message" class="form-label">Votre message *</h3>
-                        <textarea class="form-control" id="message" name="Message" rows="4"
+                        <label asp-for="Contact.Telephone" class="form-label">Téléphone (optionnel)</label>
+                        <input asp-for="Contact.Telephone" type="tel" class="form-control form-control-lg" placeholder="06 12 34 56 78">
+                        <span asp-validation-for="Contact.Telephone" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Contact.Message" class="form-label">Votre message *</label>
+                        <textarea asp-for="Contact.Message" class="form-control" rows="4"
                                   placeholder="Veuillez saisir votre message (minimum 10 caractères)." required></textarea>
+                        <span asp-validation-for="Contact.Message" class="text-danger"></span>
                         <div class="invalid-feedback">
                             Veuillez saisir votre message (minimum 10 caractères).
                         </div>
@@ -477,3 +488,8 @@
 <button id="scrollToTop" class="scroll-to-top-btn" title="Retour en haut">
     <i class="bi bi-chevron-up"></i>
 </button>
+
+
+@* Modal de succes d'envoie d'email  *@
+
+@* Modal d'echec d'envoie d'email  *@

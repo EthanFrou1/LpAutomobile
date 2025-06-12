@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using LpAutomobile.Data;
 using LpAutomobile.Middleware;
-using LpAutomobile.Services; // ← Ajouter
+using LpAutomobile.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,13 +14,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // ===== SERVICES =====
 builder.Services.AddHostedService<GoogleAvisSyncService>();
 
-// ✅ AJOUTER LE SERVICE D'AUTHENTIFICATION ADMIN
+// ✅ SERVICES ADMIN
 builder.Services.AddScoped<IAdminAuthService, AdminAuthService>();
+
+// ✅ SERVICE EMAIL avec tous les services nécessaires
 builder.Services.AddScoped<IEmailService, EmailService>();
 
+// ✅ SERVICES NÉCESSAIRES POUR LE RENDU DES VUES (EmailService en a besoin)
+builder.Services.AddSingleton<Microsoft.AspNetCore.Mvc.ViewEngines.ICompositeViewEngine, Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine>();
+builder.Services.AddSingleton<Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataProvider, Microsoft.AspNetCore.Mvc.ViewFeatures.CookieTempDataProvider>();
+
+// ✅ IDENTITY
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+// ✅ RAZOR PAGES (doit être APRÈS les autres services)
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -40,7 +48,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-// ✅ AJOUTER LE MIDDLEWARE D'ADMIN AVANT L'AUTORISATION
+// ✅ MIDDLEWARE ADMIN
 app.UseMiddleware<AdminAuthMiddleware>();
 
 app.UseAuthentication();
@@ -54,9 +62,8 @@ if (app.Environment.IsDevelopment())
     using (var scope = app.Services.CreateScope())
     {
         var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        context.Database.EnsureCreated(); // Crée la DB si elle n'existe pas
-        
-        // Optionnel : Données de test
+        context.Database.EnsureCreated();
+
         if (!context.Vehicules.Any())
         {
             SeedData(context);
@@ -66,7 +73,7 @@ if (app.Environment.IsDevelopment())
 
 app.Run();
 
-// ===== DONNÉES DE TEST (optionnel) =====
+// ===== DONNÉES DE TEST =====
 static void SeedData(ApplicationDbContext context)
 {
     var vehiculeTest = new LpAutomobile.Models.Vehicule
@@ -81,7 +88,7 @@ static void SeedData(ApplicationDbContext context)
         Transmission = "Manuelle",
         Description = "Véhicule en excellent état, entretien suivi"
     };
-    
+
     context.Vehicules.Add(vehiculeTest);
     context.SaveChanges();
 }

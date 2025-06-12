@@ -27,6 +27,32 @@
   },
   {
     "ContainingType": "LpAutomobile.Controllers.EmailController",
+    "Method": "DemandeEssai",
+    "RelativePath": "api/Email/demande-essai",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "LpAutomobile.Models.InteretVehiculeModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LpAutomobile.Models.EmailResponseModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LpAutomobile.Controllers.EmailController",
     "Method": "EnvoyerDemandeEstimation",
     "RelativePath": "api/Email/demande-estimation",
     "HttpMethod": "POST",
@@ -55,6 +81,32 @@
     "ContainingType": "LpAutomobile.Controllers.EmailController",
     "Method": "EnvoyerInteretVehicule",
     "RelativePath": "api/Email/interet-vehicule",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "LpAutomobile.Models.InteretVehiculeModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "LpAutomobile.Models.EmailResponseModel",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "LpAutomobile.Controllers.EmailController",
+    "Method": "OffreAchat",
+    "RelativePath": "api/Email/offre-achat",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
