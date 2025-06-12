@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using LpAutomobile.Services
+@inject IAdminAuthService AdminAuth
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,19 +15,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-     <!-- CSS spécifiques aux pages (conditionnels) -->
+    <!-- CSS spécifiques aux pages (conditionnels) -->
     @if (ViewContext.RouteData.Values["page"]?.ToString().Contains("Catalogue") == true)
     {
         <link rel="stylesheet" href="~/css/catalogue.css" asp-append-version="true" />
     }
-    
+
     @if (ViewContext.RouteData.Values["page"]?.ToString().Contains("Details") == true)
     {
         <link rel="stylesheet" href="~/css/details.css" asp-append-version="true" />
     }
-
 </head>
 <body>
+    @{
+        // ✅ SIMPLE ET PROPRE : utilise le service injecté
+        bool isAdmin = AdminAuth.IsUserAdmin(Context);
+    }
+
     <!-- HEADER MODERNE -->
     <header class="modern-header">
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
@@ -65,12 +72,31 @@
                                 Catalogue
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link modern-nav-link" asp-page="/Vehicules/Index">
-                                <i class="bi bi-gear me-1"></i>
-                                Gestion
-                            </a>
-                        </li>
+
+                        @* Navigation Admin (visible seulement si authentifié) *@
+                        @if (isAdmin)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-primary fw-bold" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear-fill me-1"></i>
+                                    Admin
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="dropdown-item" asp-page="/Vehicules/Index">
+                                            <i class="bi bi-list-ul me-2"></i>Gérer véhicules
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-page="/Vehicules/Create">
+                                            <i class="bi bi-plus-circle me-2"></i>Ajouter véhicule
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
                         <li class="nav-item">
                             <a class="nav-link modern-nav-link" href="/Index#contact">
                                 <i class="bi bi-envelope me-1"></i>
@@ -149,8 +175,11 @@
                         <h5 class="footer-title text-white mb-4">Navigation</h5>
                         <ul class="footer-links list-unstyled">
                             <li><a href="/" class="footer-link">Accueil</a></li>
-                            <li><a href="../Vehicules/Catalogue" class="footer-link">Catalogue</a></li>
-                            <li><a href="../Vehicules/Index" class="footer-link">Gestion</a></li>
+                            <li><a href="/Vehicules/Catalogue" class="footer-link">Catalogue</a></li>
+                            @if (isAdmin)
+                            {
+                                <li><a href="/Vehicules/Index" class="footer-link">Gestion</a></li>
+                            }
                             <li><a href="#contact" class="footer-link">Contact</a></li>
                             <li><a href="/Privacy" class="footer-link">Confidentialité</a></li>
                         </ul>

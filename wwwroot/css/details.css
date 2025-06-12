@@ -59,6 +59,10 @@
         transform: translateY(-2px);
     }
 
+.link-blue {
+    color: #0d6efd;
+}
+
 .vehicule-detail-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "_EmailLayout";
+    ViewBag.Title = "Contact général";
+    ViewBag.EmailType = "contact";
+    ViewBag.HeaderMessage = "Nouveau message de contact depuis le site web";
+}
+@model LpAutomobile.Models.ContactGeneralModel
+
+<div class="info-section">
+    <h2>👤 Informations du contact</h2>
+
+    <span class="label">Nom complet :</span>
+    <div class="value">@Model.Nom</div>
+
+    <span class="label">📧 Email :</span>
+    <div class="value">
+        <a href="mailto:@Model.Email">@Model.Email</a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Telephone))
+    {
+        <span class="label">📞 Téléphone :</span>
+        <div class="value">
+            <a href="tel:@Model.Telephone">@Model.Telephone</a>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Sujet))
+    {
+        <span class="label">📋 Sujet :</span>
+        <div class="value">@Model.Sujet</div>
+    }
+</div>
+
+<div class="message-box contact">
+    <span class="label">💬 Message :</span>
+    <div style="margin-top: 15px; white-space: pre-line; line-height: 1.6;">@Model.Message</div>
+</div>
+
+<div class="highlight">
+    <strong>💡 Action recommandée :</strong> Répondre dans les 24h pour maintenir notre excellente réputation client !
+</div>

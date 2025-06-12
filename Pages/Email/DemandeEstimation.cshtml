@@ -1,0 +1,122 @@
+﻿@{
+    Layout = "_EmailLayout";
+    ViewBag.Title = "Demande d'estimation";
+    ViewBag.EmailType = "estimation";
+    ViewBag.HeaderMessage = "💰 DEMANDE D'ESTIMATION VÉHICULE";
+}
+@model LpAutomobile.Models.DemandeEstimationModel
+
+<!-- Résumé véhicule -->
+<div class="info-section" style="background: linear-gradient(135deg, #6f42c1, #563d7c); color: white; text-align: center;">
+    <h2 style="color: white; margin-bottom: 15px;">🚙 Véhicule à estimer</h2>
+    <h3 style="color: white; margin-bottom: 10px;">@Model.Marque @Model.Modele (@Model.Annee)</h3>
+    <p style="color: white; margin: 0;"><strong>Kilométrage :</strong> @Model.Kilometrage.ToString("N0") km</p>
+</div>
+
+<!-- Informations client -->
+<div class="info-section">
+    <h3>👤 Informations du client</h3>
+
+    <span class="label">Nom complet :</span>
+    <div class="value">@Model.Nom</div>
+
+    <span class="label">📧 Email :</span>
+    <div class="value">
+        <a href="mailto:@Model.Email">@Model.Email</a>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Telephone))
+    {
+        <span class="label">📞 Téléphone :</span>
+        <div class="value">
+            <a href="tel:@Model.Telephone">@Model.Telephone</a>
+        </div>
+    }
+</div>
+
+<!-- Détails techniques -->
+<div class="info-section">
+    <h3>🔧 Détails techniques</h3>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
+        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+            <span class="label">Marque</span>
+            <div>@Model.Marque</div>
+        </div>
+        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+            <span class="label">Modèle</span>
+            <div>@Model.Modele</div>
+        </div>
+        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+            <span class="label">Année</span>
+            <div>@Model.Annee</div>
+        </div>
+        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+            <span class="label">Kilométrage</span>
+            <div>@Model.Kilometrage.ToString("N0") km</div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.Energie))
+        {
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+                <span class="label">Énergie</span>
+                <div>@Model.Energie</div>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Transmission))
+        {
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+                <span class="label">Transmission</span>
+                <div>@Model.Transmission</div>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.EtatGeneral))
+        {
+            <div style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+                <span class="label">État général</span>
+                <div>@Model.EtatGeneral</div>
+            </div>
+        }
+
+        <div style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+            <span class="label">En panne</span>
+            <div>@(Model.EstEnPanne ? "❌ Oui" : "✅ Non")</div>
+        </div>
+    </div>
+
+    @if (Model.EstEnPanne && !string.IsNullOrEmpty(Model.DescriptionPanne))
+    {
+        <div style="background: #f8d7da; color: #721c24; padding: 15px; border-radius: 6px; margin-top: 15px; border: 1px solid #f5c6cb;">
+            <strong>⚠️ Description de la panne :</strong><br>
+            @Model.DescriptionPanne
+        </div>
+    }
+</div>
+
+<!-- Message du client -->
+<div class="message-box estimation">
+    <span class="label">💬 Message du client :</span>
+    <div style="margin-top: 15px; white-space: pre-line; line-height: 1.6;">@Model.Message</div>
+</div>
+
+<!-- Conseils pour l'estimation -->
+<div style="background: #d1ecf1; padding: 20px; border-radius: 8px; border: 1px solid #bee5eb;">
+    <h4 style="margin-top: 0;">💡 Conseils pour l'estimation :</h4>
+    <ul style="margin-bottom: 0;">
+        <li><strong>Vérifier l'état réel</strong> lors d'une visite</li>
+        <li><strong>Consulter la cote Argus</strong> pour le modèle</li>
+        <li><strong>Prendre en compte</strong> l'entretien et l'historique</li>
+        @if (Model.EstEnPanne)
+        {
+            <li><strong>Évaluer le coût</strong> de réparation de la panne</li>
+        }
+        <li><strong>Proposer un RDV</strong> pour inspection complète</li>
+        <li><strong>Présenter vos véhicules</strong> en échange</li>
+    </ul>
+</div>
+
+<div class="highlight">
+    <strong>💼 Opportunité de reprise - Réponse rapide recommandée !</strong>
+</div>
