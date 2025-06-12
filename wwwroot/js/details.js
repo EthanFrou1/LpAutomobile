@@ -255,25 +255,88 @@ window.closeContactModal = closeContactModal;
 window.showAllEquipment = showAllEquipment;
 
 // =================================
-// DEBUG
+// GESTION DES CLASSES D-NONE POUR LES MODALS
 // =================================
 
-if (window.location.hostname === 'localhost') {
-    console.log('🚗 vehicule Details JS loaded');
+function openContactModal(type) {
+    let modalId;
+    switch (type) {
+        case 'interest':
+            modalId = 'interestModal';
+            break;
+        case 'offer':
+            modalId = 'offerModal';
+            break;
+        case 'reservation':
+            modalId = 'testDriveModal';
+            break;
+        default:
+            console.error('Type de modal inconnu:', type);
+            return false;
+    }
 
-    // Fonctions de test
-    window.testCarousel = () => {
-        console.log('Photos trouvées:', vehiculePhotos.length);
-        console.log('Index actuel:', currentPhotoIndex);
-        console.log('Photos:', vehiculePhotos);
-    };
+    const modal = document.getElementById(modalId);
+    if (!modal) {
+        console.error('Modal non trouvée:', modalId);
+        return false;
+    }
 
-    window.testModal = () => openPhotoModal(0);
+    // ✅ ENLEVER LA CLASSE D-NONE POUR AFFICHER
+    modal.classList.remove('d-none');
 
-    setTimeout(() => {
-        console.log('📊 État du carousel:');
-        console.log('- Photos véhicule:', totalPhotos);
-        console.log('- Index actuel:', currentPhotoIndex);
-        console.log('- Bootstrap carousel:', bootstrap.Carousel.getInstance(document.getElementById('vehiculePhotosCarousel')));
-    }, 1000);
+    // Petite animation d'apparition
+    requestAnimationFrame(() => {
+        modal.classList.add('show');
+    });
+
+    // Bloquer le scroll du body
+    document.body.style.overflow = 'hidden';
+
+    return true;
 }
+
+function closeContactModal() {
+    // Fermer toutes les modals ouvertes
+    const modals = ['interestModal', 'offerModal', 'testDriveModal'];
+
+    modals.forEach(modalId => {
+        const modal = document.getElementById(modalId);
+        if (modal && !modal.classList.contains('d-none')) {
+            // Animation de fermeture
+            modal.classList.remove('show');
+
+            // ✅ REMETTRE LA CLASSE D-NONE APRÈS L'ANIMATION
+            setTimeout(() => {
+                modal.classList.add('d-none');
+            }, 300); // 300ms pour laisser le temps à l'animation
+        }
+    });
+
+    // Remettre le scroll du body
+    document.body.style.overflow = '';
+}
+
+// ✅ FERMETURE EN CLIQUANT SUR LES BOUTONS DE FERMETURE
+document.addEventListener('DOMContentLoaded', function () {
+    // Boutons avec data-bs-dismiss="modal"
+    document.querySelectorAll('[data-bs-dismiss="modal"]').forEach(btn => {
+        btn.addEventListener('click', closeContactModal);
+    });
+
+    // Fermeture en cliquant sur le fond (overlay)
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', function (e) {
+            // Si on clique sur le fond (pas sur le contenu)
+            if (e.target === modal) {
+                closeContactModal();
+            }
+        });
+    });
+
+    // Fermeture avec la touche Escape
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeContactModal();
+        }
+    });
+});

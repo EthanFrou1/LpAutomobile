@@ -3,20 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\wwwroot\\js\\details.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:wwwroot\\js\\details.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\wwwroot\\css\\details.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:wwwroot\\css\\details.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\pages\\vehicules\\catalogue\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:pages\\vehicules\\catalogue\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\controller\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:controller\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\pages\\vehicules\\catalogue\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:pages\\vehicules\\catalogue\\details.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,8 +43,12 @@
       "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:models\\emailmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\wwwroot\\css\\details.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:wwwroot\\css\\details.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\pages\\vehicules\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -47,16 +67,8 @@
       "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\controller\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:controller\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\middleware\\adminauthmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:middleware\\adminauthmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\pages\\vehicules\\catalogue\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:pages\\vehicules\\catalogue\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -95,10 +107,6 @@
       "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:wwwroot\\css\\catalogue.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\wwwroot\\js\\details.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:wwwroot\\js\\details.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|c:\\users\\ethan\\documents\\github\\lpautomobile\\wwwroot\\js\\footer.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{F0227010-ECFA-4A45-9CE2-9E42856239FB}|LpAutomobile.csproj|solutionrelative:wwwroot\\js\\footer.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
@@ -122,7 +130,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 39,
+          "SelectedChildIndex": 43,
           "Children": [
             {
               "$type": "Bookmark",
@@ -227,6 +235,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "details.css",
+              "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\details.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\details.css",
+              "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\details.css",
+              "RelativeToolTip": "wwwroot\\css\\details.css",
+              "ViewState": "AgIAAKEBAAAAAAAAAAAcwLIBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-12T14:37:01.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "bootstrap.css",
+              "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+              "RelativeDocumentMoniker": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+              "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+              "RelativeToolTip": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+              "ViewState": "AgIAABwVAAAAAAAAAAAvwDQVAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-06-12T14:21:48.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Details.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\Vehicules\\Catalogue\\Details.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Vehicules\\Catalogue\\Details.cshtml.cs",
+              "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\Vehicules\\Catalogue\\Details.cshtml.cs",
+              "RelativeToolTip": "Pages\\Vehicules\\Catalogue\\Details.cshtml.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCwAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-12T13:50:07.088Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "Index.cshtml.cs",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\Index.cshtml.cs",
               "RelativeDocumentMoniker": "Pages\\Index.cshtml.cs",
@@ -239,46 +286,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "EmailModels.cs",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Models\\EmailModels.cs",
               "RelativeDocumentMoniker": "Models\\EmailModels.cs",
               "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Models\\EmailModels.cs",
               "RelativeToolTip": "Models\\EmailModels.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAuwD8AAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAcwHEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-11T14:10:43.874Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "EmailService.cs",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Services\\EmailService.cs",
               "RelativeDocumentMoniker": "Services\\EmailService.cs",
               "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Services\\EmailService.cs",
               "RelativeToolTip": "Services\\EmailService.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAADwv3UAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAUwFICAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-11T14:10:34.268Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 6,
               "Title": "EmailController.cs",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Controller\\EmailController.cs",
               "RelativeDocumentMoniker": "Controller\\EmailController.cs",
               "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Controller\\EmailController.cs",
               "RelativeToolTip": "Controller\\EmailController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAwwCIAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAuwCAAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-11T14:09:32.292Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "bootstrap-reboot.css",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
               "RelativeDocumentMoniker": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
@@ -290,7 +337,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "_Layout.cshtml.css",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\Shared\\_Layout.cshtml.css",
               "RelativeDocumentMoniker": "Pages\\Shared\\_Layout.cshtml.css",
@@ -302,7 +349,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "GoogleAvisSyncService.cs",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Services\\GoogleAvisSyncService.cs",
               "RelativeDocumentMoniker": "Services\\GoogleAvisSyncService.cs",
@@ -314,7 +361,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "AdminAuthService.cs",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Services\\AdminAuthService.cs",
               "RelativeDocumentMoniker": "Services\\AdminAuthService.cs",
@@ -326,7 +373,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -338,7 +385,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "package.json",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\package.json",
               "RelativeDocumentMoniker": "package.json",
@@ -350,7 +397,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -362,7 +409,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "AdminAuthMiddleware.cs",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Middleware\\AdminAuthMiddleware.cs",
               "RelativeDocumentMoniker": "Middleware\\AdminAuthMiddleware.cs",
@@ -374,7 +421,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
@@ -386,7 +433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
@@ -398,57 +445,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
               "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\site.js",
               "RelativeToolTip": "wwwroot\\js\\site.js",
-              "ViewState": "AgIAALIAAAAAAAAAAAAIwMgAAAAaAAAAAAAAAA==",
+              "ViewState": "AgIAACwDAAAAAAAAAAAQwEYDAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-05-28T17:06:03.787Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "details.css",
-              "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\details.css",
-              "RelativeDocumentMoniker": "wwwroot\\css\\details.css",
-              "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\details.css",
-              "RelativeToolTip": "wwwroot\\css\\details.css",
-              "ViewState": "AgIAAJsBAAAAAAAAAAAcwMIBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-06-10T12:13:48.104Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 0,
               "Title": "details.js",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\details.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\details.js",
               "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\details.js",
               "RelativeToolTip": "wwwroot\\js\\details.js",
-              "ViewState": "AgIAAOcAAAAAAAAAAAAAwPYAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAQBAAAAAAAAAAAxwBkBAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-10T12:13:38.245Z"
+              "WhenOpened": "2025-06-10T12:13:38.245Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 3,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\Vehicules\\Catalogue\\Details.cshtml",
               "RelativeDocumentMoniker": "Pages\\Vehicules\\Catalogue\\Details.cshtml",
               "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\Vehicules\\Catalogue\\Details.cshtml",
               "RelativeToolTip": "Pages\\Vehicules\\Catalogue\\Details.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAH8BAAAAAAAAAAAYwJQBAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-29T09:16:01.56Z"
+              "WhenOpened": "2025-05-29T09:16:01.56Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 28,
               "Title": "catalogue.js",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\catalogue.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\catalogue.js",
@@ -460,7 +496,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "catalogue.css",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\catalogue.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\catalogue.css",
@@ -472,7 +508,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "Catalogue.cshtml",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\Vehicules\\Catalogue.cshtml",
               "RelativeDocumentMoniker": "Pages\\Vehicules\\Catalogue.cshtml",
@@ -484,7 +520,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\Vehicules\\Index.cshtml",
               "RelativeDocumentMoniker": "Pages\\Vehicules\\Index.cshtml",
@@ -497,20 +533,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
               "ToolTip": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\site.css",
               "RelativeToolTip": "wwwroot\\css\\site.css",
-              "ViewState": "AgIAAAQFAAAAAAAAAAAcwBYFAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAFwIAAAAAAAAAAAswGcIAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-05-15T09:27:48.269Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "_AvisGooglePartial.cshtml",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\_AvisGooglePartial.cshtml",
               "RelativeDocumentMoniker": "Pages\\_AvisGooglePartial.cshtml",
@@ -522,7 +558,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "footer.js",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\js\\footer.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\footer.js",
@@ -534,7 +570,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "footer.css",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\wwwroot\\css\\footer.css",
               "RelativeDocumentMoniker": "wwwroot\\css\\footer.css",
@@ -546,7 +582,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Pages\\Shared\\_Layout.cshtml",
@@ -558,7 +594,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\ethan\\Documents\\GitHub\\LpAutomobile\\Pages\\Index.cshtml",
               "RelativeDocumentMoniker": "Pages\\Index.cshtml",

@@ -377,6 +377,366 @@
     <i class="bi bi-chevron-up"></i>
 </button>
 
+<!-- Messages de feedback -->
+@if (!string.IsNullOrEmpty(Model.ContactSuccess))
+{
+    <div class="alert alert-success alert-dismissible fade show position-fixed" 
+         style="top: 20px; right: 20px; z-index: 1060; max-width: 400px;">
+        <i class="bi bi-check-circle me-2"></i>
+        @Model.ContactSuccess
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.ContactError))
+{
+    <div class="alert alert-danger alert-dismissible fade show position-fixed" 
+         style="top: 20px; right: 20px; z-index: 1060; max-width: 400px;">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        @Model.ContactError
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<!-- =================================
+     MODAL 1: JE SUIS INTÉRESSÉ(E)
+     ================================= -->
+<div class="modal fade d-none" id="interestModal" tabindex="-1">
+    <div class="modal-lg">
+        <div class="modal-content contact-modal-content">
+            <div class="modal-header contact-modal-header interest-modal-header">
+                <h5 class="modal-title contact-modal-title">
+                    <i class="bi bi-chat-dots"></i>
+                    Demande d'informations
+                </h5>
+                <button type="button" class="btn-close contact-modal-close contact-modal-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form method="post" asp-page-handler="Interesse">
+                <input type="hidden" name="vehiculeId" value="@Model.Vehicule.Id" />
+
+                <div class="modal-body contact-modal-body">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="alert contact-alert contact-alert-info">
+                                <strong>@Model.Vehicule.Marque @Model.Vehicule.Modele</strong> - @Model.Vehicule.Prix.ToString("C0")
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 contact-form-row">
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Nom complet *</label>
+                            <input type="text" name="nom" class="form-control contact-form-input" required
+                                   placeholder="Votre nom et prénom">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Email *</label>
+                            <input type="email" name="email" class="form-control contact-form-input" required
+                                   placeholder="votre@email.com">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Téléphone *</label>
+                            <input type="tel" name="telephone" class="form-control contact-form-input" required
+                                   placeholder="06 12 34 56 78">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Votre demande *</label>
+                            <select name="motivation" class="form-select contact-form-select" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="Plus d'informations générales">Plus d'informations générales</option>
+                                <option value="Historique du véhicule">Historique du véhicule</option>
+                                <option value="Questions sur la garantie">Questions sur la garantie</option>
+                                <option value="Informations financement">Informations financement</option>
+                                <option value="Disponibilité véhicule">Disponibilité véhicule</option>
+                                <option value="Autre demande">Autre demande</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label contact-form-label">Message (optionnel)</label>
+                            <textarea name="message" class="form-control contact-form-textarea" rows="3"
+                                      placeholder="Questions particulières ou détails de votre demande..."></textarea>
+                        </div>
+                        <div class="col-12">
+                            <div class="border p-3 rounded bg-light contact-info-section">
+                                <h6 class="mb-2">Préférences de contact :</h6>
+                                <div class="form-check contact-form-check">
+                                    <input type="checkbox" name="recevoir_email" class="form-check-input contact-form-check-input"
+                                           id="recevoir_email" checked>
+                                    <label class="form-check-label contact-form-check-label" for="recevoir_email">
+                                        Recevoir les informations par email
+                                    </label>
+                                </div>
+                                <div class="form-check contact-form-check">
+                                    <input type="checkbox" name="recevoir_appel" class="form-check-input contact-form-check-input"
+                                           id="recevoir_appel">
+                                    <label class="form-check-label contact-form-check-label" for="recevoir_appel">
+                                        Être rappelé par téléphone
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer contact-modal-footer">
+                    <button type="button" class="btn btn-outline-secondary contact-btn contact-btn-cancel" data-bs-dismiss="modal">
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn btn-primary contact-btn contact-btn-primary">
+                        <i class="bi bi-send"></i>
+                        Envoyer ma demande
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- =================================
+     MODAL 2: FAIRE UNE OFFRE
+     ================================= -->
+<div class="modal fade d-none" id="offerModal" tabindex="-1">
+    <div class="modal-lg">
+        <div class="modal-content contact-modal-content">
+            <div class="modal-header contact-modal-header offer-modal-header">
+                <h5 class="modal-title contact-modal-title">
+                    <i class="bi bi-tag"></i>
+                    Proposer une offre
+                </h5>
+                <button type="button" class="btn-close contact-modal-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form method="post" asp-page-handler="Offre" id="offerForm">
+                <input type="hidden" name="vehiculeId" value="@Model.Vehicule.Id" />
+
+                <div class="modal-body contact-modal-body">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="alert contact-alert contact-alert-warning">
+                                <strong>@Model.Vehicule.Marque @Model.Vehicule.Modele</strong>
+                                - Prix affiché : <strong>@Model.Vehicule.Prix.ToString("C0")</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 contact-form-row">
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Nom complet *</label>
+                            <input type="text" name="nom" class="form-control contact-form-input" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Email *</label>
+                            <input type="email" name="email" class="form-control contact-form-input" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Téléphone *</label>
+                            <input type="tel" name="telephone" class="form-control contact-form-input" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Votre offre (€) *</label>
+                            <input type="number" name="montant_offre" class="form-control contact-form-input" required
+                                   min="1000" max="@((int)Model.Vehicule.Prix - 500)"
+                                   placeholder="Ex: @((int)Model.Vehicule.Prix - 2000)">
+                            <small class="text-muted contact-text-muted">Montant entre 1 000€ et @((int)Model.Vehicule.Prix - 500)€</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Mode de paiement *</label>
+                            <select name="mode_paiement" class="form-select contact-form-select" required id="modePaiement">
+                                <option value="">Sélectionnez...</option>
+                                <option value="Paiement comptant">Paiement comptant</option>
+                                <option value="Financement (étude nécessaire)">Financement (étude nécessaire)</option>
+                                <option value="Reprise + complément">Reprise + complément</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Délai d'achat *</label>
+                            <select name="delai_achat" class="form-select contact-form-select" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="Dans la semaine">Dans la semaine</option>
+                                <option value="Dans le mois">Dans le mois</option>
+                                <option value="Dans les 3 mois">Dans les 3 mois</option>
+                                <option value="Plus de 3 mois">Plus de 3 mois</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Section reprise (conditionnelle) -->
+                    <div id="repriseSection" style="display: none;" class="mt-4">
+                        <div class="border p-3 rounded bg-light contact-reprise-section">
+                            <h6 class="mb-3">Véhicule à reprendre :</h6>
+                            <div class="row g-3 contact-form-row">
+                                <div class="col-md-6">
+                                    <input type="text" name="reprise_marque" class="form-control contact-form-input"
+                                           placeholder="Marque et modèle">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" name="reprise_annee" class="form-control contact-form-input"
+                                           min="1990" max="2025" placeholder="Année">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" name="reprise_km" class="form-control contact-form-input"
+                                           min="0" placeholder="Kilométrage">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-3">
+                        <label class="form-label contact-form-label">Commentaires sur votre offre</label>
+                        <textarea name="commentaires" class="form-control contact-form-textarea" rows="3"
+                                  placeholder="Précisions, justifications de votre offre..."></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer contact-modal-footer">
+                    <button type="button" class="btn btn-outline-secondary contact-btn contact-btn-cancel" data-bs-dismiss="modal">
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn btn-warning contact-btn contact-btn-warning">
+                        <i class="bi bi-tag"></i>
+                        Envoyer mon offre
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- =================================
+     MODAL 3: RÉSERVER UN ESSAI
+     ================================= -->
+<div class="modal fade d-none" id="testDriveModal" tabindex="-1">
+    <div class="modal-lg">
+        <div class="modal-content contact-modal-content">
+            <div class="modal-header contact-modal-header test-drive-modal-header">
+                <h5 class="modal-title contact-modal-title">
+                    <i class="bi bi-calendar-check"></i>
+                    Réserver un essai
+                </h5>
+                <button type="button" class="btn-close contact-modal-close contact-modal-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form method="post" asp-page-handler="Essai" id="testDriveForm">
+                <input type="hidden" name="vehiculeId" value="@Model.Vehicule.Id" />
+
+                <div class="modal-body contact-modal-body">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="alert contact-alert contact-alert-success">
+                                <strong>@Model.Vehicule.Marque @Model.Vehicule.Modele</strong>
+                                - Essai gratuit et sans engagement
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 contact-form-row">
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Nom complet *</label>
+                            <input type="text" name="nom" class="form-control contact-form-input" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Email *</label>
+                            <input type="email" name="email" class="form-control contact-form-input" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Téléphone *</label>
+                            <input type="tel" name="telephone" class="form-control contact-form-input" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Date souhaitée *</label>
+                            <input type="date" name="date_souhaitee" class="form-control contact-form-input" required
+                                   min="@DateTime.Now.AddDays(1):yyyy-MM-dd"
+                                   max="@DateTime.Now.AddMonths(2):yyyy-MM-dd">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Créneau horaire *</label>
+                            <select name="creneau" class="form-select contact-form-select" required>
+                                <option value="">Sélectionnez...</option>
+                                <option value="09h00 - 10h00">09h00 - 10h00</option>
+                                <option value="10h00 - 11h00">10h00 - 11h00</option>
+                                <option value="11h00 - 12h00">11h00 - 12h00</option>
+                                <option value="14h00 - 15h00">14h00 - 15h00</option>
+                                <option value="15h00 - 16h00">15h00 - 16h00</option>
+                                <option value="16h00 - 17h00">16h00 - 17h00</option>
+                                <option value="17h00 - 18h00">17h00 - 18h00</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label contact-form-label">Durée souhaitée</label>
+                            <select name="duree" class="form-select contact-form-select">
+                                <option value="30">30 minutes</option>
+                                <option value="60" selected>1 heure</option>
+                                <option value="120">2 heures</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-3 contact-form-row">
+                        <div class="col-12">
+                            <div class="border p-3 rounded bg-light contact-info-section">
+                                <h6 class="mb-3">Informations permis de conduire :</h6>
+                                <div class="row g-3 contact-form-row">
+                                    <div class="col-md-6">
+                                        <label class="form-label contact-form-label">Numéro de permis *</label>
+                                        <input type="text" name="numero_permis" class="form-control contact-form-input" required
+                                               placeholder="Ex: 123456789012">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label contact-form-label">Ancienneté du permis *</label>
+                                        <select name="anciennete_permis" class="form-select contact-form-select" required>
+                                            <option value="">Sélectionnez...</option>
+                                            <option value="Moins d'1 an">Moins d'1 an</option>
+                                            <option value="1 à 3 ans">1 à 3 ans</option>
+                                            <option value="Plus de 3 ans">Plus de 3 ans</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-check contact-form-check">
+                                <input type="checkbox" name="avec_conseiller" class="form-check-input contact-form-check-input"
+                                       id="avec_conseiller">
+                                <label class="form-check-label contact-form-check-label" for="avec_conseiller">
+                                    Je souhaite être accompagné d'un conseiller commercial
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label contact-form-label">Demandes spéciales</label>
+                            <textarea name="demandes_speciales" class="form-control contact-form-textarea" rows="3"
+                                      placeholder="Parcours souhaité, questions spécifiques..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer contact-modal-footer">
+                    <button type="button" class="btn btn-outline-secondary contact-btn contact-btn-cancel" data-bs-dismiss="modal">
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn btn-success contact-btn contact-btn-success">
+                        <i class="bi bi-calendar-check"></i>
+                        Réserver l'essai
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Variables pour JavaScript -->
+<script>
+    window.vehiculeData = {
+        id: @Model.Vehicule.Id,
+        prix: @Model.Vehicule.Prix,
+        marque: '@Model.Vehicule.Marque',
+        modele: '@Model.Vehicule.Modele'
+    };
+</script>
+
 @section Scripts {
     <script src="~/js/details.js"></script>
 }

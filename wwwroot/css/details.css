@@ -439,11 +439,11 @@
 }
 
 .modal-content {
-    background: white;
     border-radius: 12px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 90vh;
+    max-width: 100%;
+    width: 100%;
+    margin: auto;
+    max-height: 82vh;
     overflow-y: auto;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     transform: translateY(20px);
@@ -612,5 +612,614 @@ a.breadcrumb-link, li.breadcrumb-current {
 
     .photo-carousel {
         height: 250px;
+    }
+}
+
+
+/* =================================
+   MODALS DE CONTACT LP AUTOMOBILE - CLASSES SPÉCIFIQUES
+   ================================= */
+
+/* =================================
+   BASE MODALS BOOTSTRAP OVERRIDE
+   ================================= */
+
+/* Spécifique aux modals de contact seulement */
+#interestModal.modal,
+#offerModal.modal,
+#testDriveModal.modal {
+    backdrop-filter: blur(8px);
+}
+
+#interestModal .modal-backdrop,
+#offerModal .modal-backdrop,
+#testDriveModal .modal-backdrop {
+    background-color: rgba(15, 23, 42, 0.6);
+}
+
+/* Animations d'entrée/sortie pour les modals de contact */
+#interestModal.fade .modal-dialog,
+#offerModal.fade .modal-dialog,
+#testDriveModal.fade .modal-dialog {
+    transform: translateY(-50px) scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#interestModal.show .modal-dialog,
+#offerModal.show .modal-dialog,
+#testDriveModal.show .modal-dialog {
+    transform: translateY(0) scale(1);
+}
+
+/* =================================
+   CONTENT DES MODALS DE CONTACT
+   ================================= */
+
+.contact-modal-content {
+    background: white !important;
+    color: #333 !important;
+}
+
+/* =================================
+   HEADERS SPÉCIFIQUES PAR MODAL
+   ================================= */
+
+.contact-modal-header {
+    padding: 24px 32px;
+    border-bottom: none;
+    position: relative;
+    color: white;
+}
+
+/* Header Modal Intérêt (Bleu) */
+.interest-modal-header {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+/* Header Modal Offre (Orange/Jaune) */
+.offer-modal-header {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #1f2937;
+}
+
+/* Header Modal Essai (Vert) */
+.test-drive-modal-header {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.contact-modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    color: inherit;
+}
+
+    .contact-modal-title i {
+        font-size: 1.3rem;
+        margin-right: 12px;
+    }
+
+/* Bouton fermer spécifique aux modals de contact */
+.contact-modal-close {
+    position: absolute !important;
+    right: 15px !important;
+    z-index: 1055 !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+.contact-modal-close:hover {
+    opacity: 0.5 !important;
+}
+
+.contact-modal-close-white {
+    filter: brightness(0) invert(1);
+}
+
+/* =================================
+   ALERTES VÉHICULE DANS LES MODALS
+   ================================= */
+
+.contact-alert {
+    border: none;
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.contact-alert-info {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    color: #1e40af;
+}
+
+.contact-alert-warning {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: #92400e;
+}
+
+.contact-alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #065f46;
+}
+
+/* =================================
+   BODY DES MODALS DE CONTACT
+   ================================= */
+
+.contact-modal-body {
+    background: white !important;
+    color: #333 !important;
+}
+
+/* Labels spécifiques aux modals de contact */
+.contact-form-label {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+/* Inputs spécifiques aux modals de contact */
+.contact-form-input,
+.contact-form-select,
+.contact-form-textarea {
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+    .contact-form-input:focus,
+    .contact-form-select:focus,
+    .contact-form-textarea:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transform: translateY(-1px);
+        outline: none;
+    }
+
+    .contact-form-input::placeholder {
+        color: #9ca3af;
+        font-style: italic;
+    }
+
+/* Textarea spécifique */
+.contact-form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+/* Select custom pour les modals de contact */
+.contact-form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+/* Small text dans les modals de contact */
+.contact-text-muted {
+    color: #6b7280 !important;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 4px;
+}
+
+/* =================================
+   SECTIONS SPÉCIALES DANS LES MODALS
+   ================================= */
+
+/* Section reprise - spécifique au modal d'offre */
+.contact-reprise-section {
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+    .contact-reprise-section h6 {
+        color: #1e40af;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+
+/* Sections avec bordure dans les modals de contact */
+.contact-info-section {
+    background: rgba(248, 250, 252, 0.8) !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    backdrop-filter: blur(10px);
+}
+
+    .contact-info-section h6 {
+        color: #1f2937;
+        font-weight: 700;
+        margin-bottom: 16px;
+        font-size: 1rem;
+    }
+
+/* =================================
+   CHECKBOXES DANS LES MODALS DE CONTACT
+   ================================= */
+
+.contact-form-check {
+    padding-left: 0;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.contact-form-check-input {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    background: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+    .contact-form-check-input:checked {
+        background-color: #3b82f6;
+        border-color: #3b82f6;
+        background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='m13.854 3.646-7.5 7.5a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L6 9.793l7.146-7.147a.5.5 0 0 1 .708.708z'/%3e%3c/svg%3e");
+        transform: scale(1.1);
+    }
+
+    .contact-form-check-input:focus {
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        outline: none;
+    }
+
+.contact-form-check-label {
+    color: #374151;
+    font-weight: 500;
+    cursor: pointer;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* =================================
+   FOOTER ET BOUTONS DES MODALS DE CONTACT
+   ================================= */
+
+.contact-modal-footer {
+    padding: 24px 32px;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    background: rgba(248, 250, 252, 0.5);
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* Boutons spécifiques aux modals de contact */
+.contact-btn {
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+    .contact-btn i {
+        font-size: 1rem;
+    }
+
+/* Bouton Annuler pour modals de contact */
+.contact-btn-cancel {
+    background: rgba(248, 250, 252, 0.8);
+    color: #6b7280 !important;
+    border: 2px solid #e5e7eb;
+    backdrop-filter: blur(10px);
+}
+
+div#interestModal .modal-lg {
+    top: 3%;
+    position: relative;
+}
+
+    .contact-btn-cancel:hover {
+        background: rgba(243, 244, 246, 0.9);
+        color: #4b5563;
+        border-color: #d1d5db;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+/* Bouton Principal (Bleu) pour modals de contact */
+.contact-btn-primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+}
+
+    .contact-btn-primary:hover {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        color: white;
+    }
+
+/* Bouton Warning (Orange) pour modals de contact */
+.contact-btn-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+}
+
+    .contact-btn-warning:hover {
+        background: linear-gradient(135deg, #d97706, #b45309);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        color: white;
+    }
+
+/* Bouton Success (Vert) pour modals de contact */
+.contact-btn-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+    .contact-btn-success:hover {
+        background: linear-gradient(135deg, #059669, #047857);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        color: white;
+    }
+
+/* États de chargement pour boutons de modals de contact */
+.contact-btn:disabled,
+.contact-btn.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* =================================
+   GRILLE ET ESPACEMENT DANS LES MODALS
+   ================================= */
+
+.contact-form-row {
+    margin: 0;
+}
+
+    .contact-form-row > * {
+        padding-right: 12px;
+        padding-left: 12px;
+        margin-bottom: 20px;
+    }
+
+/* =================================
+   ANIMATIONS SPÉCIFIQUES AUX MODALS DE CONTACT
+   ================================= */
+
+/* Animation des inputs au focus dans les modals de contact */
+.contact-form-input:focus,
+.contact-form-select:focus {
+    animation: contactInputFocus 0.3s ease;
+}
+
+@keyframes contactInputFocus {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+
+    100% {
+        transform: translateY(-1px);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Animation des boutons dans les modals de contact */
+.contact-btn:active {
+    transform: translateY(0) !important;
+    transition: transform 0.1s ease;
+}
+
+/* Effet de survol sur les sections dans les modals de contact */
+.contact-info-section:hover {
+    background: rgba(248, 250, 252, 0.95) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* =================================
+   RESPONSIVE POUR LES MODALS DE CONTACT
+   ================================= */
+
+@media (max-width: 768px) {
+    .contact-modal-header {
+        padding: 20px 24px;
+    }
+
+    .contact-modal-body {
+        padding: 24px 20px;
+    }
+
+    .contact-modal-footer {
+        padding: 20px 24px;
+        flex-direction: column-reverse;
+    }
+
+    .contact-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .contact-modal-title {
+        font-size: 1.3rem;
+    }
+
+    .contact-form-row > * {
+        padding-right: 8px;
+        padding-left: 8px;
+        margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-modal-header {
+        padding: 16px 20px;
+    }
+
+    .contact-modal-body {
+        padding: 20px 16px;
+    }
+
+    .contact-modal-footer {
+        padding: 16px 20px;
+    }
+
+    .contact-modal-title {
+        font-size: 1.2rem;
+    }
+
+        .contact-modal-title i {
+            font-size: 1.1rem;
+        }
+
+    .contact-info-section {
+        padding: 16px !important;
+    }
+}
+
+/* =================================
+   VALIDATION ET ERREURS DANS LES MODALS DE CONTACT
+   ================================= */
+
+.contact-form-input.is-invalid,
+.contact-form-select.is-invalid,
+.contact-form-textarea.is-invalid {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+    .contact-form-input.is-invalid:focus,
+    .contact-form-select.is-invalid:focus,
+    .contact-form-textarea.is-invalid:focus {
+        border-color: #ef4444;
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+.contact-form-input.is-valid,
+.contact-form-select.is-valid,
+.contact-form-textarea.is-valid {
+    border-color: #10b981;
+    background-color: #f0fdf4;
+}
+
+    .contact-form-input.is-valid:focus,
+    .contact-form-select.is-valid:focus,
+    .contact-form-textarea.is-valid:focus {
+        border-color: #10b981;
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+/* Messages de validation spécifiques aux modals de contact */
+.contact-invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #ef4444;
+}
+
+.contact-form-input.is-invalid ~ .contact-invalid-feedback,
+.contact-form-select.is-invalid ~ .contact-invalid-feedback,
+.contact-form-textarea.is-invalid ~ .contact-invalid-feedback {
+    display: block;
+}
+
+/* Animation shake pour erreurs dans les modals de contact */
+@keyframes contactShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-3px);
+    }
+
+    20%, 40%, 60%, 80% {
+        transform: translateX(3px);
+    }
+}
+
+.contact-form-input.shake,
+.contact-form-select.shake,
+.contact-form-textarea.shake {
+    animation: contactShake 0.5s ease-in-out;
+}
+
+/* Contraste élevé */
+@media (prefers-contrast: high) {
+    .contact-form-input,
+    .contact-form-select,
+    .contact-form-textarea {
+        border-color: #000;
+        border-width: 2px;
+    }
+
+    .contact-btn-primary {
+        background: #1d4ed8;
+    }
+
+    .contact-btn-success {
+        background: #047857;
+    }
+
+    .contact-btn-warning {
+        background: #b45309;
+    }
+}
+
+/* Réduction des mouvements */
+@media (prefers-reduced-motion: reduce) {
+    .contact-form-input,
+    .contact-form-select,
+    .contact-form-textarea,
+    .contact-btn,
+    .contact-form-check-input {
+        transition: none;
+    }
+
+        .contact-btn:hover {
+            transform: none;
+        }
+
+    @keyframes contactInputFocus {
+        0%, 100% {
+            transform: none;
+        }
     }
 }
