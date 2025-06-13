@@ -2,7 +2,10 @@
 @model LpAutomobile.Pages.Catalogue.DetailsModel
 @{
     var v = Model.Vehicule;
-    ViewData["Title"] = $"{v.Marque} {v.Modele} - LP Automobile";
+    if (v != null)
+        ViewData["Title"] = $"{v?.Marque} {v?.Modele} - LP Automobile";
+    else
+        ViewData["Title"] = "LP Automobile";
 }
 
 <!-- Hero Section avec breadcrumb -->
@@ -412,13 +415,13 @@
                 <button type="button" class="btn-close contact-modal-close contact-modal-close-white" data-bs-dismiss="modal"></button>
             </div>
 
-            <form method="post" asp-page-handler="Interesse">
+            <form method="post" asp-page-handler="Interest" id="interestForm">
                 <input type="hidden" name="vehiculeId" value="@Model.Vehicule.Id" />
 
                 <div class="modal-body contact-modal-body">
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col-12">
-                            <div class="alert contact-alert contact-alert-info">
+                            <div class="contact-alert contact-alert-info">
                                 <strong>@Model.Vehicule.Marque @Model.Vehicule.Modele</strong> - @Model.Vehicule.Prix.ToString("C0")
                             </div>
                         </div>
@@ -461,15 +464,16 @@
                             <div class="border p-3 rounded bg-light contact-info-section">
                                 <h6 class="mb-2">Préférences de contact :</h6>
                                 <div class="form-check contact-form-check">
-                                    <input type="checkbox" name="recevoir_email" class="form-check-input contact-form-check-input"
-                                           id="recevoir_email" checked>
+                                    <input type="checkbox" name="recevoirEmailChecked" class="form-check-input contact-form-check-input"
+                                           id="recevoir_email" value="true">
                                     <label class="form-check-label contact-form-check-label" for="recevoir_email">
                                         Recevoir les informations par email
                                     </label>
                                 </div>
+
                                 <div class="form-check contact-form-check">
-                                    <input type="checkbox" name="recevoir_appel" class="form-check-input contact-form-check-input"
-                                           id="recevoir_appel">
+                                    <input type="checkbox" name="recevoirAppelChecked" class="form-check-input contact-form-check-input"
+                                           id="recevoir_appel" value="true">
                                     <label class="form-check-label contact-form-check-label" for="recevoir_appel">
                                         Être rappelé par téléphone
                                     </label>
@@ -511,9 +515,9 @@
                 <input type="hidden" name="vehiculeId" value="@Model.Vehicule.Id" />
 
                 <div class="modal-body contact-modal-body">
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col-12">
-                            <div class="alert contact-alert contact-alert-warning">
+                            <div class="contact-alert contact-alert-warning">
                                 <strong>@Model.Vehicule.Marque @Model.Vehicule.Modele</strong>
                                 - Prix affiché : <strong>@Model.Vehicule.Prix.ToString("C0")</strong>
                             </div>
@@ -535,7 +539,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label contact-form-label">Votre offre (€) *</label>
-                            <input type="number" name="montant_offre" class="form-control contact-form-input" required
+                            <input name="montant_offre" class="form-control contact-form-input" required
                                    min="1000" max="@((int)Model.Vehicule.Prix - 500)"
                                    placeholder="Ex: @((int)Model.Vehicule.Prix - 2000)">
                             <small class="text-muted contact-text-muted">Montant entre 1 000€ et @((int)Model.Vehicule.Prix - 500)€</small>
@@ -550,14 +554,12 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label contact-form-label">Délai d'achat *</label>
-                            <select name="delai_achat" class="form-select contact-form-select" required>
-                                <option value="">Sélectionnez...</option>
-                                <option value="Dans la semaine">Dans la semaine</option>
-                                <option value="Dans le mois">Dans le mois</option>
-                                <option value="Dans les 3 mois">Dans les 3 mois</option>
-                                <option value="Plus de 3 mois">Plus de 3 mois</option>
-                            </select>
+                            <label class="form-label contact-form-label">Date limite pour finaliser l'achat *</label>
+                            <input type="date" name="date_achat_souhaitee" class="form-control contact-form-input" required>
+                            <small class="text-muted contact-text-muted">
+                                <i class="bi bi-calendar-event me-1"></i>
+                                Jusqu'à quand votre offre reste-t-elle valable ? (6 mois max)
+                            </small>
                         </div>
                     </div>
 
@@ -571,18 +573,18 @@
                                            placeholder="Marque et modèle">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="number" name="reprise_annee" class="form-control contact-form-input"
+                                    <input name="reprise_annee" class="form-control contact-form-input"
                                            min="1990" max="2025" placeholder="Année">
                                 </div>
                                 <div class="col-md-3">
-                                    <input type="number" name="reprise_km" class="form-control contact-form-input"
+                                    <input name="reprise_km" class="form-control contact-form-input"
                                            min="0" placeholder="Kilométrage">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12 mt-3">
+                    <div class="col-12">
                         <label class="form-label contact-form-label">Commentaires sur votre offre</label>
                         <textarea name="commentaires" class="form-control contact-form-textarea" rows="3"
                                   placeholder="Précisions, justifications de votre offre..."></textarea>
@@ -621,9 +623,9 @@
                 <input type="hidden" name="vehiculeId" value="@Model.Vehicule.Id" />
 
                 <div class="modal-body contact-modal-body">
-                    <div class="row mb-3">
+                    <div class="row">
                         <div class="col-12">
-                            <div class="alert contact-alert contact-alert-success">
+                            <div class="contact-alert contact-alert-success">
                                 <strong>@Model.Vehicule.Marque @Model.Vehicule.Modele</strong>
                                 - Essai gratuit et sans engagement
                             </div>
@@ -644,10 +646,14 @@
                             <input type="tel" name="telephone" class="form-control contact-form-input" required>
                         </div>
                         <div class="col-md-6">
-                            <label class="form-label contact-form-label">Date souhaitée *</label>
+                            <label class="form-label contact-form-label">Date souhaitée pour l'essai *</label>
                             <input type="date" name="date_souhaitee" class="form-control contact-form-input" required
                                    min="@DateTime.Now.AddDays(1):yyyy-MM-dd"
                                    max="@DateTime.Now.AddMonths(2):yyyy-MM-dd">
+                            <small class="text-muted contact-text-muted">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Essai possible dès demain et jusqu'à 2 mois
+                            </small>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label contact-form-label">Créneau horaire *</label>
@@ -672,7 +678,7 @@
                         </div>
                     </div>
 
-                    <div class="row g-3 mt-3 contact-form-row">
+                    <div class="row g-3 contact-form-row">
                         <div class="col-12">
                             <div class="border p-3 rounded bg-light contact-info-section">
                                 <h6 class="mb-3">Informations permis de conduire :</h6>
@@ -697,8 +703,8 @@
 
                         <div class="col-12">
                             <div class="form-check contact-form-check">
-                                <input type="checkbox" name="avec_conseiller" class="form-check-input contact-form-check-input"
-                                       id="avec_conseiller">
+                                <input type="checkbox" name="avecConseillerChecked" class="form-check-input contact-form-check-input"
+                                       id="avec_conseiller" value="true">
                                 <label class="form-check-label contact-form-check-label" for="avec_conseiller">
                                     Je souhaite être accompagné d'un conseiller commercial
                                 </label>
@@ -723,6 +729,69 @@
                     </button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Gestion des messages de succès/erreur du serveur -->
+@if (!string.IsNullOrEmpty(TempData["ContactSuccess"] as string))
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            showSuccessMessage();
+        });
+    </script>
+}
+
+@if (!string.IsNullOrEmpty(TempData["ContactError"] as string))
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            showErrorMessage('@TempData["ContactError"]');
+        });
+    </script>
+}
+
+<!-- Modal de succès (à ajouter si pas déjà fait) -->
+<div id="successModal" class="contact-modal d-none">
+    <div class="modal-overlay"></div>
+    <div class="modal-content success-modal">
+        <div class="modal-header">
+            <div class="success-icon">
+                <i class="bi bi-check-lg"></i>
+            </div>
+            <h3 class="modal-title">Message envoyé !</h3>
+        </div>
+        <div class="modal-body">
+            <p class="modal-message" id="successMessage">@TempData["ContactSuccess"]</p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="closeContactModal('success')">
+                    <i class="bi bi-check-lg me-2"></i>
+                    Parfait !
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal d'erreur -->
+<div id="errorModal" class="contact-modal d-none">
+    <div class="modal-overlay"></div>
+    <div class="modal-content error-modal">
+        <div class="modal-header">
+            <div class="error-icon">
+                <i class="bi bi-exclamation-triangle"></i>
+            </div>
+            <h3 class="modal-title">Erreur</h3>
+        </div>
+        <div class="modal-body">
+            <p class="modal-message" id="errorMessage">Une erreur est survenue</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeContactModal('error')">
+                    <i class="bi bi-x-lg me-2"></i>
+                    Fermer
+                </button>
+            </div>
         </div>
     </div>
 </div>

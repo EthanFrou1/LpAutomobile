@@ -401,7 +401,7 @@ namespace LpAutomobile.Services
 
                             <div style='margin-bottom: 15px;'>
                                 <strong style='color: #ffc107;'>Délai d'achat :</strong>
-                                <span style='color: #333; font-size: 16px;'>{model.DelaiAchat}</span>
+                                <span style='color: #333; font-size: 16px;'>{model.DateAchatFormatee}</span>
                             </div>
                         
                             <div>
